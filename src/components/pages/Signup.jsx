@@ -14,7 +14,7 @@ const isEmail = require("isemail");
 
 const SUCCESS_MESSAGE = "Account successfully created!";
 const FAILURE_MESSAGE_EMAIL_TAKEN =
-  "E-mail taken, please use another one or contact support";
+  "Error, please contact support at filterlabstore@gmail.com";
 const FAILURE_MESSAGE_CHECKBOX = "Please enable the checkbox";
 const FAILURE_MESSAGE_PASSWORD = "Your password is too short";
 const FAILURE_MESSAGE_INVALID_EMAIL = "Please type a valid e-mail";

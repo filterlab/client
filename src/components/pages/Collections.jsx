@@ -2,13 +2,17 @@ import React from "react";
 import Page from "../Page";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Strapi from "strapi-sdk-javascript/build/main";
 import Collection from "../cards/Collection";
+import Spacer from "../Spacer";
+import { Button } from "semantic-ui-react";
 
 const uniqBy = require("lodash.uniqby");
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
+
+const checkoutWidth = (isTablet) => (isTablet ? 300 : 500);
 class Collections extends React.Component {
   state = {
     filters: [],
@@ -44,15 +48,63 @@ class Collections extends React.Component {
       this.props.history.push("/404");
     }
   }
+  noCollections = () => {
+    const isTablet = this.props.isTablet;
+    let minWidth = checkoutWidth(isTablet);
+    return (
+      <>
+        <div style={{ minWidth }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 5,
+            }}
+          >
+            No collections yet
+            <span role="img" aria-label="broken-heart">
+              💔
+            </span>
+          </div>
+          <Spacer space={10} />
+          <center>
+            <Button>
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  margin: 1,
+                }}
+                to="/"
+              >
+                Go back to Home
+              </Link>
+            </Button>
+          </center>
+        </div>
+      </>
+    );
+  };
 
   build = () =>
-    this.state.filters.map((filter) => <Collection filter={filter} />);
+    this.state.filters.length > 0 ? (
+      <div
+        style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
+      >
+        {this.state.filters.map((filter) => (
+          <Collection filter={filter} />
+        ))}
+      </div>
+    ) : (
+      this.noCollections()
+    );
 
   render() {
     return (
       <Page
         header={"Collections"}
-        loading={this.state.filters <= 0}
+        loading={""}
         loadingMessage={"Loading your Collection"}
         body={this.build()}
       />

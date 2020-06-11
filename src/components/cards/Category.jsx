@@ -1,12 +1,13 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
-import { Card } from "semantic-ui-react";
+import { Card, Button } from "semantic-ui-react";
+const FILES_FOLDER = "../../files/images/category/";
 const Category = (category, index) => {
   const { _id, name, description, image } = category;
   return (
     <Fade clear delay={100 * index}>
-      <div style={{ margin: 5, maxHeight: 321 }}>
+      <div style={{ margin: 20, maxHeight: 321 }}>
         <Card>
           <div
             style={{
@@ -16,30 +17,30 @@ const Category = (category, index) => {
           >
             <img
               alt={image}
-              height={193}
+              height={200}
               width={290}
-              style={{
-                objectFit: "contain",
-              }}
-              src={image}
+              src={`${FILES_FOLDER}${image}.jpg`}
             />
           </div>
-
           <Card.Content>
             <div style={{ height: 80 }}>
               <Card.Header>
-                <b>{name}</b>
+                <b>
+                  <center>{name}</center>
+                </b>
               </Card.Header>
               <Card.Description>
                 {
-                  <div
-                    style={{
-                      textOverflow: "ellipsis",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {description}
-                  </div>
+                  <center>
+                    <div
+                      style={{
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {description}
+                    </div>
+                  </center>
                 }
               </Card.Description>
             </div>
@@ -49,7 +50,7 @@ const Category = (category, index) => {
                   to={`/category/${_id}`}
                   style={{ color: "inherit", textDecoration: "inherit" }}
                 >
-                  <span className="date">See all filters</span>
+                  <Button>See this category</Button>
                 </Link>
               </div>
             </Card.Meta>

@@ -19,7 +19,7 @@ const PaymentForm = ({ history, error, filters, total }) => {
   const onSuccess = () => {
     setLoading(false);
     handleSuccess(SUCCESS_MESSAGE);
-    setTimeout(() => history.push("/"), 3500);
+    setTimeout(() => history.push("/collections"), 3500);
   };
   const onFailure = () => {
     setLoading(false);

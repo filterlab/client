@@ -66,7 +66,7 @@ class Filters extends React.Component {
     };
     return (
       <Page
-        header={`Checkout ${name}!`}
+        header={`${name}`}
         loading={spinner}
         loadingMessage={"Filters everywhere!"}
         body={build()}

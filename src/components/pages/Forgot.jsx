@@ -19,7 +19,8 @@ const SUCCESS_EMAIL_SENT_MESSAGE =
   "Email sent! Check your spam folder, and copy the provided code";
 const SUCCESS_PASSWORD_CHANGED_MESSAGE = "Password changed, please login";
 const FAILURE_MESSAGE_INCORRECT_CODE = "Incorrect code provided";
-const FAILURE_MESSAGE_UKNOWN_EMAIL = "E-mail doesn't exist.";
+const FAILURE_MESSAGE_UKNOWN_EMAIL =
+  "Error, please contact support at filterlabstore@gmail.com";
 const FAILURE_MESSAGE_INVALID_EMAIL = "Please type a valid e-mail";
 
 class Forgot extends React.Component {

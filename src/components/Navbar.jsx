@@ -6,20 +6,20 @@ import { Icon, Button, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import Spacer from "./Spacer";
 
-const GRAY = "grey";
+const BLACK = "black";
 const RED = "red";
 
 const authedLinks = [
-  { linkName: "How to install", linkRoute: "/install", color: GRAY },
-  { linkName: "Collections", linkRoute: "/collections", color: GRAY },
-  { linkName: "Checkout", linkRoute: "/checkout", color: GRAY },
+  { linkName: "How to install", linkRoute: "/install", color: BLACK },
+  { linkName: "Collections", linkRoute: "/collections", color: BLACK },
+  { linkName: "Checkout", linkRoute: "/checkout", color: BLACK },
   { linkName: "Logout", linkRoute: "/", color: RED },
 ];
 
 const nonAuthedLinks = [
-  { linkName: "How to install", linkRoute: "/install", color: GRAY },
-  { linkName: "Sign up", linkRoute: "/signup", color: GRAY },
-  { linkName: "Login", linkRoute: "/login", color: GRAY },
+  { linkName: "How to install", linkRoute: "/install", color: BLACK },
+  { linkName: "Register", linkRoute: "/signup", color: BLACK },
+  { linkName: "Login", linkRoute: "/login", color: "" },
 ];
 
 const link = (linkName, linkRoute, color, iconName) => (
@@ -40,11 +40,23 @@ class Navbar extends Component {
     clicked: false,
   };
 
+  noScroll = () => window.scrollTo(0, 0);
+
+  disable = () => {
+    window.removeEventListener("scroll", this.noScroll);
+    this.setState({ clicked: false });
+  };
+
+  enable = () => {
+    window.addEventListener("scroll", this.noScroll);
+    this.setState({ clicked: true });
+  };
+
   buildTabletNavList = () => {
     return (
       <>
         <div
-          onClick={() => this.setState({ clicked: false })}
+          onClick={() => this.disable()}
           style={{
             minHeight: "calc(100vh - 21px)",
             background: "white",
@@ -58,7 +70,7 @@ class Navbar extends Component {
           <Spacer space={10} />
           {this.props.isAuthed !== undefined ? (
             <Button.Group vertical>
-              {mobileLink(link("Go to Home", "/", GRAY))}
+              {mobileLink(link("Go to Home", "/", BLACK))}
               {mobileLink(
                 link(
                   authedLinks[0].linkName,
@@ -93,7 +105,7 @@ class Navbar extends Component {
             </Button.Group>
           ) : (
             <Button.Group vertical>
-              {mobileLink(link("Go to Home", "/", GRAY))}
+              {mobileLink(link("Go to Home", "/", BLACK))}
               {mobileLink(
                 link(
                   nonAuthedLinks[0].linkName,
@@ -131,24 +143,17 @@ class Navbar extends Component {
           display: "flex",
           flexDirection: "column",
           minWidth: "calc(100vw - 10px)",
+          background: "white",
         }}
       >
         <Fade clear>
-          <Icon
-            name="delete"
-            size="big"
-            onClick={() => this.setState({ clicked: false })}
-          />
+          <Icon name="delete" size="big" onClick={() => this.disable()} />
         </Fade>
         {this.buildTabletNavList()}
       </div>
     ) : (
       <Fade clear>
-        <Icon
-          name="bars"
-          size="big"
-          onClick={() => this.setState({ clicked: true })}
-        />
+        <Icon name="bars" size="big" onClick={() => this.enable()} />
       </Fade>
     );
   };
@@ -222,7 +227,7 @@ class Navbar extends Component {
           margin: 5,
         }}
       >
-        {!this.props.isTablet && link("Home", "/", GRAY)}
+        {!this.props.isTablet && link("Home", "/", BLACK)}
         {this.props.isTablet ? this.buildTabletNav() : this.buildDeskNav()}
       </div>
     );

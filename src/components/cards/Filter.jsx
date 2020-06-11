@@ -8,20 +8,23 @@ import { ToastContainer } from "react-toastify";
 import { handleSuccess } from "../helpers/toasts";
 import { addToCart } from "../../actions/cartActions";
 import "react-toastify/dist/ReactToastify.css";
+const FILES_FOLDER = "../../files/images/filter";
+const FILES_FOLDER_BEFORE = FILES_FOLDER + "/before/";
+const FILES_FOLDER_AFTER = FILES_FOLDER + "/after/";
 
 class Filter extends React.Component {
   handleShoppingClick = (id, price, name) => {
     this.props.addToCart(id, price, name);
     handleSuccess(`Added ${name} to cart!`);
   };
-
   render() {
     const { filter, index } = this.props;
-    const { _id, name, description, image_after, image_before, price } = filter;
-
+    const { _id, name, image_after, image_before, price } = filter;
+    const BEFORE = `${FILES_FOLDER_BEFORE}${image_before}.jpg`;
+    const AFTER = `${FILES_FOLDER_AFTER}${image_after}.jpg`;
     return (
       <Fade clear delay={100 * index}>
-        <div style={{ margin: 5, maxHeight: 321 }}>
+        <div style={{ margin: 20, maxHeight: 321 }}>
           <Card>
             <div
               style={{
@@ -30,30 +33,20 @@ class Filter extends React.Component {
               }}
             >
               <BeforeAfterSlider
-                before={image_before}
-                after={image_after}
+                before={AFTER}
+                after={BEFORE}
                 height={200}
                 width={290}
               />
             </div>
 
             <Card.Content>
-              <div style={{ height: 100 }}>
+              <div style={{ height: 40 }}>
                 <Card.Header>
-                  <b>{name}</b>
+                  <b>
+                    <center>{name}</center>
+                  </b>
                 </Card.Header>
-                <Card.Description>
-                  {
-                    <div
-                      style={{
-                        textOverflow: "ellipsis",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {description}
-                    </div>
-                  }
-                </Card.Description>
               </div>
               <div
                 style={{
@@ -66,7 +59,7 @@ class Filter extends React.Component {
                   to={`/filter/${_id}`}
                   style={{ color: "inherit", textDecoration: "inherit" }}
                 >
-                  <Button>Know more</Button>
+                  <Button color="black">Know more</Button>
                 </Link>
                 <Button
                   onClick={() => this.handleShoppingClick(_id, price, name)}

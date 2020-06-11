@@ -8,7 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Strapi from "strapi-sdk-javascript/build/main";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
-
+const FILES_FOLDER = "../../files/images/filter";
+const FILES_FOLDER_BEFORE = FILES_FOLDER + "/before/";
+const FILES_FOLDER_AFTER = FILES_FOLDER + "/after/";
 class Collection extends React.Component {
   state = {
     filter: {},
@@ -23,9 +25,6 @@ class Collection extends React.Component {
                     _id
                     name
                     description
-                    image
-                    image_after
-                    image_before
                     price
                     download
                   }
@@ -39,16 +38,13 @@ class Collection extends React.Component {
 
   render() {
     const { index } = this.props;
-    const {
-      name,
-      description,
-      image_after,
-      image_before,
-      download,
-    } = this.state.filter;
+    const { name, download } = this.state.filter;
+
+    const BEFORE = `${FILES_FOLDER_BEFORE}${this.props.filter.id}.jpg`;
+    const AFTER = `${FILES_FOLDER_AFTER}${this.props.filter.id}.jpg`;
     return (
       <Fade clear delay={100 * index}>
-        <div style={{ margin: 5, maxHeight: 321 }}>
+        <div style={{ maxHeight: 321, margin: 20 }}>
           <Card>
             <div
               style={{
@@ -57,30 +53,20 @@ class Collection extends React.Component {
               }}
             >
               <BeforeAfterSlider
-                before={image_before}
-                after={image_after}
+                before={AFTER}
+                after={BEFORE}
                 height={200}
                 width={290}
               />
             </div>
 
             <Card.Content>
-              <div style={{ height: 100 }}>
+              <div style={{ height: 40 }}>
                 <Card.Header>
-                  <b>{name}</b>
+                  <b>
+                    <center>{name}</center>
+                  </b>
                 </Card.Header>
-                <Card.Description>
-                  {
-                    <div
-                      style={{
-                        textOverflow: "ellipsis",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {description}
-                    </div>
-                  }
-                </Card.Description>
               </div>
               <div
                 style={{
@@ -90,7 +76,7 @@ class Collection extends React.Component {
                 }}
               >
                 <Link
-                  to={`/files/${download}`}
+                  to={`/files/filters/${download}`}
                   style={{ color: "inherit", textDecoration: "inherit" }}
                   target="_blank"
                   download

@@ -2,7 +2,7 @@ import Stripe from "stripe";
 
 const sk =
   process.env.REACT_APP_STRIPE_SK ||
-  "sk_test_s8mmMGNJEq7H7T59OG5MOnSL00b2bcvNdS";
+  "sk_test_51Gsr1UEhqd6TMPqxMno8ObEzWAwl2rlb51fDxU4RdcczoH08RliydoVd3u1VOE5jtfva3VPXRLjVPSNttluFNCiY007baINslL";
 const stripe = new Stripe(sk);
 
 export default async (req, res) => {

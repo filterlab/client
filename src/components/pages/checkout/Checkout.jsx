@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import Page from "../../Page";
-import { Button, Card, Table } from "semantic-ui-react";
+import { Button, Table } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentForm from "./PaymentForm";
+import Spacer from "../../Spacer";
 
 const sumTotal = (cart) => {
   let total = 0;
@@ -35,25 +36,35 @@ class Checkout extends React.Component {
     let minWidth = checkoutWidth(isTablet);
     return (
       <>
-        <Card style={{ minWidth }}>
+        <div style={{ minWidth }}>
           <div
-            style={{ display: "flex", justifyContent: "center", padding: 5 }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 5,
+            }}
           >
-            No items added yet
+            No items added yet {"  "}
             <span role="img" aria-label="broken-heart">
               💔
             </span>
           </div>
-        </Card>
-        <div style={{ minWidth }}>
-          <Button>
-            <Link
-              style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
-              to="/"
-            >
-              Go back to Home
-            </Link>
-          </Button>
+          <Spacer space={10} />
+          <center>
+            <Button>
+              <Link
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                  margin: 1,
+                }}
+                to="/"
+              >
+                Go back to Home
+              </Link>
+            </Button>
+          </center>
         </div>
       </>
     );
