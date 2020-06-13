@@ -48,10 +48,10 @@ class FilterDetail extends React.Component {
 
   render() {
     const filter = this.state.filter;
+    const isTablet = this.props.isTablet;
     const { _id, price, name, image_after, categoryId, description } = filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
     const AFTER = `${FILES_FOLDER}/${categoryId}/after/${image_after}.jpg`;
-    const isTablet = this.props.isTablet;
     const WIDTH = isTablet ? 320 : 640;
     const HEIGHT = isTablet ? 240 : 480;
     const filterDetail = () => {

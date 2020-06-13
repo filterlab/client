@@ -6,10 +6,14 @@ import Spacer from "./Spacer";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet";
 
-const Page = ({ header, loading, loadingMessage, body }) => (
+const Page = ({ header, top, loading, loadingMessage, body }) => (
   <Fade clear delay={100}>
     <div
-      style={{ margin: 5, paddingTop: 120, minHeight: "calc(100vh - 65px)" }}
+      style={{
+        margin: 5,
+        paddingTop: top ? top : 80,
+        minHeight: "calc(100vh)",
+      }}
     >
       <Helmet>
         <title>Filterlab</title>
@@ -24,7 +28,6 @@ const Page = ({ header, loading, loadingMessage, body }) => (
           flexDirection: "column",
           alignItems: "center",
           marginTop: 10,
-          marginBottom: 20,
         }}
       >
         {!loading && <Header as="h1">{header}</Header>}

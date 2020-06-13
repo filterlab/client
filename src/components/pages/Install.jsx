@@ -6,6 +6,7 @@ import Page from "../Page";
 import { Header, Icon } from "semantic-ui-react";
 import Spacer from "../Spacer";
 import Fade from "react-reveal/Fade";
+import Divider from "../Divider";
 const FILES_FOLDER = "../../files/install/";
 
 const files = [
@@ -48,7 +49,9 @@ const Step = ({ i, isTablet, img }) => {
           <b>{i}</b>
         </div>
       </div>
-      <Spacer space={MARGIN / 2} />
+      <Spacer space={MARGIN} />
+      <Divider />
+      <Spacer space={MARGIN} />
       <span style={{ display: "block", minHeight: 40 }}>{descriptions[i]}</span>
       <Spacer space={MARGIN / 2} />
       <img alt={i} style={{ width: WIDTH, height: HEIGHT }} src={img} />
@@ -62,7 +65,7 @@ class Install extends React.Component {
       <center>
         <Header>
           First time installing a preset?
-          <br /> Follow these steps!
+          {this.props.isTablet && <br />} Follow these steps!
         </Header>
       </center>
       <div
@@ -88,7 +91,8 @@ class Install extends React.Component {
     return (
       <Fade left>
         <Page
-          header={"How to Install"}
+          top={this.props.top}
+          header={"How to use"}
           loading={false}
           loadingMessage={""}
           body={this.build()}

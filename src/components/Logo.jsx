@@ -5,7 +5,7 @@ import Fade from "react-reveal/Fade";
 const Logo = ({ isTablet }) => {
   return (
     <Fade left>
-      <div style={{ fontSize: isTablet ? 50 : 70 }}>Filterlab</div>
+      <div style={{ fontSize: isTablet ? 50 : 35 }}>Filterlab</div>
     </Fade>
   );
 };

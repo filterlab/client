@@ -5,7 +5,6 @@ import { Card, Button } from "semantic-ui-react";
 const FILES_FOLDER = "../../files/images/category/";
 const Category = (category, index) => {
   const { _id, name, description } = category;
-
   const card = () => (
     <Fade clear delay={100 * index}>
       <Card>

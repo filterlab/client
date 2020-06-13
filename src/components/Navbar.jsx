@@ -3,6 +3,7 @@ import Fade from "react-reveal/Fade";
 import { connect } from "react-redux";
 import { removeKey } from "../actions/authActions";
 import { Icon, Button, Header } from "semantic-ui-react";
+import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import Spacer from "./Spacer";
 
@@ -10,14 +11,14 @@ const BLACK = "black";
 const RED = "red";
 
 const authedLinks = [
-  { linkName: "How to install", linkRoute: "/install", color: BLACK },
+  { linkName: "How to use", linkRoute: "/install", color: BLACK },
   { linkName: "Collections", linkRoute: "/collections", color: BLACK },
   { linkName: "Checkout", linkRoute: "/checkout", color: BLACK },
   { linkName: "Logout", linkRoute: "/", color: RED },
 ];
 
 const nonAuthedLinks = [
-  { linkName: "How to install", linkRoute: "/install", color: BLACK },
+  { linkName: "How to use", linkRoute: "/install", color: BLACK },
   { linkName: "Register", linkRoute: "/signup", color: BLACK },
   { linkName: "Login", linkRoute: "/login", color: "" },
 ];
@@ -227,7 +228,14 @@ class Navbar extends Component {
           margin: 5,
         }}
       >
-        {!this.props.isTablet && link("Home", "/", BLACK)}
+        {!this.props.isTablet && (
+          <Link
+            to="/"
+            style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
+          >
+            <Logo />
+          </Link>
+        )}
         {this.props.isTablet ? this.buildTabletNav() : this.buildDeskNav()}
       </div>
     );
