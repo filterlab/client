@@ -8920,10 +8920,10 @@ react-side-effect@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-2.1.0.tgz#1ce4a8b4445168c487ed24dab886421f74d380d3"
   integrity sha512-IgmcegOSi5SNX+2Snh1vqmF0Vg/CbkycU9XZbOHJlZ6kMzTmi3yc254oB1WCkgA7OQtIAoLmcSFuHTc/tlcqXg==
 
-react-spinners@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.8.1.tgz#210521e9d5b8be70e4c447d547919c1afb609209"
-  integrity sha512-jWp9gTurv6A1saXyqaqWx3dp2ZCi5eMaa0Y/0h8KdN+3QC7n7aITFKtT4BSX/ufVbvumtGLvheZDdczbgPPLtA==
+react-spinners@^0.8.3:
+  version "0.8.3"
+  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.8.3.tgz#d08ed753aec4a7ef9f5d9b907ee0161271c932ee"
+  integrity sha512-fuYNjH0megp5FLuUqQXWM9mPgBXUjvYD6IkMOiwNGOOlI2UdOP1ZC3vejUAa3Y/q4qWJ6yx8rjfMjIBgEji+9A==
   dependencies:
     "@emotion/core" "^10.0.15"
 

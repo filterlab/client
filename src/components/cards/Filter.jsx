@@ -9,8 +9,6 @@ import { handleSuccess } from "../helpers/toasts";
 import { addToCart } from "../../actions/cartActions";
 import "react-toastify/dist/ReactToastify.css";
 const FILES_FOLDER = "../../files/images/filter";
-const FILES_FOLDER_BEFORE = FILES_FOLDER + "/before/";
-const FILES_FOLDER_AFTER = FILES_FOLDER + "/after/";
 
 class Filter extends React.Component {
   handleShoppingClick = (id, price, name) => {
@@ -18,10 +16,10 @@ class Filter extends React.Component {
     handleSuccess(`Added ${name} to cart!`);
   };
   render() {
-    const { filter, index } = this.props;
-    const { _id, name, image_after, image_before, price } = filter;
-    const BEFORE = `${FILES_FOLDER_BEFORE}${image_before}.jpg`;
-    const AFTER = `${FILES_FOLDER_AFTER}${image_after}.jpg`;
+    const { filter, index, categoryId } = this.props;
+    const { _id, name, image_after, price } = filter;
+    const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
+    const AFTER = `${FILES_FOLDER}/${categoryId}/after/${image_after}.jpg`;
     return (
       <Fade clear delay={100 * index}>
         <div style={{ margin: 20, maxHeight: 321 }}>

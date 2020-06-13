@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import Strapi from "strapi-sdk-javascript/build/main";
 import Page from "../Page";
 import Filter from "../cards/Filter";
@@ -12,41 +13,37 @@ class Filters extends React.Component {
   };
 
   async componentDidMount() {
-    try {
-      const res = await strapi.request("POST", "/graphql", {
+    const categoryId = this.props.match.params.categoryId;
+    await strapi
+      .request("POST", "/graphql", {
         data: {
           query: `query {
-            category(id: "${this.props.match.params.categoryId}") {
+            category(id: "${categoryId}") {
               _id
               name
               filters {
                 _id
                 name
                 description
-                image
                 image_after
-                image_before
                 price
               }
             }
           }`,
         },
-      });
-      setTimeout(
-        () =>
-          this.setState({
-            name: res.data.category.name,
-            filters: res.data.category.filters,
-          }),
-        50
-      );
-    } catch (err) {
-      console.error(err);
-    }
+      })
+      .then((res) =>
+        this.setState({
+          categoryId: res.data.category._id,
+          name: res.data.category.name,
+          filters: res.data.category.filters,
+        })
+      )
+      .catch(() => this.props.history.push("/404"));
   }
 
   render() {
-    const { filters, name } = this.state;
+    const { filters, name, categoryId } = this.state;
     const spinner = filters.length <= 0;
     const build = () => {
       return (
@@ -59,7 +56,12 @@ class Filters extends React.Component {
           }}
         >
           {filters.map((b, i) => (
-            <Filter filter={b} index={i} apiUrl={apiUrl} />
+            <Filter
+              categoryId={categoryId}
+              filter={b}
+              index={i}
+              apiUrl={apiUrl}
+            />
           ))}
         </div>
       );
@@ -75,4 +77,4 @@ class Filters extends React.Component {
   }
 }
 
-export default Filters;
+export default withRouter(Filters);

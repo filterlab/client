@@ -59,7 +59,12 @@ const Step = ({ i, isTablet, img }) => {
 class Install extends React.Component {
   build = () => (
     <>
-      <Header>First time installing a preset? Follow these steps!</Header>
+      <center>
+        <Header>
+          First time installing a preset?
+          <br /> Follow these steps!
+        </Header>
+      </center>
       <div
         style={{
           display: "flex",

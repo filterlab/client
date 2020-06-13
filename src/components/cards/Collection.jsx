@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import BeforeAfterSlider from "react-before-after-slider";
@@ -9,39 +10,36 @@ import Strapi from "strapi-sdk-javascript/build/main";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 const FILES_FOLDER = "../../files/images/filter";
-const FILES_FOLDER_BEFORE = FILES_FOLDER + "/before/";
-const FILES_FOLDER_AFTER = FILES_FOLDER + "/after/";
 class Collection extends React.Component {
   state = {
     filter: {},
   };
 
   async componentDidMount() {
-    try {
-      const { data } = await strapi.request("POST", "/graphql", {
+    await strapi
+      .request("POST", "/graphql", {
         data: {
           query: `query {
                 filter(id:"${this.props.filter.id}") {
                     _id
                     name
                     description
+                    categoryId,
                     price
                     download
                   }
                 }`,
         },
-      });
-
-      setTimeout(() => this.setState({ filter: data.filter }), 50);
-    } catch (err) {}
+      })
+      .then((res) => this.setState({ filter: res.data.filter }))
+      .catch(() => this.props.history.push("/404"));
   }
 
   render() {
     const { index } = this.props;
-    const { name, download } = this.state.filter;
-
-    const BEFORE = `${FILES_FOLDER_BEFORE}${this.props.filter.id}.jpg`;
-    const AFTER = `${FILES_FOLDER_AFTER}${this.props.filter.id}.jpg`;
+    const { name, download, _id, categoryId } = this.state.filter;
+    const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
+    const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
     return (
       <Fade clear delay={100 * index}>
         <div style={{ maxHeight: 321, margin: 20 }}>
@@ -92,5 +90,4 @@ class Collection extends React.Component {
     );
   }
 }
-
-export default Collection;
+export default withRouter(Collection);
