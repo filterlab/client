@@ -103,6 +103,7 @@ class Login extends React.Component {
         loading={false}
         loadingMessage={"Redirecting to login page"}
         body={this.build()}
+        footer
       />
     );
   }

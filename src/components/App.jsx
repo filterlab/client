@@ -7,7 +7,6 @@ import Categories from "./pages/Categories";
 import Fade from "react-reveal/Fade";
 import { Header } from "semantic-ui-react";
 import Divider from "./Divider";
-import Footer from "./Footer";
 
 class App extends Component {
   render() {
@@ -23,7 +22,6 @@ class App extends Component {
         <Categories />
         <Spacer space={10} />
         <Divider />
-        <Footer />
       </>
     );
 
@@ -32,6 +30,7 @@ class App extends Component {
         top={isTablet && 40}
         loadingMessage={"Loading awesome filters"}
         body={build()}
+        footer
       />
     );
   }

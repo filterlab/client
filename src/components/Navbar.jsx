@@ -67,12 +67,12 @@ class Navbar extends Component {
             alignItems: "center",
           }}
         >
-          <Spacer space={70} />
+          <Spacer space={10} />
           {<Header as="h1">What do you want to do?</Header>}
           <Spacer space={10} />
           {this.props.isAuthed !== undefined ? (
             <Button.Group vertical>
-              {mobileLink(link("Go to Home", "/", BLACK))}
+              {mobileLink(link("Home", "/", BLACK))}
               {mobileLink(
                 link(
                   authedLinks[0].linkName,
@@ -107,7 +107,7 @@ class Navbar extends Component {
             </Button.Group>
           ) : (
             <Button.Group vertical>
-              {mobileLink(link("Go to Home", "/", BLACK))}
+              {mobileLink(link("Home", "/", BLACK))}
               {mobileLink(
                 link(
                   nonAuthedLinks[0].linkName,
@@ -145,11 +145,12 @@ class Navbar extends Component {
           display: "flex",
           flexDirection: "column",
           minWidth: "calc(100vw - 10px)",
-          background: "white",
         }}
       >
         <Fade clear>
-          <Icon name="delete" size="big" onClick={() => this.disable()} />
+          <span style={{ marginTop: 15 }}>
+            <Icon name="delete" size="big" onClick={() => this.disable()} />
+          </span>
         </Fade>
         {this.buildTabletNavList()}
       </div>
@@ -159,10 +160,13 @@ class Navbar extends Component {
           style={{
             minWidth: "calc(100vw - 10px)",
             display: "flex",
+            alignItems: "center",
             justifyContent: "space-between",
+            background: "white",
           }}
         >
           <Icon name="bars" size="big" onClick={() => this.enable()} />
+          <Logo isTablet />
           <Cart />
         </div>
       </Fade>
@@ -236,6 +240,8 @@ class Navbar extends Component {
           justifyContent: "space-between",
           minWidth: "100%",
           margin: 5,
+          marginTop: 0,
+          background: "white",
         }}
       >
         {!this.props.isTablet && (

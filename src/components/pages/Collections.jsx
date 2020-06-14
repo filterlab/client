@@ -7,6 +7,7 @@ import Strapi from "strapi-sdk-javascript/build/main";
 import Collection from "../cards/Collection";
 import Spacer from "../Spacer";
 import { Button } from "semantic-ui-react";
+import Empty from "../Empty";
 
 const uniqBy = require("lodash.uniqby");
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
@@ -54,19 +55,7 @@ class Collections extends React.Component {
     return (
       <>
         <div style={{ minWidth }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: 5,
-            }}
-          >
-            No collections yet
-            <span role="img" aria-label="broken-heart">
-              💔
-            </span>
-          </div>
+          <Empty message="No presets added yet" />
           <Spacer space={10} />
           <center>
             <Button>

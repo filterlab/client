@@ -1,16 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import Logo from "./Logo";
 import Fade from "react-reveal/Fade";
 
 const Motivation = ({ isTablet }) => {
   return (
     <>
-      {isTablet && (
-        <div style={{ margin: 30 }}>
-          <Logo />
-        </div>
-      )}
       <div
         style={{
           width: "100%",

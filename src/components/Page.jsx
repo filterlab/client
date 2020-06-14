@@ -5,14 +5,19 @@ import LoadingScreen from "./LoadingScreen";
 import Spacer from "./Spacer";
 import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet";
+import Footer from "./Footer";
 
-const Page = ({ header, top, loading, loadingMessage, body }) => (
+const Page = ({ header, top, loading, loadingMessage, hideFooter, body }) => (
   <Fade clear delay={100}>
     <div
       style={{
         margin: 5,
+        marginTop: 0,
         paddingTop: top ? top : 80,
         minHeight: "calc(100vh)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
       <Helmet>
@@ -35,6 +40,7 @@ const Page = ({ header, top, loading, loadingMessage, body }) => (
         {loading ? <LoadingScreen message={loadingMessage} /> : body}
       </div>
       <ToastContainer />
+      {hideFooter ? "" : <Footer />}
     </div>
   </Fade>
 );

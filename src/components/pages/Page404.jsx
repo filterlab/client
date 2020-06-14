@@ -5,6 +5,8 @@ import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import Page from "../Page";
 import { Button } from "semantic-ui-react";
+import Empty from "../Empty";
+import Spacer from "../Spacer";
 
 class Page404 extends React.Component {
   state = {
@@ -18,11 +20,13 @@ class Page404 extends React.Component {
       style={{
         width: this.props.isTablet ? 300 : 500,
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
       }}
     >
-      Something went wrong, go back to <div style={{ marginLeft: 5 }} />
+      <Empty message="Something went wrong" />
+      <Spacer space={20} />
       <Link to={"/"} style={{ color: "inherit", textDecoration: "inherit" }}>
         <Button>Home</Button>
       </Link>

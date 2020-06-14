@@ -8,6 +8,7 @@ import { Button, Table } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 import PaymentForm from "./PaymentForm";
 import Spacer from "../../Spacer";
+import Empty from "../../Empty";
 
 const sumTotal = (cart) => {
   let total = 0;
@@ -37,20 +38,8 @@ class Checkout extends React.Component {
     return (
       <>
         <div style={{ minWidth }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: 5,
-            }}
-          >
-            No items added yet {"  "}
-            <span role="img" aria-label="broken-heart">
-              💔
-            </span>
-          </div>
-          <Spacer space={10} />
+          <Empty message="No items added yet" />
+          <Spacer space={20} />
           <center>
             <Button>
               <Link
