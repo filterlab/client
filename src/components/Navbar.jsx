@@ -6,6 +6,7 @@ import { Icon, Button, Header } from "semantic-ui-react";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import Spacer from "./Spacer";
+import Cart from "./Cart";
 
 const BLACK = "black";
 const RED = "red";
@@ -154,7 +155,16 @@ class Navbar extends Component {
       </div>
     ) : (
       <Fade clear>
-        <Icon name="bars" size="big" onClick={() => this.enable()} />
+        <div
+          style={{
+            minWidth: "calc(100vw - 10px)",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Icon name="bars" size="big" onClick={() => this.enable()} />
+          <Cart />
+        </div>
       </Fade>
     );
   };
