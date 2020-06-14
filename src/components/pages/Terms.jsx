@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
-import Page from "../Page";
+import Page from "../ui/Page";
 
 class Terms extends React.Component {
   state = {

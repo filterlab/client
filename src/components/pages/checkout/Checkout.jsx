@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
-import Page from "../../Page";
 import { Button, Table } from "semantic-ui-react";
-import "react-toastify/dist/ReactToastify.css";
 import PaymentForm from "./PaymentForm";
-import Spacer from "../../Spacer";
-import Empty from "../../Empty";
+import Page from "../../ui/Page";
+import Spacer from "../../ui/Spacer";
+import Empty from "../../ui/Empty";
+import "react-toastify/dist/ReactToastify.css";
 
 const sumTotal = (cart) => {
   let total = 0;

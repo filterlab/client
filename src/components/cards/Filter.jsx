@@ -17,9 +17,9 @@ class Filter extends React.Component {
   };
   render() {
     const { filter, index, categoryId } = this.props;
-    const { _id, name, image_after, price } = filter;
+    const { _id, name, price } = filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
-    const AFTER = `${FILES_FOLDER}/${categoryId}/after/${image_after}.jpg`;
+    const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
     return (
       <Fade clear delay={100 * index}>
         <div style={{ margin: 20, maxHeight: 321 }}>

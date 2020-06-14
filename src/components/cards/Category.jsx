@@ -2,6 +2,7 @@ import React from "react";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import { Card, Button } from "semantic-ui-react";
+
 const FILES_FOLDER = "../../files/images/category/";
 const Category = (category, index) => {
   const { _id, name, description } = category;

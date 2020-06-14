@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Page from "./Page";
-import Spacer from "./Spacer";
-import Motivation from "./Motivation";
-import Categories from "./pages/Categories";
 import Fade from "react-reveal/Fade";
 import { Header } from "semantic-ui-react";
-import Divider from "./Divider";
+import Categories from "./pages/Categories";
+import Page from "./ui/Page";
+import Spacer from "./ui/Spacer";
+import Motivation from "./ui/Motivation";
+import Divider from "./ui/Divider";
 
 class App extends Component {
   render() {

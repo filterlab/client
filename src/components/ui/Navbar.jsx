@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Fade from "react-reveal/Fade";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { removeKey } from "../actions/authActions";
+import Fade from "react-reveal/Fade";
 import { Icon, Button, Header } from "semantic-ui-react";
 import Logo from "./Logo";
-import { Link } from "react-router-dom";
 import Spacer from "./Spacer";
 import Cart from "./Cart";
+import { removeKey } from "../../actions/authActions";
 
 const BLACK = "black";
 const RED = "red";

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
-import Page from "../Page";
 import { Button } from "semantic-ui-react";
-import Empty from "../Empty";
-import Spacer from "../Spacer";
+import Page from "../ui/Page";
+import Empty from "../ui/Empty";
+import Spacer from "../ui/Spacer";
 
 class Page404 extends React.Component {
   state = {

@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import Category from "../cards/Category";
 import Strapi from "strapi-sdk-javascript/build/main";
 import DotLoader from "react-spinners/DotLoader";
+import Category from "../cards/Category";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);

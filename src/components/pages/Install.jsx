@@ -2,13 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
-import Page from "../Page";
 import { Header, Icon } from "semantic-ui-react";
-import Spacer from "../Spacer";
 import Fade from "react-reveal/Fade";
-import Divider from "../Divider";
-const FILES_FOLDER = "../../files/install/";
+import Page from "../ui/Page";
+import Spacer from "../ui/Spacer";
+import Divider from "../ui/Divider";
 
+const FILES_FOLDER = "../../files/install/";
 const files = [
   "1.png",
   "2.png",

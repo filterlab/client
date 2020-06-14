@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
-import { handleSuccess, handleError } from "../helpers/toasts";
-import { addAuth } from "../../actions/authActions";
-import Page from "../Page";
 import { Button, Form } from "semantic-ui-react";
+import Page from "../ui/Page";
+import { addAuth } from "../../actions/authActions";
+import { handleSuccess, handleError } from "../helpers/toasts";
 import Strapi from "strapi-sdk-javascript/build/main";
 
 const recoveryUrl =

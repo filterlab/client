@@ -1,13 +1,13 @@
 import React from "react";
-import Page from "../Page";
+import Page from "../ui/Page";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter, Link } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 import Strapi from "strapi-sdk-javascript/build/main";
 import Collection from "../cards/Collection";
-import Spacer from "../Spacer";
-import { Button } from "semantic-ui-react";
-import Empty from "../Empty";
+import Spacer from "../ui/Spacer";
+import Empty from "../ui/Empty";
 
 const uniqBy = require("lodash.uniqby");
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";

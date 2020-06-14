@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { Icon, Button } from "semantic-ui-react";
 import Strapi from "strapi-sdk-javascript/build/main";
-import Page from "../Page";
 import BeforeAfterSlider from "react-before-after-slider";
+import Page from "../ui/Page";
 import { handleSuccess } from "../helpers/toasts";
 import { addToCart } from "../../actions/cartActions";
 import "react-toastify/dist/ReactToastify.css";
+
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 const FILES_FOLDER = "../../files/images/filter";
@@ -28,7 +29,6 @@ class FilterDetail extends React.Component {
               price
               categoryId
               description
-              image_after
             }
           }`,
         },
@@ -49,9 +49,9 @@ class FilterDetail extends React.Component {
   render() {
     const filter = this.state.filter;
     const isTablet = this.props.isTablet;
-    const { _id, price, name, image_after, categoryId, description } = filter;
+    const { _id, price, name, categoryId, description } = filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
-    const AFTER = `${FILES_FOLDER}/${categoryId}/after/${image_after}.jpg`;
+    const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
     const WIDTH = isTablet ? 320 : 640;
     const HEIGHT = isTablet ? 240 : 480;
     const filterDetail = () => {

@@ -8,19 +8,19 @@ import cart from "./reducers/cartReducer";
 import auth from "./reducers/authReducer";
 import { reducer as responsive, mediaQueryTracker } from "redux-mediaquery";
 
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/helpers/PrivateRoute";
 import App from "./components/App";
 import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 import StripedCheckout from "./components/pages/checkout/StripedCheckout";
 import Filters from "./components/pages/Filters";
 import Collections from "./components/pages/Collections";
-import Navbar from "./components/Navbar";
 import FilterDetail from "./components/pages/FilterDetail";
 import Forgot from "./components/pages/Forgot";
 import Page404 from "./components/pages/Page404";
 import Terms from "./components/pages/Terms";
 import Install from "./components/pages/Install";
+import Navbar from "./components/ui/Navbar";
 
 const Root = () => (
   <Router>

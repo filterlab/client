@@ -1,10 +1,10 @@
 import React from "react";
+import { Helmet } from "react-helmet";
+import { ToastContainer } from "react-toastify";
 import Fade from "react-reveal/Fade";
 import { Header } from "semantic-ui-react";
 import LoadingScreen from "./LoadingScreen";
 import Spacer from "./Spacer";
-import { ToastContainer } from "react-toastify";
-import { Helmet } from "react-helmet";
 import Footer from "./Footer";
 
 const Page = ({ header, top, loading, loadingMessage, hideFooter, body }) => (

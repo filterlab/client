@@ -2,10 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
-import Page from "../Page";
 import { addAuth } from "../../actions/authActions";
 import { Button, Label, Form } from "semantic-ui-react";
+import Page from "../ui/Page";
 import Strapi from "strapi-sdk-javascript/build/main";
+
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 const isEmail = require("isemail");
