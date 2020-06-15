@@ -12,7 +12,7 @@ const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 const isEmail = require("isemail");
 
-const SUCCESS_MESSAGE = "Account successfully created!";
+const SUCCESS_MESSAGE = "Account successfully created, enjoy!";
 const FAILURE_MESSAGE_EMAIL_TAKEN =
   "Error, please contact support at filterlabstore@gmail.com";
 const FAILURE_MESSAGE_CHECKBOX = "Please enable the checkbox";
@@ -34,23 +34,29 @@ class Signup extends React.Component {
       error,
     });
   };
+
+  accountCreated = (res) => {
+    handleSuccess(SUCCESS_MESSAGE);
+    this.setState({ loading: false });
+    this.props.addAuth(res.jwt, res.user.id, res.user.email);
+    setTimeout(() => this.props.history.push("/"), 3000);
+  };
+
+  accountCreationFailed = () => {
+    handleError(FAILURE_MESSAGE_EMAIL_TAKEN);
+    this.setState({
+      loading: false,
+      error: FAILURE_MESSAGE_EMAIL_TAKEN,
+    });
+  };
+
   auth = async () => {
     const { email, password } = this.state;
-
-    try {
-      this.setState({ loading: true });
-      var response = await strapi.register(email, email, password);
-      this.setState({ loading: false });
-      this.props.addAuth(response.jwt, response.user.id, response.user.email);
-      handleSuccess(SUCCESS_MESSAGE);
-      this.props.history.push("/");
-    } catch (err) {
-      handleError(FAILURE_MESSAGE_EMAIL_TAKEN);
-      this.setState({
-        loading: false,
-        error: FAILURE_MESSAGE_EMAIL_TAKEN,
-      });
-    }
+    this.setState({ loading: true });
+    await strapi
+      .register(email, email, password)
+      .then((res) => this.accountCreated(res))
+      .catch(() => this.accountCreationFailed());
   };
 
   validateForm = () => {
