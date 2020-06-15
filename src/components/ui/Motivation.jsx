@@ -16,13 +16,27 @@ const Motivation = ({ isTablet }) => {
         }}
       >
         <div
-          style={{ width: isTablet ? 300 : 500, marginLeft: !isTablet && 130 }}
+          style={{ width: isTablet ? 300 : 430, marginLeft: !isTablet && 130 }}
         >
           <Fade up delay={200}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "justify",
+              }}
+            >
+              <span>
+                <b style={{ whiteSpace: "nowrap" }}>Our mission</b> is to
+                develop high quality yet budget-friendly mobile Lightroom
+                presets.
+              </span>
+              <span>
+                With <b style={{ whiteSpace: "nowrap" }}>Filterlab</b>, you get
+                to decide which preset suits you best, without having to buy an
+                whole pack.
+              </span>
+            </div>
           </Fade>
         </div>
       </div>

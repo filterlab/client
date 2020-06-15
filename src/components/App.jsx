@@ -16,7 +16,7 @@ class App extends Component {
         <Motivation />
         <Spacer space={isTablet ? 40 : 20} />
         <Fade left>
-          <Header as="h1">Our categories</Header>
+          <Header as="h1">Categories</Header>
         </Fade>
         <Spacer space={10} />
         <Categories />
