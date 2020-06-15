@@ -15,7 +15,7 @@ class Categories extends React.Component {
       .request("POST", "/graphql", {
         data: {
           query: `query {
-            categories {
+            categories (sort: "createdAt:desc"){
               _id
               name
               description
