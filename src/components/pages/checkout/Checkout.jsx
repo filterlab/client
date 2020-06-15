@@ -38,6 +38,7 @@ class Checkout extends React.Component {
     return (
       <>
         <div style={{ minWidth }}>
+          <Spacer space={100} />
           <Empty message="No items added yet" />
           <Spacer space={20} />
           <center>

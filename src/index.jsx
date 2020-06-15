@@ -7,6 +7,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import cart from "./reducers/cartReducer";
 import auth from "./reducers/authReducer";
 import { reducer as responsive, mediaQueryTracker } from "redux-mediaquery";
+import "./styles.css";
 
 import PrivateRoute from "./components/helpers/PrivateRoute";
 import App from "./components/App";

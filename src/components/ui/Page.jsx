@@ -11,8 +11,6 @@ const Page = ({ header, top, loading, loadingMessage, hideFooter, body }) => (
   <Fade clear delay={100}>
     <div
       style={{
-        margin: 5,
-        marginTop: 0,
         paddingTop: top ? top : 80,
         minHeight: "calc(100vh)",
         display: "flex",

@@ -25,6 +25,7 @@ class Page404 extends React.Component {
         alignItems: "center",
       }}
     >
+      <Spacer space={100} />
       <Empty message="Something went wrong" />
       <Spacer space={20} />
       <Link to={"/"} style={{ color: "inherit", textDecoration: "inherit" }}>

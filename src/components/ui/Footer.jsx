@@ -1,75 +1,109 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
+import Divider from "../ui/Divider";
+import Spacer from "../ui/Spacer";
+import Hover from "./Hover";
 
-const Footer = () => {
+const Footer = (props) => {
+  const { isTablet } = props;
   const entry = (content) => (
-    <div
-      style={{
-        minHeight: 250 / 3,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "white",
-      }}
-    >
-      {content}
-    </div>
+    <Hover>
+      <span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            minWidth: 150,
+            marginTop: 10,
+          }}
+        >
+          {content}
+        </div>
+      </span>
+    </Hover>
   );
+
   const build = () => {
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {entry(
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <a
-              style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
-              href="mailto:filterlabstore@gmail.com"
-            >
-              Contact us
-            </a>
-            <Icon name="mail" />
+      <div>
+        <Divider />
+        <Spacer space={20} />
+        <b style={{ whiteSpace: "nowrap" }}>2020 | Filterlab</b>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              justifyContent: isTablet && "space-around",
+              maxWidth: isTablet ? 150 : 1000,
+            }}
+          >
+            {entry(
+              <div style={{ display: "flex", alignItems: "baseline" }}>
+                <a
+                  href="https://www.instagram.com/filterlab.store"
+                  style={{
+                    color: "inherit",
+                    textDecoration: "inherit",
+                  }}
+                >
+                  Filterlab
+                </a>
+                <div style={{ marginRight: 5 }} />
+                <Icon name="instagram" />
+              </div>
+            )}
+            {entry(
+              <div style={{ display: "flex", alignItems: "baseline" }}>
+                <Link
+                  style={{
+                    color: "inherit",
+                    textDecoration: "inherit",
+                  }}
+                  to="/terms"
+                >
+                  Terms and Policy
+                </Link>
+                <div style={{ marginRight: 5 }} />
+                <Icon name="clipboard list" />
+              </div>
+            )}
+            {entry(
+              <div style={{ display: "flex", alignItems: "baseline" }}>
+                <a
+                  style={{
+                    color: "inherit",
+                    textDecoration: "inherit",
+                  }}
+                  href="mailto:filterlabstore@gmail.com"
+                >
+                  Contact us
+                </a>
+                <div style={{ marginRight: 5 }} />
+                <Icon name="mail" />
+              </div>
+            )}
           </div>
-        )}
-        {entry(
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <a
-              href="https://www.instagram.com/filterlab.store"
-              style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
-            >
-              Filterlab
-            </a>
-            <Icon name="instagram" />
-          </div>
-        )}
-        {entry(
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Link
-              style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
-              to="/terms"
-            >
-              Terms and Conditions
-            </Link>
-            <Icon name="question circle outline" />
-          </div>
-        )}
+        </div>
+        <Spacer space={20} />
       </div>
     );
   };
-  return (
-    <div
-      style={{ marginTop: 20, width: "100%", height: 250, background: "black" }}
-    >
-      {build()}
-    </div>
-  );
-};
 
-export default Footer;
+  return <div style={{ margin: 20, width: "100%" }}>{build()}</div>;
+};
+function mapStateToProps(state) {
+  return {
+    isTablet: state.responsive.isTablet,
+  };
+}
+
+export default connect(mapStateToProps)(Footer);

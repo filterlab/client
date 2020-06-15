@@ -33,7 +33,7 @@ const Motivation = ({ isTablet }) => {
               </span>
               <span>
                 With <b style={{ whiteSpace: "nowrap" }}>Filterlab</b>, you get
-                to decide which preset suits you best, without having to buy an
+                to decide which preset suits you best, without having to buy a
                 whole pack.
               </span>
             </div>

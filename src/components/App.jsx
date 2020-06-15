@@ -6,7 +6,6 @@ import Categories from "./pages/Categories";
 import Page from "./ui/Page";
 import Spacer from "./ui/Spacer";
 import Motivation from "./ui/Motivation";
-import Divider from "./ui/Divider";
 
 class App extends Component {
   render() {
@@ -21,7 +20,6 @@ class App extends Component {
         <Spacer space={10} />
         <Categories />
         <Spacer space={10} />
-        <Divider />
       </>
     );
 
