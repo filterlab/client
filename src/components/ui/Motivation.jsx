@@ -30,8 +30,8 @@ const Motivation = ({ isTablet }) => {
               <span>
                 <b style={{ whiteSpace: "nowrap" }}>Filterlab's mission</b> is
                 to develop high quality yet budget-friendly mobile{" "}
-                <b style={{ whiteSpace: "nowrap" }}>Lightroom</b>
-                presets that add value to your photos.
+                <b style={{ whiteSpace: "nowrap" }}>Lightroom</b> presets that
+                add value to your photos.
               </span>
               <br />
               <span>

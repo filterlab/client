@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { addAuth } from "../../actions/authActions";
 import { Button, Label, Form } from "semantic-ui-react";
 import Page from "../ui/Page";
@@ -72,26 +72,40 @@ class Login extends React.Component {
           style={{
             display: "flex",
             alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
-          <Button
-            disabled={this.state.error}
-            onClick={() => this.validateForm()}
-            type="submit"
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
           >
-            Login
-          </Button>
-          <Button
-            onClick={() => this.props.history.push("/forgot")}
-            type="submit"
+            <Button
+              disabled={this.state.error}
+              onClick={() => this.validateForm()}
+              type="submit"
+            >
+              Login
+            </Button>
+            <Button
+              onClick={() => this.props.history.push("/forgot")}
+              type="submit"
+            >
+              Forgot password?
+            </Button>
+            {this.state.error && (
+              <Label basic color="red" pointing="left">
+                {this.state.error}
+              </Label>
+            )}
+          </div>
+          <Link
+            style={{ color: "inherit", textDecoration: "inherit" }}
+            to="/signup"
           >
-            Forgot password?
-          </Button>
-          {this.state.error && (
-            <Label basic color="red" pointing="left">
-              {this.state.error}
-            </Label>
-          )}
+            <Button style={{ margin: 0 }}>Register</Button>
+          </Link>
         </div>
       </Form>
     </div>
