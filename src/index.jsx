@@ -22,6 +22,7 @@ import Page404 from "./components/pages/Page404";
 import Terms from "./components/pages/Terms";
 import Install from "./components/pages/Install";
 import Navbar from "./components/ui/Navbar";
+import RegisterSuccess from "./components/pages/RegisterSuccess";
 
 const Root = () => (
   <Router>
@@ -37,6 +38,7 @@ const Root = () => (
         <Route component={Page404} path="/404" />
         <Route component={Terms} path="/terms" />
         <Route component={Install} path="/install" />
+        <Route component={RegisterSuccess} path="/success" />
         <PrivateRoute component={Collections} path="/collections" />
         <PrivateRoute component={StripedCheckout} path="/checkout" />
       </Switch>

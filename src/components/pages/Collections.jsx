@@ -57,7 +57,7 @@ class Collections extends React.Component {
         <div style={{ minWidth }}>
           <Spacer space={100} />
           <Empty message="No presets added yet" />
-          <Spacer space={10} />
+          <Spacer space={20} />
           <center>
             <Button>
               <Link

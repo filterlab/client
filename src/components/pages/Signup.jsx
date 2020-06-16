@@ -39,7 +39,7 @@ class Signup extends React.Component {
     handleSuccess(SUCCESS_MESSAGE);
     this.setState({ loading: false });
     this.props.addAuth(res.jwt, res.user.id, res.user.email);
-    setTimeout(() => this.props.history.push("/"), 3000);
+    setTimeout(() => this.props.history.push("/success"), 1000);
   };
 
   accountCreationFailed = () => {
