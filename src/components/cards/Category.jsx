@@ -52,7 +52,7 @@ const Category = (category, index) => {
                 to={`/category/${_id}`}
                 style={{ color: "inherit", textDecoration: "inherit" }}
               >
-                <Button>See this category</Button>
+                <Button>See all presets</Button>
               </Link>
             </div>
           </Card.Meta>

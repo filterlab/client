@@ -18,7 +18,7 @@ const Motivation = ({ isTablet }) => {
         <div
           style={{ width: isTablet ? 300 : 430, marginLeft: !isTablet && 130 }}
         >
-          <Fade up delay={200}>
+          <Fade right delay={200}>
             <div
               style={{
                 display: "flex",
