@@ -52,7 +52,11 @@ const Step = ({ i, isTablet, img }) => {
       <Spacer space={MARGIN} />
       <Divider />
       <Spacer space={MARGIN} />
-      <span style={{ display: "block", minHeight: 40 }}>{descriptions[i]}</span>
+      <center>
+        <span style={{ display: "block", minHeight: 40 }}>
+          {descriptions[i]}
+        </span>
+      </center>
       <Spacer space={MARGIN / 2} />
       <img alt={i} style={{ width: WIDTH, height: HEIGHT }} src={img} />
     </div>

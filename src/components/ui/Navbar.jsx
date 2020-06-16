@@ -38,6 +38,18 @@ const link = (linkName, linkRoute, color, iconName) => (
   </span>
 );
 const mobileLink = (link) => <div style={{ maxWidth: 200 }}>{link}</div>;
+const homeButton = () => (
+  <span>
+    <Link
+      style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
+      to="/"
+    >
+      <Button icon>
+        <Icon name="home" />
+      </Button>
+    </Link>
+  </span>
+);
 class Navbar extends Component {
   state = {
     clicked: false,
@@ -180,6 +192,7 @@ class Navbar extends Component {
       </Fade>
     );
   };
+
   buildDeskNav = () => (
     <div
       style={{
@@ -191,6 +204,7 @@ class Navbar extends Component {
     >
       {this.props.isAuthed !== undefined ? (
         <Button.Group>
+          {homeButton()}
           {link(
             authedLinks[0].linkName,
             authedLinks[0].linkRoute,
@@ -217,6 +231,7 @@ class Navbar extends Component {
         </Button.Group>
       ) : (
         <Button.Group>
+          {homeButton()}
           {link(
             nonAuthedLinks[0].linkName,
             nonAuthedLinks[0].linkRoute,
