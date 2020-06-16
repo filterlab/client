@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
-import { Button, Table } from "semantic-ui-react";
+import { Button, Table, Icon } from "semantic-ui-react";
 import PaymentForm from "./PaymentForm";
 import Page from "../../ui/Page";
 import Spacer from "../../ui/Spacer";
 import Empty from "../../ui/Empty";
-import "react-toastify/dist/ReactToastify.css";
 import Loader from "../../ui/Loader";
+import { removeItem } from "../../../actions/cartActions";
+import "react-toastify/dist/ReactToastify.css";
+import Hover from "../../ui/Hover";
 
 const sumTotal = (cart) => {
   let total = 0;
@@ -24,10 +26,30 @@ class Checkout extends React.Component {
   state = { loadingCollections: false };
 
   checkoutTableRow = (item) => {
-    const { price, name } = item;
+    const { price, name, id } = item;
     return (
       <Table.Row>
-        <Table.Cell>{name}</Table.Cell>
+        <Table.Cell>
+          {
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              {name}
+              <Hover>
+                <span
+                  style={{ cursor: "pointer" }}
+                  onClick={() => this.props.removeItem(id, price, name)}
+                >
+                  <Icon circular name="delete" />
+                </span>
+              </Hover>
+            </div>
+          }
+        </Table.Cell>
         <Table.Cell>{`${price}€`}</Table.Cell>
       </Table.Row>
     );
@@ -125,4 +147,15 @@ function mapStateToProps(state) {
   };
 }
 
-export default compose(withRouter, connect(mapStateToProps))(Checkout);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeItem: (id, price, name) => {
+      dispatch(removeItem(id, price, name));
+    },
+  };
+};
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Checkout);

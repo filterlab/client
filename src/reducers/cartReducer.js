@@ -42,7 +42,7 @@ const cart = (state = initState, action) => {
     let new_items = state.items.filter((item) => action.id !== item.id);
 
     //calculating the total
-    let newTotal = state.total - itemToRemove.price * itemToRemove.quantity;
+    let newTotal = state.total - itemToRemove.price;
     return {
       ...state,
       items: new_items,
