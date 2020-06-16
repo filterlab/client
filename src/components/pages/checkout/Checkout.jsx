@@ -9,6 +9,7 @@ import Page from "../../ui/Page";
 import Spacer from "../../ui/Spacer";
 import Empty from "../../ui/Empty";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "../../ui/Loader";
 
 const sumTotal = (cart) => {
   let total = 0;
@@ -20,7 +21,7 @@ const checkoutWidth = (isTablet) => (isTablet ? 300 : 500);
 
 const itemsInCart = (cart) => sumTotal(cart) > 0;
 class Checkout extends React.Component {
-  state = {};
+  state = { loadingCollections: false };
 
   checkoutTableRow = (item) => {
     const { price, name } = item;
@@ -83,6 +84,11 @@ class Checkout extends React.Component {
               error={this.state.error}
               filters={cart.items}
               total={sumTotal(cart)}
+              setLoadingCollections={() =>
+                this.setState({
+                  loadingCollections: true,
+                })
+              }
             />
           )}
         </Table>
@@ -90,7 +96,14 @@ class Checkout extends React.Component {
     );
   };
 
-  build = (cart) => (itemsInCart(cart) ? this.checkoutTable() : this.noItems());
+  build = (cart) =>
+    this.state.loadingCollections ? (
+      <Loader />
+    ) : itemsInCart(cart) ? (
+      this.checkoutTable()
+    ) : (
+      this.noItems()
+    );
 
   render() {
     const cart = this.props.cart;

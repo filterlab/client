@@ -8,6 +8,7 @@ import Strapi from "strapi-sdk-javascript/build/main";
 import Collection from "../cards/Collection";
 import Spacer from "../ui/Spacer";
 import Empty from "../ui/Empty";
+import Loader from "../ui/Loader";
 
 const uniqBy = require("lodash.uniqby");
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
@@ -16,6 +17,7 @@ const strapi = new Strapi(apiUrl);
 const checkoutWidth = (isTablet) => (isTablet ? 300 : 500);
 class Collections extends React.Component {
   state = {
+    loading: true,
     filters: [],
   };
 
@@ -44,7 +46,7 @@ class Collections extends React.Component {
         },
       });
       const filters = this.mergeFilters(data.user.orders);
-      setTimeout(() => this.setState({ filters }), 50);
+      setTimeout(() => this.setState({ filters, loading: false }), 50);
     } catch (err) {
       this.props.history.push("/404");
     }
@@ -78,7 +80,9 @@ class Collections extends React.Component {
   };
 
   build = () =>
-    this.state.filters.length > 0 ? (
+    this.state.loading ? (
+      <Loader />
+    ) : this.state.filters.length > 0 ? (
       <div
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >

@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import Strapi from "strapi-sdk-javascript/build/main";
-import DotLoader from "react-spinners/DotLoader";
 import Category from "../cards/Category";
+import Loader from "../ui/Loader";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -40,16 +40,7 @@ class Categories extends React.Component {
       {this.state.categories.length > 0 ? (
         this.state.categories.map((b, i) => Category(b, i))
       ) : (
-        <div
-          style={{
-            height: 321,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
-        >
-          <DotLoader />
-        </div>
+        <Loader />
       )}
     </div>
   );

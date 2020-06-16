@@ -4,6 +4,7 @@ import {
   SUB_QUANTITY,
   ADD_QUANTITY,
   ADD_SHIPPING,
+  CLEAR_CART,
 } from "../actions/action-types/cart-actions";
 
 const initState = {
@@ -48,6 +49,15 @@ const cart = (state = initState, action) => {
       total: newTotal,
     };
   }
+
+  if (action.type === CLEAR_CART) {
+    return {
+      ...state,
+      items: [],
+      total: 0,
+    };
+  }
+
   //INSIDE CART COMPONENT
   if (action.type === ADD_QUANTITY) {
     let addedItem = state.items.find((item) => item.id === action.id);
