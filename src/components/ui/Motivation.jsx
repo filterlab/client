@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Fade from "react-reveal/Fade";
+import { Link } from "react-router-dom";
 
 const Motivation = ({ isTablet }) => {
   return (
@@ -27,14 +28,24 @@ const Motivation = ({ isTablet }) => {
               }}
             >
               <span>
-                <b style={{ whiteSpace: "nowrap" }}>Our mission</b> is to
-                develop high quality yet budget-friendly mobile Lightroom
-                presets.
+                <b style={{ whiteSpace: "nowrap" }}>Filterlab's mission</b> is
+                to develop high quality yet budget-friendly mobile Lightroom
+                presets that add value to your photos.
               </span>
+              <br />
               <span>
-                With <b style={{ whiteSpace: "nowrap" }}>Filterlab</b>, you get
-                to decide which preset suits you best, without having to buy a
-                whole pack.
+                Join now, and start building your{" "}
+                <b
+                  style={{ whiteSpace: "nowrap", textDecoration: "underline" }}
+                >
+                  <Link
+                    to={"/collection"}
+                    style={{ color: "inherit", textDecoration: "inherit" }}
+                  >
+                    Collections
+                  </Link>
+                </b>{" "}
+                with presets that suit you best.
               </span>
             </div>
           </Fade>
