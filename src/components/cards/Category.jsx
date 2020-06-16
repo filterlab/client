@@ -1,8 +1,8 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
+import BeforeAfterSlider from "react-before-after-slider";
 import { Card, Button } from "semantic-ui-react";
-
 const FILES_FOLDER = "../../files/images/category/";
 const Category = (category, index) => {
   const { _id, name, description } = category;
@@ -15,11 +15,11 @@ const Category = (category, index) => {
             justifyContent: "center",
           }}
         >
-          <img
-            alt={name}
+          <BeforeAfterSlider
+            before={`${FILES_FOLDER}${_id}/after.jpg`}
+            after={`${FILES_FOLDER}${_id}/before.jpg`}
             height={200}
             width={290}
-            src={`${FILES_FOLDER}${_id}/cover.jpg`}
           />
         </div>
         <Card.Content>
