@@ -1,7 +1,12 @@
-import { ADD_KEY, REMOVE_KEY } from "../actions/action-types/auth-actions";
+import {
+  ADD_KEY,
+  REMOVE_KEY,
+  SET_FILTERS,
+} from "../actions/action-types/auth-actions";
 
 const initState = {
   key: undefined,
+  filters: [],
 };
 
 const auth = (state = initState, action) => {
@@ -19,6 +24,14 @@ const auth = (state = initState, action) => {
       let { key, ...res } = state;
       return {
         ...res,
+      };
+    }
+    case SET_FILTERS: {
+      /*eslint-disable no-unused-vars */
+
+      return {
+        ...state,
+        filters: action.filters,
       };
     }
     default: {

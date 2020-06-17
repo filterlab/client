@@ -1,6 +1,7 @@
 import React from "react";
 import Pulse from "react-reveal/Pulse";
 import Fade from "react-reveal/Fade";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import BeforeAfterSlider from "react-before-after-slider";
 import { Card, Icon, Button } from "semantic-ui-react";
@@ -8,17 +9,42 @@ import { ToastContainer } from "react-toastify";
 import { handleSuccess } from "../helpers/toasts";
 import { addToCart } from "../../actions/cartActions";
 import "react-toastify/dist/ReactToastify.css";
+import Strapi from "strapi-sdk-javascript/build/main";
+const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
+const strapi = new Strapi(apiUrl);
 const FILES_FOLDER = "../../files/images/filter";
-
 class Filter extends React.Component {
   state = {
     expand: false,
+    bought: false,
+    download: "",
   };
+
+  async componentDidMount() {
+    // eslint-disable-next-line
+    await this.props.filters.map((filter) => {
+      if (filter.id === this.props.filter._id) {
+        this.setState({ bought: true });
+        strapi
+          .request("POST", "/graphql", {
+            data: {
+              query: `query {
+                filter(id:"${this.props.filter._id}") {
+                    download
+                  }
+                }`,
+            },
+          })
+          .then((res) => this.setState({ download: res.data.filter.download }));
+      }
+    });
+  }
 
   handleShoppingClick = (id, price, name) => {
     this.props.addToCart(id, price, name);
     handleSuccess(`Added ${name} to cart!`);
   };
+
   render() {
     const { filter, index, categoryId, onOpenModal } = this.props;
     const { _id, name, price } = filter;
@@ -71,12 +97,23 @@ class Filter extends React.Component {
                     </Button>
                   </Pulse>
                 </span>
-                <Button
-                  onClick={() => this.handleShoppingClick(_id, price, name)}
-                >
-                  <Icon name="shopping cart" />
-                  {price}€
-                </Button>
+                {this.state.bought ? (
+                  <Link
+                    to={`/files/filters/${this.state.download}`}
+                    style={{ color: "inherit", textDecoration: "inherit" }}
+                    target="_blank"
+                    download
+                  >
+                    <Button color="green">Download</Button>
+                  </Link>
+                ) : (
+                  <Button
+                    onClick={() => this.handleShoppingClick(_id, price, name)}
+                  >
+                    <Icon name="shopping cart" />
+                    {price}€
+                  </Button>
+                )}
               </div>
             </Card.Content>
           </Card>
@@ -87,6 +124,11 @@ class Filter extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    filters: state.auth.filters,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     addToCart: (id, price, name) => {
@@ -95,4 +137,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

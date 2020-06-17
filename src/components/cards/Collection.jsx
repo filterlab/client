@@ -70,7 +70,7 @@ class Collection extends React.Component {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
                 }}
               >
                 <Link
@@ -79,7 +79,7 @@ class Collection extends React.Component {
                   target="_blank"
                   download
                 >
-                  <Button>Download</Button>
+                  <Button color="green">Download</Button>
                 </Link>
               </div>
             </Card.Content>

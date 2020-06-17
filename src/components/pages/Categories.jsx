@@ -1,5 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import { withRouter } from "react-router-dom";
+import { setFilters } from "../../actions/authActions";
 import Strapi from "strapi-sdk-javascript/build/main";
 import Category from "../cards/Category";
 import Loader from "../ui/Loader";
@@ -9,6 +12,7 @@ const strapi = new Strapi(apiUrl);
 class Categories extends React.Component {
   state = {
     categories: [],
+    filters: [],
   };
   async componentDidMount() {
     await strapi
@@ -26,6 +30,36 @@ class Categories extends React.Component {
       })
       .then((res) => this.setState({ categories: res.data.categories }))
       .catch(() => this.props.history.push("/404"));
+
+    if (this.props.isAuthed) {
+      await strapi
+        .request("POST", "/graphql", {
+          data: {
+            query: `query {
+            user(id: "${this.props.accountId}") {
+              _id
+              orders {
+                filters
+              }
+            }
+          }`,
+          },
+        })
+        .then((res) => {
+          let arr = [];
+          res.data.user.orders.map((order) => arr.push(order.filters[0]));
+          const filters = arr.reduce((acc, current) => {
+            const x = acc.find((item) => item.id === current.id);
+            if (!x) {
+              return acc.concat([current]);
+            } else {
+              return acc;
+            }
+          }, []);
+          this.props.setFilters(filters);
+          this.setState({ filters: filters });
+        });
+    }
   }
 
   render = () => (
@@ -45,5 +79,20 @@ class Categories extends React.Component {
     </div>
   );
 }
-
-export default withRouter(Categories);
+function mapStateToProps(state) {
+  return {
+    isAuthed: state.auth.key,
+    accountId: state.auth.accountId,
+  };
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFilters: (filters) => {
+      dispatch(setFilters(filters));
+    },
+  };
+};
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Categories);
