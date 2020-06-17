@@ -1,4 +1,5 @@
 import React from "react";
+import Pulse from "react-reveal/Pulse";
 import Fade from "react-reveal/Fade";
 import { connect } from "react-redux";
 import BeforeAfterSlider from "react-before-after-slider";
@@ -10,12 +11,16 @@ import "react-toastify/dist/ReactToastify.css";
 const FILES_FOLDER = "../../files/images/filter";
 
 class Filter extends React.Component {
+  state = {
+    expand: false,
+  };
+
   handleShoppingClick = (id, price, name) => {
     this.props.addToCart(id, price, name);
     handleSuccess(`Added ${name} to cart!`);
   };
   render() {
-    const { filter, index, categoryId } = this.props;
+    const { filter, index, categoryId, onOpenModal } = this.props;
     const { _id, name, price } = filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
     const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
@@ -52,9 +57,20 @@ class Filter extends React.Component {
                   justifyContent: "space-between",
                 }}
               >
-                <Button icon color="black">
-                  <Icon name="expand" />
-                </Button>
+                <span
+                  onMouseEnter={() => this.setState({ expand: true })}
+                  onMouseLeave={() => this.setState({ expand: false })}
+                >
+                  <Pulse left spy={this.state.expand}>
+                    <Button
+                      onClick={() => onOpenModal(filter)}
+                      icon
+                      color="black"
+                    >
+                      <Icon name="expand" />
+                    </Button>
+                  </Pulse>
+                </span>
                 <Button
                   onClick={() => this.handleShoppingClick(_id, price, name)}
                 >

@@ -75,14 +75,13 @@ class Filters extends React.Component {
           }}
         >
           {filters.map((b, i) => (
-            <span onClick={() => this.onOpenModal(b)}>
-              <Filter
-                categoryId={categoryId}
-                filter={b}
-                index={i}
-                apiUrl={apiUrl}
-              />
-            </span>
+            <Filter
+              onOpenModal={() => this.onOpenModal(b)}
+              categoryId={categoryId}
+              filter={b}
+              index={i}
+              apiUrl={apiUrl}
+            />
           ))}
           <Modal
             open={this.state.open}

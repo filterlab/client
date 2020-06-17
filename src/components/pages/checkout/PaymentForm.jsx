@@ -25,13 +25,11 @@ const PaymentForm = ({
 
   const onSuccess = () => {
     setLoadingCollections();
-    setLoading(false);
     handleSuccess(SUCCESS_MESSAGE);
     clearCart();
     setTimeout(() => history.push("/collections"), 2000);
   };
   const onFailure = () => {
-    setLoading(false);
     handleError(FAILURE_MESSAGE);
   };
 
@@ -43,17 +41,26 @@ const PaymentForm = ({
       card: elements.getElement(CardElement),
     });
 
-    const id = paymentMethodReq.paymentMethod.id;
+    if (
+      paymentMethodReq &&
+      paymentMethodReq.paymentMethod &&
+      paymentMethodReq.paymentMethod.id
+    ) {
+      const id = paymentMethodReq.paymentMethod.id;
 
-    try {
-      // eslint-disable-next-line
-      await strapi.createEntry("orders", {
-        amount: total * 100,
-        filters,
-        id,
-      });
-      onSuccess();
-    } catch {
+      try {
+        // eslint-disable-next-line
+        await strapi.createEntry("orders", {
+          amount: total * 100,
+          filters,
+          id,
+        });
+        setLoading(false);
+        onSuccess();
+      } catch {
+        onFailure();
+      }
+    } else {
       onFailure();
     }
   };
