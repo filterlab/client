@@ -16,7 +16,6 @@ import Login from "./components/pages/Login";
 import StripedCheckout from "./components/pages/checkout/StripedCheckout";
 import Filters from "./components/pages/Filters";
 import Collections from "./components/pages/Collections";
-import FilterDetail from "./components/pages/FilterDetail";
 import Forgot from "./components/pages/Forgot";
 import Page404 from "./components/pages/Page404";
 import Terms from "./components/pages/Terms";
@@ -35,7 +34,6 @@ const Root = () => (
         <Route component={Login} path="/login" />
         <Route component={Forgot} path="/forgot" />
         <Route component={Filters} path="/category/:categoryId" />
-        <Route component={FilterDetail} path="/filter/:filterId" />
         <Route component={Page404} path="/404" />
         <Route component={Terms} path="/terms" />
         <Route component={Install} path="/install" />

@@ -7,3 +7,6 @@ html {
   height: 0px;
   background: transparent;
 }
+button:focus {
+  outline: 0;
+}

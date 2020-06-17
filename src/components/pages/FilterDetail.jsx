@@ -23,7 +23,7 @@ class FilterDetail extends React.Component {
       .request("POST", "/graphql", {
         data: {
           query: `{
-            filter(id: "${this.props.match.params.filterId}") {
+            filter(id: "${this.props.filter._id}") {
               _id
               name
               price

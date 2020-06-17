@@ -1,7 +1,6 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import BeforeAfterSlider from "react-before-after-slider";
 import { Card, Icon, Button } from "semantic-ui-react";
 import { ToastContainer } from "react-toastify";
@@ -53,12 +52,9 @@ class Filter extends React.Component {
                   justifyContent: "space-between",
                 }}
               >
-                <Link
-                  to={`/filter/${_id}`}
-                  style={{ color: "inherit", textDecoration: "inherit" }}
-                >
-                  <Button color="black">Know more</Button>
-                </Link>
+                <Button icon color="black">
+                  <Icon name="expand" />
+                </Button>
                 <Button
                   onClick={() => this.handleShoppingClick(_id, price, name)}
                 >

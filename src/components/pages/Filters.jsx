@@ -1,18 +1,37 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import Strapi from "strapi-sdk-javascript/build/main";
+import { Icon } from "semantic-ui-react";
+import "react-responsive-modal/styles.css";
+import FilterDetail from "./FilterDetail";
+import { Modal } from "react-responsive-modal";
 import Filter from "../cards/Filter";
 import Page from "../ui/Page";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
-
+const closeIcon = (
+  <div style={{ marginTop: 90 }}>
+    <Icon name="delete" size="big" />
+  </div>
+);
 class Filters extends React.Component {
   state = {
     name: "",
     filters: [],
+    filterDetail: "",
+    open: false,
+  };
+  onOpenModal = (filterDetail) => {
+    this.setState({
+      open: true,
+      filterDetail,
+    });
   };
 
+  onCloseModal = () => {
+    this.setState({ open: false, filterDetail: "" });
+  };
   async componentDidMount() {
     const categoryId = this.props.match.params.categoryId;
     await strapi
@@ -56,13 +75,23 @@ class Filters extends React.Component {
           }}
         >
           {filters.map((b, i) => (
-            <Filter
-              categoryId={categoryId}
-              filter={b}
-              index={i}
-              apiUrl={apiUrl}
-            />
+            <span onClick={() => this.onOpenModal(b)}>
+              <Filter
+                categoryId={categoryId}
+                filter={b}
+                index={i}
+                apiUrl={apiUrl}
+              />
+            </span>
           ))}
+          <Modal
+            open={this.state.open}
+            onClose={this.onCloseModal}
+            center
+            closeIcon={closeIcon}
+          >
+            <FilterDetail filter={this.state.filterDetail} />
+          </Modal>
         </div>
       );
     };
