@@ -31,7 +31,16 @@ class App extends Component {
     >
       <Spacer space={20} />
       <center>
-        <Header as="h2">Start editing like a PRO</Header>
+        <Header as="h2">
+          Start editing like a PRO{" "}
+          <span
+            role="img"
+            aria-label="painter"
+            style={{ fontFamily: "Segoe UI Emoji" }}
+          >
+            👨‍🎨
+          </span>
+        </Header>
       </center>
       <Spacer space={20} />
       <Motivation />
@@ -85,7 +94,7 @@ class App extends Component {
             >
               <Button size="small">Login</Button>
             </Link>{" "}
-            and buy your favourite filters
+            and get your favourite filters
           </Header>
           <div
             style={{

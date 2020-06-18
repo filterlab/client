@@ -20,7 +20,6 @@ const authedLinks = [
 
 const nonAuthedLinks = [
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
-  { linkName: "Download", linkRoute: "/download", color: BLACK },
   { linkName: "Register", linkRoute: "/signup", color: BLACK },
   { linkName: "Login", linkRoute: "/login", color: "" },
 ];
@@ -142,13 +141,6 @@ class Navbar extends Component {
                   nonAuthedLinks[2].color
                 )
               )}
-              {mobileLink(
-                link(
-                  nonAuthedLinks[3].linkName,
-                  nonAuthedLinks[3].linkRoute,
-                  nonAuthedLinks[3].color
-                )
-              )}
             </Button.Group>
           )}
         </div>
@@ -246,11 +238,6 @@ class Navbar extends Component {
             nonAuthedLinks[2].linkName,
             nonAuthedLinks[2].linkRoute,
             nonAuthedLinks[2].color
-          )}
-          {link(
-            nonAuthedLinks[3].linkName,
-            nonAuthedLinks[3].linkRoute,
-            nonAuthedLinks[3].color
           )}
         </Button.Group>
       )}

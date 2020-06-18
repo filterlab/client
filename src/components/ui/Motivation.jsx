@@ -27,6 +27,7 @@ const Motivation = ({ isTablet }) => {
                 textAlign: "justify",
               }}
             >
+              <Spacer space={10} />
               <span>
                 <b style={{ whiteSpace: "nowrap" }}>Filterlab's goal</b> is to
                 develop high quality yet budget-friendly mobile{" "}
@@ -34,29 +35,18 @@ const Motivation = ({ isTablet }) => {
                 add value to your photos.
               </span>
               <br />
-              <span>
-                Start building your{" "}
-                <b
-                  style={{ whiteSpace: "nowrap", textDecoration: "underline" }}
-                >
-                  <Link
-                    to={"/download"}
-                    style={{ color: "inherit", textDecoration: "inherit" }}
-                  >
-                    Collections
-                  </Link>
-                </b>{" "}
-                with presets that suit you best.
-              </span>
-              <Spacer space={30} />
+              <Spacer space={10} />
               <center>
                 <Link
                   to={"/signup"}
                   style={{ color: "inherit", textDecoration: "inherit" }}
                 >
-                  <Button color="black">Start now</Button>
+                  <Button size="big" color="black">
+                    Start now
+                  </Button>
                 </Link>
               </center>
+              <Spacer space={18} />
             </div>
           </Fade>
         </div>
