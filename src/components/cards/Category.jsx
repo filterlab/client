@@ -5,9 +5,9 @@ import BeforeAfterSlider from "react-before-after-slider";
 import { Card, Button } from "semantic-ui-react";
 const FILES_FOLDER = "../../files/images/category/";
 const Category = (category, index) => {
-  const { _id, name, description } = category;
+  const { _id, name } = category;
   const card = () => (
-    <Fade clear delay={100 * index}>
+    <Fade up delay={50 * index}>
       <Link
         to={`/category/${_id}`}
         style={{
@@ -37,20 +37,6 @@ const Category = (category, index) => {
                   <center>{name}</center>
                 </b>
               </Card.Header>
-              <Card.Description>
-                {
-                  <center>
-                    <div
-                      style={{
-                        textOverflow: "ellipsis",
-                        overflow: "hidden",
-                      }}
-                    >
-                      {description}
-                    </div>
-                  </center>
-                }
-              </Card.Description>
             </div>
             <Card.Meta>
               <div

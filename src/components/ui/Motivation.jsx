@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
+import Spacer from "./Spacer";
+import { Button } from "semantic-ui-react";
 
 const Motivation = ({ isTablet }) => {
   return (
@@ -16,9 +18,7 @@ const Motivation = ({ isTablet }) => {
           alignItems: "center",
         }}
       >
-        <div
-          style={{ width: isTablet ? 300 : 430, marginLeft: !isTablet && 130 }}
-        >
+        <div style={{ width: isTablet ? 300 : 430 }}>
           <Fade right delay={200}>
             <div
               style={{
@@ -28,19 +28,19 @@ const Motivation = ({ isTablet }) => {
               }}
             >
               <span>
-                <b style={{ whiteSpace: "nowrap" }}>Filterlab's mission</b> is
-                to develop high quality yet budget-friendly mobile{" "}
+                <b style={{ whiteSpace: "nowrap" }}>Filterlab's goal</b> is to
+                develop high quality yet budget-friendly mobile{" "}
                 <b style={{ whiteSpace: "nowrap" }}>Lightroom</b> presets that
                 add value to your photos.
               </span>
               <br />
               <span>
-                Join now, and start building your{" "}
+                Start building your{" "}
                 <b
                   style={{ whiteSpace: "nowrap", textDecoration: "underline" }}
                 >
                   <Link
-                    to={"/collection"}
+                    to={"/download"}
                     style={{ color: "inherit", textDecoration: "inherit" }}
                   >
                     Collections
@@ -48,6 +48,15 @@ const Motivation = ({ isTablet }) => {
                 </b>{" "}
                 with presets that suit you best.
               </span>
+              <Spacer space={30} />
+              <center>
+                <Link
+                  to={"/signup"}
+                  style={{ color: "inherit", textDecoration: "inherit" }}
+                >
+                  <Button color="black">Start now</Button>
+                </Link>
+              </center>
             </div>
           </Fade>
         </div>

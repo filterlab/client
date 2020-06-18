@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter, Link } from "react-router-dom";
 import Strapi from "strapi-sdk-javascript/build/main";
-import { Button, Checkbox, Form } from "semantic-ui-react";
+import { Button, Checkbox, Form, Header } from "semantic-ui-react";
 import { addAuth } from "../../actions/authActions";
 import Page from "../ui/Page";
 import { handleSuccess, handleError } from "../helpers/toasts";
+import Spacer from "../ui/Spacer";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -75,6 +76,19 @@ class Signup extends React.Component {
 
   build = () => (
     <div style={{ width: this.props.isTablet ? 300 : 500 }}>
+      <center>
+        <Header as="h2">
+          Sign up{" "}
+          <span
+            role="img"
+            aria-label="celebrate"
+            style={{ fontFamily: "Segoe UI Emoji" }}
+          >
+            🥳
+          </span>
+        </Header>
+      </center>
+      <Spacer space={20} />
       <Form>
         <Form.Field>
           <label>E-mail</label>
@@ -132,7 +146,7 @@ class Signup extends React.Component {
   render() {
     return (
       <Page
-        header={"Sign up"}
+        header={"What are you waiting for?"}
         loading={false}
         loadingMessage={"Redirecting to sign up page"}
         body={this.build()}

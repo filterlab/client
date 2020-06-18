@@ -20,7 +20,7 @@ const authedLinks = [
 
 const nonAuthedLinks = [
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
-  { linkName: "Collections", linkRoute: "/collection", color: BLACK },
+  { linkName: "Download", linkRoute: "/download", color: BLACK },
   { linkName: "Register", linkRoute: "/signup", color: BLACK },
   { linkName: "Login", linkRoute: "/login", color: "" },
 ];
