@@ -2,12 +2,10 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { Icon, Button } from "semantic-ui-react";
 import Strapi from "strapi-sdk-javascript/build/main";
 import BeforeAfterSlider from "react-before-after-slider";
 import Page from "../ui/Page";
 import { handleSuccess } from "../helpers/toasts";
-import { addToCart } from "../../actions/cartActions";
 import "react-toastify/dist/ReactToastify.css";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
@@ -49,7 +47,7 @@ class FilterDetail extends React.Component {
   render() {
     const filter = this.state.filter;
     const isTablet = this.props.isTablet;
-    const { _id, price, name, categoryId, description } = filter;
+    const { _id, name, categoryId, description } = filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
     const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
     const WIDTH = isTablet ? 320 : 640;
@@ -74,20 +72,6 @@ class FilterDetail extends React.Component {
             />
           </div>
           <center>{description}</center>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              minWidth: WIDTH,
-              marginTop: isTablet ? 10 : 20,
-            }}
-          >
-            <Button onClick={() => this.handleShoppingClick(_id, price, name)}>
-              <Icon name="shopping cart" />
-              {price}€
-            </Button>
-          </div>
         </>
       );
     };
@@ -109,15 +93,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (id, price, name) => {
-      dispatch(addToCart(id, price, name));
-    },
-  };
-};
-
-export default compose(
-  withRouter,
-  connect(mapStateToProps, mapDispatchToProps)
-)(FilterDetail);
+export default compose(withRouter, connect(mapStateToProps))(FilterDetail);

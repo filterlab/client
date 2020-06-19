@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Header, Button, Segment } from "semantic-ui-react";
 import Categories from "./pages/Categories";
 import Page from "./ui/Page";
 import Spacer from "./ui/Spacer";
 import Motivation from "./ui/Motivation";
-import MobileStoreButton from "./ui/MobileStoreButton";
-import { Link } from "react-router-dom";
+import MobileStoreButton from "./ui/buttons/MobileStoreButton";
 class App extends Component {
   rightWing = () => (
     <div

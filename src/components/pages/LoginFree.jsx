@@ -51,14 +51,13 @@ class Login extends React.Component {
     <div style={{ width: this.props.isTablet ? 300 : 500 }}>
       <center>
         <Header as="h2">
-          Login{" "}
-          <span
-            role="img"
-            aria-label="computer"
-            style={{ fontFamily: "Segoe UI Emoji" }}
+          Just login or{" "}
+          <Link
+            style={{ color: "inherit", textDecoration: "inherit" }}
+            to="/signup"
           >
-            🖥️
-          </span>
+            <Button style={{ margin: 0 }}>Register</Button>
+          </Link>
         </Header>
       </center>
       <Spacer space={20} />
@@ -82,40 +81,26 @@ class Login extends React.Component {
             type="password"
           />
         </Form.Field>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Button.Group vertical={this.props.isTablet}>
-            <Button
-              disabled={this.state.error}
-              onClick={() => this.validateForm()}
-              type="submit"
-            >
-              Login
-            </Button>
-            <Button
-              onClick={() => this.props.history.push("/forgot")}
-              type="submit"
-            >
-              Forgot password?
-            </Button>
-            {this.state.error && (
-              <Label basic color="red" pointing="left">
-                {this.state.error}
-              </Label>
-            )}
-          </Button.Group>
-          <Link
-            style={{ color: "inherit", textDecoration: "inherit" }}
-            to="/signup"
+        <Button.Group vertical={this.props.isTablet}>
+          <Button
+            disabled={this.state.error}
+            onClick={() => this.validateForm()}
+            type="submit"
           >
-            <Button style={{ margin: 0 }}>Register</Button>
-          </Link>
-        </div>
+            Login
+          </Button>
+          <Button
+            onClick={() => this.props.history.push("/forgot")}
+            type="submit"
+          >
+            Forgot password?
+          </Button>
+          {this.state.error && (
+            <Label basic color="red" pointing="left">
+              {this.state.error}
+            </Label>
+          )}
+        </Button.Group>
       </Form>
     </div>
   );
@@ -123,7 +108,7 @@ class Login extends React.Component {
   render() {
     return (
       <Page
-        header={"Welcome"}
+        header={"Looking for a free preset?"}
         loading={false}
         loadingMessage={"Redirecting to login page"}
         body={this.build()}

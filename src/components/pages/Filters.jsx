@@ -21,6 +21,7 @@ const closeIcon = (
 class Filters extends React.Component {
   state = {
     name: "",
+    loading: true,
     filters: [],
     filterDetail: "",
     open: false,
@@ -59,17 +60,23 @@ class Filters extends React.Component {
           categoryId: res.data.category._id,
           name: res.data.category.name,
           filters: res.data.category.filters,
+          loading: false,
         })
       )
       .catch(() => this.props.history.push("/404"));
   }
 
   async componentDidUpdate() {
-    const categoryId = this.props.match.params.categoryId;
-    await strapi
-      .request("POST", "/graphql", {
-        data: {
-          query: `query {
+    if (this.props.match.params.categoryId !== this.state.categoryId) {
+      const categoryId = this.props.match.params.categoryId;
+      this.setState({
+        loading: true,
+        categoryId: this.props.match.params.categoryId,
+      });
+      await strapi
+        .request("POST", "/graphql", {
+          data: {
+            query: `query {
             category(id: "${categoryId}") {
               _id
               name
@@ -81,21 +88,22 @@ class Filters extends React.Component {
               }
             }
           }`,
-        },
-      })
-      .then((res) =>
-        this.setState({
-          categoryId: res.data.category._id,
-          name: res.data.category.name,
-          filters: res.data.category.filters,
+          },
         })
-      )
-      .catch(() => this.props.history.push("/404"));
+        .then((res) =>
+          this.setState({
+            categoryId: res.data.category._id,
+            name: res.data.category.name,
+            filters: res.data.category.filters,
+            loading: false,
+          })
+        )
+        .catch(() => this.props.history.push("/404"));
+    }
   }
 
   render() {
     const { filters, name, categoryId } = this.state;
-    const spinner = filters.length <= 0;
     const build = () => {
       return (
         <>
@@ -134,7 +142,7 @@ class Filters extends React.Component {
     return (
       <Page
         header={`${name}`}
-        loading={spinner}
+        loading={this.state.loading}
         loadingMessage={"Filters everywhere!"}
         body={build()}
       />

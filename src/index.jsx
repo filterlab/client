@@ -22,6 +22,7 @@ import Terms from "./components/pages/Terms";
 import Install from "./components/pages/Install";
 import RegisterSuccess from "./components/pages/RegisterSuccess";
 import Navbar from "./components/ui/Navbar";
+import LoginFree from "./components/pages/LoginFree";
 
 const Root = () => (
   <Router>
@@ -30,7 +31,8 @@ const Root = () => (
       <Switch>
         <Route component={App} exact path="/" />
         <Route component={Signup} path="/signup" />
-        <Route component={Login} path="/login" />
+        <Route component={Login} exact path="/login" />
+        <Route component={LoginFree} exact path="/free" />
         <Route component={Forgot} path="/forgot" />
         <Route component={Filters} path="/category/:categoryId" />
         <Route component={Page404} path="/404" />

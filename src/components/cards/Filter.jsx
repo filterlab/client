@@ -1,7 +1,6 @@
 import React from "react";
 import Pulse from "react-reveal/Pulse";
 import Fade from "react-reveal/Fade";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import BeforeAfterSlider from "react-before-after-slider";
 import { Card, Icon, Button } from "semantic-ui-react";
@@ -10,6 +9,7 @@ import { handleSuccess } from "../helpers/toasts";
 import { addToCart } from "../../actions/cartActions";
 import "react-toastify/dist/ReactToastify.css";
 import Strapi from "strapi-sdk-javascript/build/main";
+import FilterButton from "../ui/buttons/FilterButton";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 const FILES_FOLDER = "../../files/images/filter";
@@ -22,20 +22,54 @@ class Filter extends React.Component {
 
   async componentDidMount() {
     // eslint-disable-next-line
-    await this.props.filters.map((filter) => {
-      if (filter.id === this.props.filter._id) {
-        this.setState({ bought: true });
-        strapi
-          .request("POST", "/graphql", {
-            data: {
-              query: `query {
+    await strapi
+      .request("POST", "/graphql", {
+        data: {
+          query: `query {
                 filter(id:"${this.props.filter._id}") {
                     download
+                    price
                   }
                 }`,
-            },
-          })
-          .then((res) => this.setState({ download: res.data.filter.download }));
+        },
+      })
+      .then((res) => {
+        this.setState({
+          download: res.data.filter.download,
+          price: res.data.filter.price,
+        });
+      });
+    // eslint-disable-next-line
+    this.props.filters.map((filter) => {
+      if (filter.id === this.props.filter._id) {
+        this.setState({ bought: true });
+      }
+    });
+  }
+
+  async componentDidUpdate() {
+    // eslint-disable-next-line
+    await strapi
+      .request("POST", "/graphql", {
+        data: {
+          query: `query {
+                filter(id:"${this.props.filter._id}") {
+                    download
+                    price
+                  }
+                }`,
+        },
+      })
+      .then((res) => {
+        this.setState({
+          download: res.data.filter.download,
+          price: res.data.filter.price,
+        });
+      });
+    // eslint-disable-next-line
+    this.props.filters.map((filter) => {
+      if (filter.id === this.props.filter._id) {
+        this.setState({ bought: true });
       }
     });
   }
@@ -97,23 +131,14 @@ class Filter extends React.Component {
                     </Button>
                   </Pulse>
                 </span>
-                {this.state.bought ? (
-                  <Link
-                    to={`/files/filters/${this.state.download}`}
-                    style={{ color: "inherit", textDecoration: "inherit" }}
-                    target="_blank"
-                    download
-                  >
-                    <Button color="green">Download</Button>
-                  </Link>
-                ) : (
-                  <Button
-                    onClick={() => this.handleShoppingClick(_id, price, name)}
-                  >
-                    <Icon name="shopping cart" />
-                    {price}€
-                  </Button>
-                )}
+                <FilterButton
+                  filter={this.props.filter}
+                  price={this.state.price}
+                  isBought={this.state.bought}
+                  isAuthed={this.props.isAuthed}
+                  download={this.state.download}
+                  buy={() => this.handleShoppingClick(_id, price, name)}
+                />
               </div>
             </Card.Content>
           </Card>
@@ -127,6 +152,7 @@ class Filter extends React.Component {
 const mapStateToProps = (state) => {
   return {
     filters: state.auth.filters,
+    isAuthed: state.auth.key,
   };
 };
 const mapDispatchToProps = (dispatch) => {
