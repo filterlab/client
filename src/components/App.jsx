@@ -7,6 +7,8 @@ import Page from "./ui/Page";
 import Spacer from "./ui/Spacer";
 import Motivation from "./ui/Motivation";
 import MobileStoreButton from "./ui/buttons/MobileStoreButton";
+import FreeFilters from "./pages/FreeFilters";
+import InstagramBanner from "./ui/InstagramBanner";
 class App extends Component {
   rightWing = () => (
     <div
@@ -18,6 +20,7 @@ class App extends Component {
           : 663,
       }}
     >
+      {this.props.isTablet && <FreeFilters />}
       <Categories />
     </div>
   );
@@ -44,6 +47,8 @@ class App extends Component {
       </center>
       <Spacer space={20} />
       <Motivation />
+      <Spacer space={20} />
+      {!this.props.isTablet && <FreeFilters />}
       <Spacer space={20} />
       <div
         style={{
@@ -158,7 +163,9 @@ class App extends Component {
         {!isTablet && (
           <center>
             <Header as="h1">Easy to use, one click photo filters</Header>
-            <Spacer space={70} />
+            <Spacer space={35} />
+            <InstagramBanner />
+            <Spacer space={35} />
           </center>
         )}
         <div

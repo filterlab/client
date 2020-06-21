@@ -8,6 +8,7 @@ import Spacer from "./Spacer";
 import Cart from "./Cart";
 import { removeKey } from "../../actions/authActions";
 import CurrencyDropdown from "./dropdowns/CurrencyDropdown";
+import InstagramBanner from "./InstagramBanner";
 
 const BLACK = "black";
 const RED = "red";
@@ -144,6 +145,7 @@ class Navbar extends Component {
               )}
             </Button.Group>
           )}
+          <InstagramBanner />
         </div>
       </>
     );

@@ -6,6 +6,7 @@ import { setFilters } from "../../actions/authActions";
 import Strapi from "strapi-sdk-javascript/build/main";
 import Category from "../cards/Category";
 import Loader from "../ui/Loader";
+import { Header } from "semantic-ui-react";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -63,26 +64,33 @@ class Categories extends React.Component {
   }
 
   render = () => (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "flex-start",
-      }}
-    >
-      {this.state.categories.length > 0 ? (
-        this.state.categories.map((b, i) => Category(b, i))
-      ) : (
-        <Loader />
-      )}
-    </div>
+    <>
+      <center>
+        <div style={{ marginTop: !this.props.isTablet && 20 }} />
+        <Header as="h2">All Categories</Header>
+      </center>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "flex-start",
+        }}
+      >
+        {this.state.categories.length > 0 ? (
+          this.state.categories.map((b, i) => Category(b, i))
+        ) : (
+          <Loader />
+        )}
+      </div>
+    </>
   );
 }
 function mapStateToProps(state) {
   return {
     isAuthed: state.auth.key,
     accountId: state.auth.accountId,
+    isTablet: state.responsive.isTablet,
   };
 }
 const mapDispatchToProps = (dispatch) => {

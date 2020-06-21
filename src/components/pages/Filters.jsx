@@ -4,7 +4,6 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Strapi from "strapi-sdk-javascript/build/main";
-import { Icon } from "semantic-ui-react";
 import "react-responsive-modal/styles.css";
 import FilterDetail from "./FilterDetail";
 import { Modal } from "react-responsive-modal";
@@ -12,15 +11,11 @@ import Filter from "../cards/Filter";
 import Page from "../ui/Page";
 import CategoryDropdown from "../ui/dropdowns/CategoryDropdown";
 import CurrencyDropdown from "../ui/dropdowns/CurrencyDropdown";
+import ModalCloseIcon from "../ui/ModalCloseIcon";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 
-const closeIcon = (
-  <div style={{ marginTop: 90 }}>
-    <Icon name="delete" size="big" />
-  </div>
-);
 class Filters extends React.Component {
   state = {
     name: "",
@@ -148,7 +143,7 @@ class Filters extends React.Component {
                 open={this.state.open}
                 onClose={this.onCloseModal}
                 center
-                closeIcon={closeIcon}
+                closeIcon={<ModalCloseIcon />}
               >
                 <FilterDetail filter={this.state.filterDetail} />
               </Modal>
