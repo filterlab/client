@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import { Button } from "semantic-ui-react";
-import axios from "axios";
+import { formatCurrency } from "../../helpers/currency";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 
 class FilterButton extends React.Component {
@@ -70,8 +71,13 @@ class FilterButton extends React.Component {
   );
 
   buildCondition_3 = () => (
-    <Button onClick={() => this.props.buy()} color="green">
-      {this.props.price}
+    <Button
+      loading={!this.props.price}
+      onClick={() => this.props.buy()}
+      color="green"
+    >
+      {this.props.price &&
+        formatCurrency(this.props.price, this.props.currency)}
     </Button>
   );
 
@@ -99,7 +105,7 @@ class FilterButton extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    filters: state.auth.filters,
+    currency: state.cart.currency,
     isAuthed: state.auth.key,
     userId: state.auth.accountId,
   };

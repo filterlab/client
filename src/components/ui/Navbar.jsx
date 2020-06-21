@@ -7,6 +7,7 @@ import Logo from "./Logo";
 import Spacer from "./Spacer";
 import Cart from "./Cart";
 import { removeKey } from "../../actions/authActions";
+import CurrencyDropdown from "./dropdowns/CurrencyDropdown";
 
 const BLACK = "black";
 const RED = "red";
@@ -197,6 +198,7 @@ class Navbar extends Component {
       {this.props.isAuthed !== undefined ? (
         <Button.Group>
           {homeButton()}
+          <CurrencyDropdown />
           {link(
             authedLinks[0].linkName,
             authedLinks[0].linkRoute,
@@ -224,6 +226,7 @@ class Navbar extends Component {
       ) : (
         <Button.Group>
           {homeButton()}
+          <CurrencyDropdown />
           {link(
             nonAuthedLinks[0].linkName,
             nonAuthedLinks[0].linkRoute,

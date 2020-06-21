@@ -4,6 +4,7 @@ import Strapi from "strapi-sdk-javascript/build/main";
 import { Button, Table } from "semantic-ui-react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { handleSuccess, handleError } from "../../helpers/toasts";
+import { formatCurrency } from "../../helpers/currency";
 import { clearCart } from "../../../actions/cartActions";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -12,6 +13,7 @@ const SUCCESS_MESSAGE = "Payment successful! Redirecting to Collections.";
 const FAILURE_MESSAGE = "Please check your billing details and try again.";
 
 const PaymentForm = ({
+  currency,
   history,
   error,
   filters,
@@ -24,6 +26,7 @@ const PaymentForm = ({
   const stripe = useStripe();
 
   const onSuccess = () => {
+    setLoading(false);
     setLoadingCollections();
     handleSuccess(SUCCESS_MESSAGE);
     clearCart();
@@ -48,18 +51,16 @@ const PaymentForm = ({
     ) {
       const id = paymentMethodReq.paymentMethod.id;
 
-      try {
-        // eslint-disable-next-line
-        await strapi.createEntry("orders", {
+      // eslint-disable-next-line
+      await strapi
+        .createEntry("orders", {
           amount: total * 100,
           filters,
           id,
-        });
-        setLoading(false);
-        onSuccess();
-      } catch {
-        onFailure();
-      }
+          currency,
+        })
+        .then(() => onSuccess())
+        .catch(() => onFailure());
     } else {
       onFailure();
     }
@@ -76,7 +77,7 @@ const PaymentForm = ({
             onClick={(e) => handleSubmit(e)}
             type="submit"
           >
-            {`Checkout ${total}€`}
+            {`Checkout ${formatCurrency(total, currency)}`}
           </Button>
         </Table.HeaderCell>
       </Table.Row>
@@ -88,6 +89,7 @@ const PaymentForm = ({
 function mapStateToProps(state) {
   return {
     email: state.auth.email,
+    currency: state.cart.currency,
   };
 }
 

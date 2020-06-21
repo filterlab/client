@@ -5,14 +5,28 @@ import {
   ADD_QUANTITY,
   ADD_SHIPPING,
   CLEAR_CART,
+  CHANGE_CURRENCY,
 } from "../actions/action-types/cart-actions";
 
 const initState = {
   items: [],
   total: 0,
+  currency: "eur",
 };
 
 const cart = (state = initState, action) => {
+  if (action.type === CHANGE_CURRENCY) {
+    let currency = state.currency;
+    if (currency === "eur") {
+      currency = "usd";
+    } else {
+      currency = "eur";
+    }
+    return {
+      ...state,
+      currency,
+    };
+  }
   if (action.type === ADD_TO_CART) {
     //check if the action id exists in the cart
     let existedItem = state.items.find((item) => item.id === action.id);

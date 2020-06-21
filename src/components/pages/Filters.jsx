@@ -1,5 +1,7 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
+import { compose } from "redux";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Strapi from "strapi-sdk-javascript/build/main";
 import { Icon } from "semantic-ui-react";
@@ -8,7 +10,8 @@ import FilterDetail from "./FilterDetail";
 import { Modal } from "react-responsive-modal";
 import Filter from "../cards/Filter";
 import Page from "../ui/Page";
-import CategoryDropdown from "../ui/CategoryDropdown";
+import CategoryDropdown from "../ui/dropdowns/CategoryDropdown";
+import CurrencyDropdown from "../ui/dropdowns/CurrencyDropdown";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -107,7 +110,22 @@ class Filters extends React.Component {
     const build = () => {
       return (
         <>
-          <CategoryDropdown categoryId={categoryId} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <CategoryDropdown categoryId={categoryId} />
+            {this.props.isTablet && (
+              <>
+                <div style={{ minHeight: 5 }} />
+                <CurrencyDropdown />
+              </>
+            )}
+          </div>
           <Fade spy={this.state.categoryId}>
             <div
               style={{
@@ -150,4 +168,10 @@ class Filters extends React.Component {
   }
 }
 
-export default withRouter(Filters);
+const mapStateToProps = (state) => {
+  return {
+    isTablet: state.responsive.isTablet,
+  };
+};
+
+export default compose(withRouter, connect(mapStateToProps, null))(Filters);

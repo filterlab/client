@@ -9,9 +9,10 @@ import Page from "../../ui/Page";
 import Spacer from "../../ui/Spacer";
 import Empty from "../../ui/Empty";
 import Loader from "../../ui/Loader";
-import { removeItem } from "../../../actions/cartActions";
-import "react-toastify/dist/ReactToastify.css";
 import Hover from "../../ui/Hover";
+import { removeItem } from "../../../actions/cartActions";
+import { formatCurrency } from "../../helpers/currency";
+import "react-toastify/dist/ReactToastify.css";
 
 const sumTotal = (cart) => {
   let total = 0;
@@ -50,7 +51,9 @@ class Checkout extends React.Component {
             </div>
           }
         </Table.Cell>
-        <Table.Cell>{`${price}€`}</Table.Cell>
+        <Table.Cell>
+          {formatCurrency(price, this.props.cart.currency)}
+        </Table.Cell>
       </Table.Row>
     );
   };
