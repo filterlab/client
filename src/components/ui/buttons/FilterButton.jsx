@@ -54,12 +54,7 @@ class FilterButton extends React.Component {
   );
   buildCondition_1 = () =>
     this.state.error ? (
-      <Link
-        to={`/free`}
-        style={{ color: "inherit", textDecoration: "inherit" }}
-      >
-        <Button color="red">Login</Button>
-      </Link>
+      this.login()
     ) : this.props.price && !this.props.isAuthed ? (
       <Button
         onClick={() => this.setState({ error: "Login first" })}
