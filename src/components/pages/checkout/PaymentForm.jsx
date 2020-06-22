@@ -33,6 +33,7 @@ const PaymentForm = ({
     setTimeout(() => history.push("/collections"), 2000);
   };
   const onFailure = () => {
+    setLoading(false);
     handleError(FAILURE_MESSAGE);
   };
 
@@ -43,8 +44,9 @@ const PaymentForm = ({
       type: "card",
       card: elements.getElement(CardElement),
     });
-
-    if (
+    if (paymentMethodReq.error) {
+      onFailure();
+    } else if (
       paymentMethodReq &&
       paymentMethodReq.paymentMethod &&
       paymentMethodReq.paymentMethod.id
@@ -61,8 +63,6 @@ const PaymentForm = ({
         })
         .then(() => onSuccess())
         .catch(() => onFailure());
-    } else {
-      onFailure();
     }
   };
 

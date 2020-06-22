@@ -121,6 +121,9 @@ class Checkout extends React.Component {
             />
           )}
         </Table>
+        <Spacer space={20} />
+        <Divider />
+        <PaymentLogos />
       </div>
     );
   };

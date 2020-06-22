@@ -9,7 +9,6 @@ import Cart from "./Cart";
 import { removeKey } from "../../actions/authActions";
 import CurrencyDropdown from "./dropdowns/CurrencyDropdown";
 import InstagramBanner from "./InstagramBanner";
-import Footer from "./Footer";
 
 const BLACK = "black";
 const RED = "red";
@@ -88,7 +87,7 @@ class Navbar extends Component {
           <div>
             <Spacer space={10} />
             {<Header as="h1">What do you want to do?</Header>}
-            <Spacer space={10} />
+            <Spacer space={100} />
             {this.props.isAuthed !== undefined ? (
               <span
                 style={{
@@ -163,10 +162,8 @@ class Navbar extends Component {
               </span>
             )}
           </div>
-
+          <Spacer space={40} />
           <InstagramBanner />
-          <Spacer space={25} />
-          <Footer />
           <Spacer space={10} />
         </div>
       </>
