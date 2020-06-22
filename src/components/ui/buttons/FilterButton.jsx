@@ -2,16 +2,25 @@ import React from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
+import { removeItem } from "../../../actions/cartActions";
 import { formatCurrency } from "../../helpers/currency";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 
 class FilterButton extends React.Component {
   state = {
     error: "",
+    clicked: false,
   };
 
-  freeFilter = () => this.props.price === 0;
+  componentDidMount() {
+    this.props.items.map(
+      (item) =>
+        item.id === this.props.filter._id && this.setState({ clicked: true })
+    );
+  }
+
+  freeFilter = () => this.props.free;
   notAuthedOrNotBought = () => !this.props.isAuthed || !this.props.isBought;
   showDownload = () => this.props.isAuthed && this.props.isBought;
 
@@ -28,7 +37,8 @@ class FilterButton extends React.Component {
         free: "true",
         filters: [
           {
-            price: 0,
+            free: this.props.free,
+            price: this.props.price,
             id: this.props.filter._id,
             quantity: 1,
             name: this.props.filter.name,
@@ -37,7 +47,11 @@ class FilterButton extends React.Component {
       },
     });
   }
-
+  login = () => (
+    <Link to={`/free`} style={{ color: "inherit", textDecoration: "inherit" }}>
+      <Button color="red">Login</Button>
+    </Link>
+  );
   buildCondition_1 = () =>
     this.state.error ? (
       <Link
@@ -46,7 +60,7 @@ class FilterButton extends React.Component {
       >
         <Button color="red">Login</Button>
       </Link>
-    ) : this.freeFilter() && !this.props.isAuthed ? (
+    ) : this.props.price && !this.props.isAuthed ? (
       <Button
         onClick={() => this.setState({ error: "Login first" })}
         color="green"
@@ -71,14 +85,36 @@ class FilterButton extends React.Component {
   );
 
   buildCondition_3 = () => (
-    <Button
-      loading={!this.props.price}
-      onClick={() => this.props.buy()}
-      color="green"
+    <span
+      onClick={() =>
+        !this.props.isAuthed
+          ? this.setState({ error: true })
+          : this.setState({ clicked: !this.state.clicked })
+      }
     >
-      {this.props.price &&
-        formatCurrency(this.props.price, this.props.currency)}
-    </Button>
+      <Button
+        loading={!this.props.price}
+        onClick={() =>
+          this.state.clicked
+            ? this.props.removeItem(
+                this.props.filter._id,
+                this.props.price,
+                this.props.filter.name
+              )
+            : this.props.buy()
+        }
+        color={this.state.clicked ? "red" : "green"}
+      >
+        {this.state.clicked ? (
+          <span>
+            Remove from <Icon name="cart" />
+          </span>
+        ) : (
+          this.props.price &&
+          formatCurrency(this.props.price, this.props.currency)
+        )}
+      </Button>
+    </span>
   );
 
   buildCondition_4 = () => (
@@ -95,7 +131,9 @@ class FilterButton extends React.Component {
   );
 
   render() {
-    return this.freeFilter()
+    return this.state.error
+      ? this.login()
+      : this.freeFilter()
       ? this.buildCondition_1()
       : this.notAuthedOrNotBought()
       ? this.buildCondition_3()
@@ -105,10 +143,18 @@ class FilterButton extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    items: state.cart.items,
     currency: state.cart.currency,
     isAuthed: state.auth.key,
     userId: state.auth.accountId,
   };
 };
 
-export default connect(mapStateToProps)(FilterButton);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeItem: (id, price, name) => {
+      dispatch(removeItem(id, price, name));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FilterButton);

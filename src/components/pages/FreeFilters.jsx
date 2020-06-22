@@ -30,7 +30,7 @@ class FreeFilters extends React.Component {
       .request("POST", "/graphql", {
         data: {
           query: `query {
-              filters(where: { price_eq: 0 }) {
+              filters(where: { free_eq: true }) {
                 categoryId
                 _id
                 name

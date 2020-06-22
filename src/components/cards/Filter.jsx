@@ -29,6 +29,7 @@ class Filter extends React.Component {
                 filter(id:"${this.props.filter._id}") {
                     download
                     price
+                    free
                   }
                 }`,
         },
@@ -37,6 +38,7 @@ class Filter extends React.Component {
         this.setState({
           download: res.data.filter.download,
           price: res.data.filter.price,
+          free: res.data.filter.free,
         });
       });
     // eslint-disable-next-line
@@ -134,6 +136,7 @@ class Filter extends React.Component {
                 <FilterButton
                   filter={this.props.filter}
                   price={this.state.price}
+                  free={this.state.free}
                   isBought={this.state.bought}
                   isAuthed={this.props.isAuthed}
                   download={this.state.download}
