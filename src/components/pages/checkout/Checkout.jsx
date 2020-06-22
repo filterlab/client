@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
-import { Button, Table, Icon } from "semantic-ui-react";
+import { Button, Table, Icon, Divider } from "semantic-ui-react";
 import PaymentForm from "./PaymentForm";
 import Page from "../../ui/Page";
 import Spacer from "../../ui/Spacer";
@@ -13,6 +13,7 @@ import Hover from "../../ui/Hover";
 import { removeItem } from "../../../actions/cartActions";
 import { formatCurrency } from "../../helpers/currency";
 import "react-toastify/dist/ReactToastify.css";
+import PaymentLogos from "./PaymentLogos";
 
 const sumTotal = (cart) => {
   let total = 0;
@@ -81,6 +82,9 @@ class Checkout extends React.Component {
               </Link>
             </Button>
           </center>
+          <Spacer space={20} />
+          <Divider />
+          <PaymentLogos />
         </div>
       </>
     );

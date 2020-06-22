@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import { Header, Icon } from "semantic-ui-react";
-import Fade from "react-reveal/Fade";
 import Page from "../ui/Page";
 import Spacer from "../ui/Spacer";
 import Divider from "../ui/Divider";
@@ -93,15 +92,13 @@ class Install extends React.Component {
 
   render() {
     return (
-      <Fade left>
-        <Page
-          top={this.props.top}
-          header={"How to use"}
-          loading={false}
-          loadingMessage={""}
-          body={this.build()}
-        />
-      </Fade>
+      <Page
+        top={this.props.top}
+        header={"How to use"}
+        loading={false}
+        loadingMessage={""}
+        body={this.build()}
+      />
     );
   }
 }

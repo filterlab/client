@@ -9,6 +9,7 @@ import Cart from "./Cart";
 import { removeKey } from "../../actions/authActions";
 import CurrencyDropdown from "./dropdowns/CurrencyDropdown";
 import InstagramBanner from "./InstagramBanner";
+import Footer from "./Footer";
 
 const BLACK = "black";
 const RED = "red";
@@ -38,7 +39,9 @@ const link = (linkName, linkRoute, color, iconName) => (
     </Link>
   </span>
 );
-const mobileLink = (link) => <div style={{ maxWidth: 200 }}>{link}</div>;
+const mobileLink = (link) => (
+  <center style={{ width: 200, margin: 5 }}>{link}</center>
+);
 const homeButton = () => (
   <span>
     <Link
@@ -74,78 +77,97 @@ class Navbar extends Component {
         <div
           onClick={() => this.disable()}
           style={{
-            minHeight: "calc(100vh - 21px)",
+            minHeight: "calc(100vh)",
             background: "white",
             display: "flex",
             flexDirection: "column",
+            justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <Spacer space={10} />
-          {<Header as="h1">What do you want to do?</Header>}
-          <Spacer space={10} />
-          {this.props.isAuthed !== undefined ? (
-            <Button.Group vertical>
-              {mobileLink(link("Home", "/", BLACK))}
-              {mobileLink(
-                link(
-                  authedLinks[0].linkName,
-                  authedLinks[0].linkRoute,
-                  authedLinks[0].color
-                )
-              )}
-              {mobileLink(
-                link(
-                  authedLinks[1].linkName,
-                  authedLinks[1].linkRoute,
-                  authedLinks[1].color
-                )
-              )}
-              {mobileLink(
-                link(
-                  authedLinks[2].linkName,
-                  authedLinks[2].linkRoute,
-                  authedLinks[2].color,
-                  "shopping cart"
-                )
-              )}
-              <span onClick={() => this.props.removeKey(this.props.isAuthed)}>
+          <div>
+            <Spacer space={10} />
+            {<Header as="h1">What do you want to do?</Header>}
+            <Spacer space={10} />
+            {this.props.isAuthed !== undefined ? (
+              <span
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                {mobileLink(link("Home", "/", BLACK))}
                 {mobileLink(
                   link(
-                    authedLinks[3].linkName,
-                    authedLinks[3].linkRoute,
-                    authedLinks[3].color
+                    authedLinks[0].linkName,
+                    authedLinks[0].linkRoute,
+                    authedLinks[0].color
+                  )
+                )}
+                {mobileLink(
+                  link(
+                    authedLinks[1].linkName,
+                    authedLinks[1].linkRoute,
+                    authedLinks[1].color
+                  )
+                )}
+                {mobileLink(
+                  link(
+                    authedLinks[2].linkName,
+                    authedLinks[2].linkRoute,
+                    authedLinks[2].color,
+                    "shopping cart"
+                  )
+                )}
+                <span onClick={() => this.props.removeKey(this.props.isAuthed)}>
+                  {mobileLink(
+                    link(
+                      authedLinks[3].linkName,
+                      authedLinks[3].linkRoute,
+                      authedLinks[3].color
+                    )
+                  )}
+                </span>
+              </span>
+            ) : (
+              <span
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                {mobileLink(link("Home", "/", BLACK))}
+                {mobileLink(
+                  link(
+                    nonAuthedLinks[0].linkName,
+                    nonAuthedLinks[0].linkRoute,
+                    nonAuthedLinks[0].color
+                  )
+                )}
+                {mobileLink(
+                  link(
+                    nonAuthedLinks[1].linkName,
+                    nonAuthedLinks[1].linkRoute,
+                    nonAuthedLinks[1].color
+                  )
+                )}
+                {mobileLink(
+                  link(
+                    nonAuthedLinks[2].linkName,
+                    nonAuthedLinks[2].linkRoute,
+                    nonAuthedLinks[2].color
                   )
                 )}
               </span>
-            </Button.Group>
-          ) : (
-            <Button.Group vertical>
-              {mobileLink(link("Home", "/", BLACK))}
-              {mobileLink(
-                link(
-                  nonAuthedLinks[0].linkName,
-                  nonAuthedLinks[0].linkRoute,
-                  nonAuthedLinks[0].color
-                )
-              )}
-              {mobileLink(
-                link(
-                  nonAuthedLinks[1].linkName,
-                  nonAuthedLinks[1].linkRoute,
-                  nonAuthedLinks[1].color
-                )
-              )}
-              {mobileLink(
-                link(
-                  nonAuthedLinks[2].linkName,
-                  nonAuthedLinks[2].linkRoute,
-                  nonAuthedLinks[2].color
-                )
-              )}
-            </Button.Group>
-          )}
+            )}
+          </div>
+
           <InstagramBanner />
+          <Spacer space={25} />
+          <Footer />
+          <Spacer space={10} />
         </div>
       </>
     );

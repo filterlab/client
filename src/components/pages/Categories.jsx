@@ -65,10 +65,12 @@ class Categories extends React.Component {
 
   render = () => (
     <>
-      <center>
-        <div style={{ marginTop: !this.props.isTablet && 20 }} />
-        <Header as="h2">All Categories</Header>
-      </center>
+      {this.props.isTablet && (
+        <center>
+          <div style={{ marginTop: 20 }} />
+          <Header as="h2">All Categories</Header>
+        </center>
+      )}
       <div
         style={{
           display: "flex",
