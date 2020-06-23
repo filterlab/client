@@ -156,7 +156,7 @@ class Filters extends React.Component {
       <Page
         header={`${name}`}
         loading={this.state.loading}
-        loadingMessage={"Filters everywhere!"}
+        loadingMessage={"Loading filters"}
         body={build()}
       />
     );

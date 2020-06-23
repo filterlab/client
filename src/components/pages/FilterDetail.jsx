@@ -7,6 +7,8 @@ import BeforeAfterSlider from "react-before-after-slider";
 import Page from "../ui/Page";
 import { handleSuccess } from "../helpers/toasts";
 import "react-toastify/dist/ReactToastify.css";
+import Spacer from "../ui/Spacer";
+import Logo from "../ui/Logo";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -72,6 +74,8 @@ class FilterDetail extends React.Component {
             />
           </div>
           <center>{description}</center>
+          <Spacer space={20} />
+          <Logo />
         </>
       );
     };

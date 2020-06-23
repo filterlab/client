@@ -22,7 +22,9 @@ import Terms from "./components/pages/Terms";
 import Install from "./components/pages/Install";
 import RegisterSuccess from "./components/pages/RegisterSuccess";
 import Navbar from "./components/ui/Navbar";
-import LoginFree from "./components/pages/LoginFree";
+import LoginFree from "./components/pages/login/LoginFree";
+import LoginCollections from "./components/pages/login/LoginCollections";
+import LoginCheckout from "./components/pages/login/LoginCheckout";
 
 const Root = () => (
   <Router>
@@ -33,6 +35,8 @@ const Root = () => (
         <Route component={Signup} path="/signup" />
         <Route component={Login} exact path="/login" />
         <Route component={LoginFree} exact path="/free" />
+        <Route component={LoginCheckout} exact path="/checkout_login" />
+        <Route component={LoginCollections} exact path="/collections_login" />
         <Route component={Forgot} path="/forgot" />
         <Route component={Filters} path="/category/:categoryId" />
         <Route component={Page404} path="/404" />

@@ -2,17 +2,20 @@ import React from "react";
 import { connect } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
-
-const Logo = ({ isTablet, size }) => {
+import { Image } from "semantic-ui-react";
+const FILES_FOLDER = "../../files/images/logo.svg";
+const Logo = ({ bigger }) => {
   return (
     <Fade left>
       <Link
-        style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
+        style={{
+          color: "inherit",
+          textDecoration: "inherit",
+          margin: 1,
+        }}
         to="/"
       >
-        <div style={{ fontSize: size === "small" || isTablet ? 20 : 35 }}>
-          Filterlab
-        </div>
+        <Image src={FILES_FOLDER} size={bigger ? "small" : "tiny"} />
       </Link>
     </Fade>
   );

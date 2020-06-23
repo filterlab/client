@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter, Link } from "react-router-dom";
-import { addAuth } from "../../actions/authActions";
-import { Button, Label, Form, Header } from "semantic-ui-react";
-import Page from "../ui/Page";
 import Strapi from "strapi-sdk-javascript/build/main";
-import Spacer from "../ui/Spacer";
+import { Button, Label, Form, Header } from "semantic-ui-react";
+import { addAuth } from "../../../actions/authActions";
+import Page from "../../ui/Page";
+import Spacer from "../../ui/Spacer";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -108,7 +108,7 @@ class Login extends React.Component {
   render() {
     return (
       <Page
-        header={"Looking for a free preset?"}
+        header={"To access your Collections"}
         loading={false}
         loadingMessage={"Redirecting to login page"}
         body={this.build()}

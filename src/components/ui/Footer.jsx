@@ -30,7 +30,7 @@ const Footer = (props) => {
       <div>
         <Divider />
         <Spacer space={20} />
-        <b style={{ whiteSpace: "nowrap" }}>2020 | Filterlab</b>
+        {!isTablet && <b style={{ whiteSpace: "nowrap" }}>2020 | Filterlab</b>}
         <div
           style={{
             display: "flex",
@@ -46,6 +46,8 @@ const Footer = (props) => {
               maxWidth: isTablet ? 150 : 1000,
             }}
           >
+            {isTablet &&
+              entry(<b style={{ whiteSpace: "nowrap" }}>2020 | Filterlab</b>)}
             {entry(
               <div style={{ display: "flex", alignItems: "baseline" }}>
                 <a
@@ -98,7 +100,9 @@ const Footer = (props) => {
     );
   };
 
-  return <div style={{ margin: 20, width: "100%" }}>{build()}</div>;
+  return (
+    <div style={{ margin: !isTablet && 20, width: "100%" }}>{build()}</div>
+  );
 };
 function mapStateToProps(state) {
   return {

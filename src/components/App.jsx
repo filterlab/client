@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Header, Button, Segment } from "semantic-ui-react";
+import { Header, Button, Segment, Icon } from "semantic-ui-react";
 import Categories from "./pages/Categories";
 import Page from "./ui/Page";
 import Spacer from "./ui/Spacer";
@@ -9,6 +9,7 @@ import Motivation from "./ui/Motivation";
 import MobileStoreButton from "./ui/buttons/MobileStoreButton";
 import FreeFilters from "./pages/FreeFilters";
 import InstagramBanner from "./ui/InstagramBanner";
+import Logo from "./ui/Logo";
 class App extends Component {
   rightWing = () => (
     <div
@@ -64,104 +65,114 @@ class App extends Component {
   );
 
   instructions = () => (
-    <Segment>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          marginTop: !this.props.isTablet && 20,
-        }}
-      >
-        <center>
-          <Header as="h3">Install Lightroom</Header>
-        </center>
-        <Spacer space={20} />
+    <center>
+      {this.props.isTablet && <Logo />}
+      <Segment>
         <div
           style={{
             display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            flexDirection: "column",
+            marginTop: !this.props.isTablet && 20,
           }}
         >
-          <MobileStoreButton store="ios" />
-          <div style={{ minWidth: 20 }} />
-          <MobileStoreButton store="android" />
+          <Spacer space={20} />
+          <center>
+            <Header as="h3">Install Lightroom</Header>
+          </center>
+          <Spacer space={20} />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <MobileStoreButton store="ios" />
+            <div style={{ minWidth: 20 }} />
+            <MobileStoreButton store="android" />
+          </div>
+          <Spacer space={this.props.isTablet ? 20 : 50} />
+          <center>
+            <Header as="h3">
+              <Link
+                to="/login"
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                }}
+              >
+                <Button size="small">Login</Button>
+              </Link>{" "}
+              and get your favourite filters
+            </Header>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <span>
+                You can also download them at the{" "}
+                {this.props.isTablet ? (
+                  <Icon name="cloud download" size="large" />
+                ) : (
+                  <b style={{ whiteSpace: "nowrap" }}>Collections </b>
+                )}
+                {this.props.isTablet ? "button" : "tab"}
+              </span>
+            </div>
+          </center>
+          <Spacer space={this.props.isTablet ? 20 : 50} />
+          <center>
+            <Header as="h3">Apply your filters</Header>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <span>First time importing a preset? Follow our </span>
+              <Link
+                to="/install"
+                style={{
+                  marginLeft: 5,
+                  color: "inherit",
+                  textDecoration: "inherit",
+                }}
+              >
+                <Button size="tiny" color="black">
+                  Guide
+                </Button>
+              </Link>
+            </div>
+          </center>
+          <Spacer space={this.props.isTablet ? 20 : 50} />
+          <center>
+            <Header as="h3">
+              Done!{" "}
+              <span
+                role="img"
+                aria-label="party-popper"
+                style={{ fontFamily: "Segoe UI Emoji" }}
+              >
+                🎉
+              </span>
+            </Header>
+          </center>
         </div>
-        <Spacer space={this.props.isTablet ? 20 : 50} />
-        <center>
-          <Header as="h3">
-            <Link
-              to="/login"
-              style={{
-                color: "inherit",
-                textDecoration: "inherit",
-              }}
-            >
-              <Button size="small">Login</Button>
-            </Link>{" "}
-            and get your favourite filters
-          </Header>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span>
-              You can download them later at the{" "}
-              <b style={{ whiteSpace: "nowrap" }}>Collections</b> tab
-            </span>
-          </div>
-        </center>
-        <Spacer space={this.props.isTablet ? 20 : 50} />
-        <center>
-          <Header as="h3">Apply your filters</Header>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span>First time importing a preset? Follow our </span>
-            <Link
-              to="/install"
-              style={{
-                marginLeft: 5,
-                color: "inherit",
-                textDecoration: "inherit",
-              }}
-            >
-              <Button size="tiny" color="black">
-                Guide
-              </Button>
-            </Link>
-          </div>
-        </center>
-        <Spacer space={this.props.isTablet ? 20 : 50} />
-        <center>
-          <Header as="h3">
-            Done!{" "}
-            <span
-              role="img"
-              aria-label="party-popper"
-              style={{ fontFamily: "Segoe UI Emoji" }}
-            >
-              🎉
-            </span>
-          </Header>
-        </center>
-      </div>
-    </Segment>
+      </Segment>
+    </center>
   );
   render() {
     const { isTablet } = this.props;
     const build = () => (
       <>
-        <Spacer space={isTablet ? 40 : 20} />
+        <Spacer space={isTablet ? 10 : 20} />
         {!isTablet && (
           <center>
+            {!isTablet && <Logo bigger />}
             <Header as="h1">Easy to use, one click photo filters</Header>
             <Spacer space={35} />
             <InstagramBanner />

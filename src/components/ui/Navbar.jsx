@@ -5,10 +5,12 @@ import Fade from "react-reveal/Fade";
 import { Icon, Button, Header } from "semantic-ui-react";
 import Logo from "./Logo";
 import Spacer from "./Spacer";
-import Cart from "./Cart";
+import Collections from "./navbar/Collections";
+import Cart from "./navbar/Cart";
 import { removeKey } from "../../actions/authActions";
 import CurrencyDropdown from "./dropdowns/CurrencyDropdown";
 import InstagramBanner from "./InstagramBanner";
+import Home from "./navbar/Home";
 
 const BLACK = "black";
 const RED = "red";
@@ -21,6 +23,7 @@ const authedLinks = [
 ];
 
 const nonAuthedLinks = [
+  { linkName: "Collections", linkRoute: "/collections_login", color: BLACK },
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
   { linkName: "Register", linkRoute: "/signup", color: BLACK },
   { linkName: "Login", linkRoute: "/login", color: "" },
@@ -80,11 +83,10 @@ class Navbar extends Component {
             background: "white",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
             alignItems: "center",
           }}
         >
-          <div>
+          <div style={{ minHeight: "calc(50vh)" }}>
             <Spacer space={10} />
             {<Header as="h1">What do you want to do?</Header>}
             <Spacer space={100} />
@@ -159,12 +161,26 @@ class Navbar extends Component {
                     nonAuthedLinks[2].color
                   )
                 )}
+                {mobileLink(
+                  link(
+                    nonAuthedLinks[3].linkName,
+                    nonAuthedLinks[3].linkRoute,
+                    nonAuthedLinks[3].color
+                  )
+                )}
               </span>
             )}
           </div>
-          <Spacer space={40} />
-          <InstagramBanner />
-          <Spacer space={10} />
+          <div
+            style={{
+              minHeight: "calc(50vh)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <InstagramBanner />
+          </div>
         </div>
       </>
     );
@@ -182,7 +198,7 @@ class Navbar extends Component {
         }}
       >
         <Fade clear>
-          <span style={{ marginTop: 15 }}>
+          <span style={{ marginTop: 5 }}>
             <Icon name="delete" size="big" onClick={() => this.disable()} />
           </span>
         </Fade>
@@ -192,16 +208,21 @@ class Navbar extends Component {
       <Fade clear>
         <div
           style={{
+            marginTop: 10,
             minWidth: "calc(100vw - 10px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             background: "white",
+            marginBottom: 5,
           }}
         >
-          <Icon name="bars" size="big" onClick={() => this.enable()} />
-          <Logo isTablet />
-          <Cart />
+          <Fade down>
+            <Icon name="bars" size="big" onClick={() => this.enable()} />
+            <Home />
+            <Collections />
+            <Cart />
+          </Fade>
         </div>
       </Fade>
     );
@@ -263,6 +284,11 @@ class Navbar extends Component {
             nonAuthedLinks[2].linkRoute,
             nonAuthedLinks[2].color
           )}
+          {link(
+            nonAuthedLinks[3].linkName,
+            nonAuthedLinks[3].linkRoute,
+            nonAuthedLinks[3].color
+          )}
         </Button.Group>
       )}
     </div>
@@ -286,7 +312,12 @@ class Navbar extends Component {
         {!this.props.isTablet && (
           <Link
             to="/"
-            style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
+            style={{
+              color: "inherit",
+              textDecoration: "inherit",
+              margin: 1,
+              marginTop: -10,
+            }}
           >
             <Logo />
           </Link>
