@@ -169,10 +169,10 @@ class App extends Component {
     const { isTablet } = this.props;
     const build = () => (
       <>
-        <Spacer space={isTablet ? 10 : 20} />
+        <Spacer space={!isTablet && 20} />
         {!isTablet && (
           <center>
-            {!isTablet && <Logo bigger />}
+            <Logo bigger />
             <Header as="h1">Easy to use, one click photo filters</Header>
             <Spacer space={35} />
             <InstagramBanner />

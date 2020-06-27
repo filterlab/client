@@ -26,7 +26,7 @@ const Category = (category, index) => {
             <BeforeAfterSlider
               before={`${FILES_FOLDER}${_id}/after.jpg`}
               after={`${FILES_FOLDER}${_id}/before.jpg`}
-              height={200}
+              height={300}
               width={290}
             />
           </div>
@@ -59,7 +59,7 @@ const Category = (category, index) => {
     <div
       style={{
         margin: 20,
-        height: 321,
+        height: 421,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

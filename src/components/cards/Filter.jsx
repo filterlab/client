@@ -88,7 +88,7 @@ class Filter extends React.Component {
     const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
     return (
       <Fade clear delay={100 * index}>
-        <div style={{ margin: 20, maxHeight: 321 }}>
+        <div style={{ margin: 20, maxHeight: 421 }}>
           <Card>
             <div
               style={{
@@ -99,7 +99,7 @@ class Filter extends React.Component {
               <BeforeAfterSlider
                 before={AFTER}
                 after={BEFORE}
-                height={200}
+                height={300}
                 width={290}
               />
             </div>
