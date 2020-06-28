@@ -11,6 +11,7 @@ import { removeKey } from "../../actions/authActions";
 import CurrencyDropdown from "./dropdowns/CurrencyDropdown";
 import InstagramBanner from "./InstagramBanner";
 import Home from "./navbar/Home";
+import FluidButton from "./buttons/FluidButton";
 
 const BLACK = "black";
 const RED = "red";
@@ -41,15 +42,11 @@ const link = (linkName, linkRoute, color, iconName) => (
       }}
       to={linkRoute}
     >
-      <Button color={color}>
-        {iconName && <Icon name={iconName} />} {linkName}
-      </Button>
+      <FluidButton color={color} icon={iconName} text={linkName} />
     </Link>
   </span>
 );
-const mobileLink = (link) => (
-  <center style={{ minWidth: 200, margin: 5 }}>{link}</center>
-);
+const mobileLink = (link) => <center style={{ minWidth: 200 }}>{link}</center>;
 const homeButton = () => (
   <span>
     <Link
@@ -95,7 +92,6 @@ class Navbar extends Component {
           <div style={{ minHeight: "calc(50vh)" }}>
             <Spacer space={10} />
             {<Header as="h1">What do you want to do?</Header>}
-            <Spacer space={100} />
             {this.props.isAuthed !== undefined ? (
               <span
                 style={{
@@ -149,6 +145,7 @@ class Navbar extends Component {
                 style={{
                   display: "flex",
                   flexDirection: "column",
+                  justifyContent: "center",
                   alignItems: "center",
                 }}
               >
@@ -191,16 +188,7 @@ class Navbar extends Component {
               </span>
             )}
           </div>
-          <div
-            style={{
-              minHeight: "calc(50vh)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <InstagramBanner />
-          </div>
+          <InstagramBanner />
         </div>
       </>
     );

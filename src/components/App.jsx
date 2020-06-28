@@ -205,7 +205,6 @@ class App extends Component {
           {this.props.isTablet && this.rightWing()}
           {this.props.isTablet && this.leftWing()}
         </div>
-
         <Spacer space={10} />
       </>
     );
