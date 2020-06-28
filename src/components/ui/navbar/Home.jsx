@@ -7,7 +7,7 @@ const Home = () => (
     to="/"
     style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
   >
-    <Icon name="home" size="big" />
+    <Icon name="home" size="big" color="grey" />
   </Link>
 );
 

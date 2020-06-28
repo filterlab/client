@@ -202,6 +202,11 @@ class App extends Component {
           {!this.props.isTablet && this.rightWing()}
           {!this.props.isTablet && this.leftWing()}
           {this.props.isTablet && this.instructions()}
+          {this.props.isTablet && (
+            <div style={{ marginTop: 20 }}>
+              <InstagramBanner />
+            </div>
+          )}
           {this.props.isTablet && this.rightWing()}
           {this.props.isTablet && this.leftWing()}
         </div>

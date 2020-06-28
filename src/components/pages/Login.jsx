@@ -7,6 +7,7 @@ import { Button, Label, Form, Header } from "semantic-ui-react";
 import Page from "../ui/Page";
 import Strapi from "strapi-sdk-javascript/build/main";
 import Spacer from "../ui/Spacer";
+import InstagramBanner from "../ui/InstagramBanner";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -117,6 +118,8 @@ class Login extends React.Component {
           </Link>
         </div>
       </Form>
+      <Spacer space={30} />
+      <InstagramBanner />
     </div>
   );
 

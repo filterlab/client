@@ -12,6 +12,7 @@ const Cart = (props) =>
       <Icon
         name={props.cart.items.length > 0 ? "cart plus" : "cart"}
         size="big"
+        color="grey"
       />
     </Link>
   ) : (
@@ -22,6 +23,7 @@ const Cart = (props) =>
       <Icon
         name={props.cart.items.length > 0 ? "cart plus" : "cart"}
         size="big"
+        color="grey"
       />
     </Link>
   );

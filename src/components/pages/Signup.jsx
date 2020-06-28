@@ -8,6 +8,7 @@ import { addAuth } from "../../actions/authActions";
 import Page from "../ui/Page";
 import { handleSuccess, handleError } from "../helpers/toasts";
 import Spacer from "../ui/Spacer";
+import InstagramBanner from "../ui/InstagramBanner";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -140,6 +141,8 @@ class Signup extends React.Component {
           </Button>
         </div>
       </Form>
+      <Spacer space={30} />
+      <InstagramBanner />
     </div>
   );
 

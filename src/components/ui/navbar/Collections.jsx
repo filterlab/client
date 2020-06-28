@@ -9,14 +9,14 @@ const Collections = (props) =>
       to="/collections"
       style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
     >
-      <Icon name="cloud download" size="big" />
+      <Icon name="download" size="big" color="grey" />
     </Link>
   ) : (
     <Link
       to="/collections_login"
       style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
     >
-      <Icon name="cloud download" size="big" />
+      <Icon name="download" size="big" color="grey" />
     </Link>
   );
 

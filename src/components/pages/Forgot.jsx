@@ -7,6 +7,8 @@ import Page from "../ui/Page";
 import { addAuth } from "../../actions/authActions";
 import { handleSuccess, handleError } from "../helpers/toasts";
 import Strapi from "strapi-sdk-javascript/build/main";
+import InstagramBanner from "../ui/InstagramBanner";
+import Spacer from "../ui/Spacer";
 
 const recoveryUrl =
   process.env.recoveryUrl ||
@@ -138,6 +140,8 @@ class Forgot extends React.Component {
           </Button>
         </div>
       </Form>
+      <Spacer space={30} />
+      <InstagramBanner />
     </div>
   );
 
