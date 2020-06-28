@@ -46,7 +46,7 @@ const Motivation = ({ isTablet }) => {
                   </Button>
                 </Link>
               </center>
-              <Spacer space={18} />
+              <Spacer space={8} />
             </div>
           </Fade>
         </div>

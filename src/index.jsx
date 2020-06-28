@@ -15,6 +15,7 @@ import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 import StripedCheckout from "./components/pages/checkout/StripedCheckout";
 import Filters from "./components/pages/Filters";
+import AllCategories from "./components/pages/AllCategories";
 import Collections from "./components/pages/Collections";
 import Forgot from "./components/pages/Forgot";
 import Page404 from "./components/pages/Page404";
@@ -32,6 +33,7 @@ const Root = () => (
       <Navbar />
       <Switch>
         <Route component={App} exact path="/" />
+        <Route component={AllCategories} path="/all" />
         <Route component={Signup} path="/signup" />
         <Route component={Login} exact path="/login" />
         <Route component={LoginFree} exact path="/free" />

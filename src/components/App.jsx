@@ -11,6 +11,17 @@ import FreeFilters from "./pages/FreeFilters";
 import InstagramBanner from "./ui/InstagramBanner";
 import Logo from "./ui/Logo";
 class App extends Component {
+  allCategories = () => (
+    <Link
+      to={"/all"}
+      style={{ marginTop: 30, color: "inherit", textDecoration: "inherit" }}
+    >
+      <Button color="black" size="big">
+        See all categories
+      </Button>
+    </Link>
+  );
+
   rightWing = () => (
     <div
       style={{
@@ -23,6 +34,7 @@ class App extends Component {
     >
       {this.props.isTablet && <FreeFilters />}
       <Categories />
+      <center>{!this.props.isTablet && this.allCategories()}</center>
     </div>
   );
 
@@ -33,7 +45,7 @@ class App extends Component {
         flexDirection: "column",
       }}
     >
-      <Spacer space={20} />
+      <Spacer space={30} />
       <center>
         <Header as="h2">
           Start editing like a PRO{" "}
@@ -50,7 +62,7 @@ class App extends Component {
       <Motivation />
       <Spacer space={20} />
       {!this.props.isTablet && <FreeFilters />}
-      <Spacer space={20} />
+      <Spacer space={67} />
       <div
         style={{
           minWidth: "100%",
@@ -59,7 +71,7 @@ class App extends Component {
           opacity: 0.6,
         }}
       />
-      <Spacer space={20} />
+      <Spacer space={95} />
       {!this.props.isTablet && this.instructions()}
     </div>
   );
@@ -161,6 +173,7 @@ class App extends Component {
               </span>
             </Header>
           </center>
+          <Spacer space={14} />
         </div>
       </Segment>
     </center>

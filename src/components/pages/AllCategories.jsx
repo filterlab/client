@@ -6,7 +6,9 @@ import { setFilters } from "../../actions/authActions";
 import Strapi from "strapi-sdk-javascript/build/main";
 import Category from "../cards/Category";
 import Loader from "../ui/Loader";
-import { Header } from "semantic-ui-react";
+import Page from "../ui/Page";
+import InstagramBanner from "../ui/InstagramBanner";
+import Spacer from "../ui/Spacer";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -20,7 +22,7 @@ class Categories extends React.Component {
       .request("POST", "/graphql", {
         data: {
           query: `query {
-            categories (sort: "createdAt:desc", where: { hidden_ne: true }, limit: 6){
+            categories (sort: "createdAt:desc", where: { hidden_ne: true }){
               _id
               name
               description
@@ -63,14 +65,11 @@ class Categories extends React.Component {
     }
   }
 
-  render = () => (
+  build = () => (
     <>
-      {this.props.isTablet && (
-        <center>
-          <div style={{ marginTop: 20 }} />
-          <Header as="h2">Latest</Header>
-        </center>
-      )}
+      <center>
+        <InstagramBanner />
+      </center>
       <div
         style={{
           display: "flex",
@@ -79,6 +78,7 @@ class Categories extends React.Component {
           alignItems: "flex-start",
         }}
       >
+        <Spacer space={20} />
         {this.state.categories.length > 0 ? (
           this.state.categories.map((b, i) => Category(b, i))
         ) : (
@@ -86,6 +86,14 @@ class Categories extends React.Component {
         )}
       </div>
     </>
+  );
+  render = () => (
+    <Page
+      header={"All Categories"}
+      loading={false}
+      loadingMessage={""}
+      body={this.build()}
+    />
   );
 }
 function mapStateToProps(state) {

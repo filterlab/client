@@ -17,12 +17,14 @@ const RED = "red";
 
 const authedLinks = [
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
+  { linkName: "Categories", linkRoute: "/all", color: BLACK },
   { linkName: "Collections", linkRoute: "/collections", color: BLACK },
   { linkName: "Checkout", linkRoute: "/checkout", color: BLACK },
   { linkName: "Logout", linkRoute: "/", color: RED },
 ];
 
 const nonAuthedLinks = [
+  { linkName: "Categories", linkRoute: "/all", color: BLACK },
   { linkName: "Collections", linkRoute: "/collections_login", color: BLACK },
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
   { linkName: "Register", linkRoute: "/signup", color: BLACK },
@@ -32,7 +34,11 @@ const nonAuthedLinks = [
 const link = (linkName, linkRoute, color, iconName) => (
   <span>
     <Link
-      style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
+      style={{
+        color: "inherit",
+        textDecoration: "inherit",
+        margin: 1,
+      }}
       to={linkRoute}
     >
       <Button color={color}>
@@ -42,7 +48,7 @@ const link = (linkName, linkRoute, color, iconName) => (
   </span>
 );
 const mobileLink = (link) => (
-  <center style={{ width: 200, margin: 5 }}>{link}</center>
+  <center style={{ minWidth: 200, margin: 5 }}>{link}</center>
 );
 const homeButton = () => (
   <span>
@@ -121,12 +127,19 @@ class Navbar extends Component {
                     "shopping cart"
                   )
                 )}
+                {mobileLink(
+                  link(
+                    authedLinks[3].linkName,
+                    authedLinks[3].linkRoute,
+                    authedLinks[3].color
+                  )
+                )}
                 <span onClick={() => this.props.removeKey(this.props.isAuthed)}>
                   {mobileLink(
                     link(
-                      authedLinks[3].linkName,
-                      authedLinks[3].linkRoute,
-                      authedLinks[3].color
+                      authedLinks[4].linkName,
+                      authedLinks[4].linkRoute,
+                      authedLinks[4].color
                     )
                   )}
                 </span>
@@ -166,6 +179,13 @@ class Navbar extends Component {
                     nonAuthedLinks[3].linkName,
                     nonAuthedLinks[3].linkRoute,
                     nonAuthedLinks[3].color
+                  )
+                )}
+                {mobileLink(
+                  link(
+                    nonAuthedLinks[4].linkName,
+                    nonAuthedLinks[4].linkRoute,
+                    nonAuthedLinks[4].color
                   )
                 )}
               </span>
@@ -254,14 +274,19 @@ class Navbar extends Component {
           {link(
             authedLinks[2].linkName,
             authedLinks[2].linkRoute,
-            authedLinks[2].color,
+            authedLinks[2].color
+          )}
+          {link(
+            authedLinks[3].linkName,
+            authedLinks[3].linkRoute,
+            authedLinks[3].color,
             "shopping cart"
           )}
           <span onClick={() => this.props.removeKey(this.props.isAuthed)}>
             {link(
-              authedLinks[3].linkName,
-              authedLinks[3].linkRoute,
-              authedLinks[3].color
+              authedLinks[4].linkName,
+              authedLinks[4].linkRoute,
+              authedLinks[4].color
             )}
           </span>
         </Button.Group>
@@ -288,6 +313,11 @@ class Navbar extends Component {
             nonAuthedLinks[3].linkName,
             nonAuthedLinks[3].linkRoute,
             nonAuthedLinks[3].color
+          )}
+          {link(
+            nonAuthedLinks[4].linkName,
+            nonAuthedLinks[4].linkRoute,
+            nonAuthedLinks[4].color
           )}
         </Button.Group>
       )}
