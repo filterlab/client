@@ -15,6 +15,7 @@ import FluidButton from "./buttons/FluidButton";
 
 const BLACK = "black";
 const RED = "red";
+const GREEN = "green";
 
 const authedLinks = [
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
@@ -29,7 +30,7 @@ const nonAuthedLinks = [
   { linkName: "Collections", linkRoute: "/collections_login", color: BLACK },
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
   { linkName: "Register", linkRoute: "/signup", color: BLACK },
-  { linkName: "Login", linkRoute: "/login", color: "" },
+  { linkName: "Login", linkRoute: "/login", color: GREEN },
 ];
 
 const link = (linkName, linkRoute, color, iconName) => (

@@ -26,7 +26,6 @@ class Collection extends React.Component {
                     description
                     categoryId,
                     price
-                    download
                   }
                 }`,
         },
@@ -37,7 +36,7 @@ class Collection extends React.Component {
 
   render() {
     const { index } = this.props;
-    const { name, download, _id, categoryId } = this.state.filter;
+    const { name, _id, categoryId } = this.state.filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
     const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
     return (
@@ -74,7 +73,7 @@ class Collection extends React.Component {
                 }}
               >
                 <Link
-                  to={`/files/filters/${download}`}
+                  to={`/files/filters/${this.props.filter.id}.dng`}
                   style={{ color: "inherit", textDecoration: "inherit" }}
                   target="_blank"
                   download

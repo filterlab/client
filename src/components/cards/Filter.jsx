@@ -27,7 +27,6 @@ class Filter extends React.Component {
         data: {
           query: `query {
                 filter(id:"${this.props.filter._id}") {
-                    download
                     price
                     free
                   }
@@ -36,7 +35,6 @@ class Filter extends React.Component {
       })
       .then((res) => {
         this.setState({
-          download: res.data.filter.download,
           price: res.data.filter.price,
           free: res.data.filter.free,
         });
@@ -56,7 +54,6 @@ class Filter extends React.Component {
         data: {
           query: `query {
                 filter(id:"${this.props.filter._id}") {
-                    download
                     price
                   }
                 }`,
@@ -64,7 +61,6 @@ class Filter extends React.Component {
       })
       .then((res) => {
         this.setState({
-          download: res.data.filter.download,
           price: res.data.filter.price,
         });
       });
@@ -139,7 +135,6 @@ class Filter extends React.Component {
                   free={this.state.free}
                   isBought={this.state.bought}
                   isAuthed={this.props.isAuthed}
-                  download={this.state.download}
                   buy={() => this.handleShoppingClick(_id, price, name)}
                 />
               </div>

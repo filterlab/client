@@ -68,7 +68,7 @@ class FilterButton extends React.Component {
 
   buildCondition_2 = () => (
     <Link
-      to={`/files/filters/${this.props.download}`}
+      to={`/files/filters/${this.props.filter._id}.dng`}
       style={{ color: "inherit", textDecoration: "inherit" }}
       target="_blank"
       download
@@ -114,7 +114,7 @@ class FilterButton extends React.Component {
 
   buildCondition_4 = () => (
     <Link
-      to={`/files/filters/${this.props.download}`}
+      to={`/files/filters/${this.props.filter._id}.dng`}
       style={{ color: "inherit", textDecoration: "inherit" }}
       target="_blank"
       download
