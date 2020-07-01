@@ -10,6 +10,7 @@ import MobileStoreButton from "./ui/buttons/MobileStoreButton";
 import FreeFilters from "./pages/FreeFilters";
 import InstagramBanner from "./ui/InstagramBanner";
 import Logo from "./ui/Logo";
+import Pulsable from "./ui/Pulsable";
 class App extends Component {
   allCategories = () => (
     <Link
@@ -17,7 +18,7 @@ class App extends Component {
       style={{ marginTop: 30, color: "inherit", textDecoration: "inherit" }}
     >
       <Button color="black" size="big">
-        See all categories
+        <Pulsable>See all Categories</Pulsable>
       </Button>
     </Link>
   );

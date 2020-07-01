@@ -4,6 +4,7 @@ import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import Spacer from "./Spacer";
 import { Button } from "semantic-ui-react";
+import Pulsable from "./Pulsable";
 
 const Motivation = ({ isTablet }) => {
   return (
@@ -42,7 +43,7 @@ const Motivation = ({ isTablet }) => {
                   style={{ color: "inherit", textDecoration: "inherit" }}
                 >
                   <Button size="big" color="black">
-                    Start now
+                    <Pulsable>Start now</Pulsable>
                   </Button>
                 </Link>
               </center>

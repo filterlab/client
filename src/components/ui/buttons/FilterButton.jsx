@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button, Icon } from "semantic-ui-react";
 import { removeItem } from "../../../actions/cartActions";
 import { formatCurrency } from "../../helpers/currency";
+import Pulsable from "../Pulsable";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 
 class FilterButton extends React.Component {
@@ -60,7 +61,7 @@ class FilterButton extends React.Component {
         onClick={() => this.setState({ error: "Login first" })}
         color="green"
       >
-        Free
+        <Pulsable>Free</Pulsable>
       </Button>
     ) : (
       this.buildCondition_2()

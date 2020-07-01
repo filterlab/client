@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Button, Header } from "semantic-ui-react";
 import Page from "../ui/Page";
 import Spacer from "../ui/Spacer";
+import Pulsable from "../ui/Pulsable";
 
 class Success extends React.Component {
   build = () => (
@@ -38,7 +39,9 @@ class Success extends React.Component {
       </div>
       <Spacer space={20} />
       <Link to={"/"} style={{ color: "inherit", textDecoration: "inherit" }}>
-        <Button>Start now</Button>
+        <Button>
+          <Pulsable>Start now</Pulsable>
+        </Button>
       </Link>
     </div>
   );
