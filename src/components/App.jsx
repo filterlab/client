@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { Header, Button, Segment, Icon } from "semantic-ui-react";
+import { Header, Button, Segment } from "semantic-ui-react";
 import Categories from "./pages/Categories";
 import Page from "./ui/Page";
 import Spacer from "./ui/Spacer";
@@ -33,9 +33,7 @@ class App extends Component {
           : 663,
       }}
     >
-      {this.props.isTablet && <FreeFilters />}
       <Categories />
-      <center>{!this.props.isTablet && this.allCategories()}</center>
     </div>
   );
 
@@ -74,12 +72,13 @@ class App extends Component {
       />
       <Spacer space={95} />
       {!this.props.isTablet && this.instructions()}
+      {!this.props.isTablet && <Spacer space={25} />}
+      {!this.props.isTablet && <center>{this.allCategories()}</center>}
     </div>
   );
 
   instructions = () => (
     <center>
-      {this.props.isTablet && <Logo />}
       <Segment>
         <div
           style={{
@@ -90,21 +89,37 @@ class App extends Component {
         >
           <Spacer space={20} />
           <center>
-            <Header as="h3">Install Lightroom</Header>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Header as="h3">Install Lightroom</Header>
+              </div>
+              <div style={{ marginRight: 10 }} />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <MobileStoreButton store="ios" />
+                <div style={{ minWidth: 10 }} />
+                <MobileStoreButton store="android" />
+              </div>
+            </div>
           </center>
-          <Spacer space={20} />
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <MobileStoreButton store="ios" />
-            <div style={{ minWidth: 20 }} />
-            <MobileStoreButton store="android" />
-          </div>
-          <Spacer space={this.props.isTablet ? 20 : 50} />
+          <Spacer space={this.props.isTablet ? 30 : 60} />
           <center>
             <Header as="h3">
               <Link
@@ -118,35 +133,11 @@ class App extends Component {
               </Link>{" "}
               and get your favourite filters
             </Header>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <span>
-                You can also download them at the{" "}
-                {this.props.isTablet ? (
-                  <Icon name="cloud download" size="large" />
-                ) : (
-                  <b style={{ whiteSpace: "nowrap" }}>Collections </b>
-                )}
-                {this.props.isTablet ? "button" : "tab"}
-              </span>
-            </div>
           </center>
           <Spacer space={this.props.isTablet ? 20 : 50} />
           <center>
-            <Header as="h3">Apply your filters</Header>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <span>First time importing a preset? Follow our </span>
+            <Header as="h3">
+              Apply your filters{" "}
               <Link
                 to="/install"
                 style={{
@@ -156,10 +147,10 @@ class App extends Component {
                 }}
               >
                 <Button size="tiny" color="black">
-                  Guide
+                  How to use
                 </Button>
               </Link>
-            </div>
+            </Header>
           </center>
           <Spacer space={this.props.isTablet ? 20 : 50} />
           <center>
@@ -175,6 +166,11 @@ class App extends Component {
             </Header>
           </center>
           <Spacer space={14} />
+          {this.props.isTablet && (
+            <div style={{ marginTop: 10 }}>
+              <InstagramBanner />
+            </div>
+          )}
         </div>
       </Segment>
     </center>
@@ -202,12 +198,22 @@ class App extends Component {
         >
           {!this.props.isTablet && this.rightWing()}
           {!this.props.isTablet && this.leftWing()}
-          {this.props.isTablet && this.instructions()}
-          {this.props.isTablet && (
-            <div style={{ marginTop: 20 }}>
-              <InstagramBanner />
-            </div>
-          )}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {this.props.isTablet && (
+              <center>
+                <Logo />
+              </center>
+            )}
+            {this.props.isTablet && this.instructions()}
+            {this.props.isTablet && <FreeFilters />}
+          </div>
           {this.props.isTablet && this.rightWing()}
           {this.props.isTablet && this.leftWing()}
         </div>
@@ -229,6 +235,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     isTablet: state.responsive.isTablet,
+    isAuthed: state.auth.key,
   };
 }
 

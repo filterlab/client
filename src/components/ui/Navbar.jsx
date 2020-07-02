@@ -5,13 +5,12 @@ import Fade from "react-reveal/Fade";
 import { Icon, Button, Header } from "semantic-ui-react";
 import Logo from "./Logo";
 import Spacer from "./Spacer";
-import Collections from "./navbar/Collections";
 import Cart from "./navbar/Cart";
 import { removeKey } from "../../actions/authActions";
 import CurrencyDropdown from "./dropdowns/CurrencyDropdown";
 import InstagramBanner from "./InstagramBanner";
-import Home from "./navbar/Home";
 import FluidButton from "./buttons/FluidButton";
+import Login from "./navbar/Login";
 
 const BLACK = "black";
 const RED = "red";
@@ -21,7 +20,11 @@ const authedLinks = [
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
   { linkName: "Categories", linkRoute: "/all", color: BLACK },
   { linkName: "Collections", linkRoute: "/collections", color: BLACK },
-  { linkName: "Checkout", linkRoute: "/checkout", color: BLACK },
+  {
+    linkName: "Checkout",
+    linkRoute: "/checkout",
+    color: BLACK,
+  },
   { linkName: "Logout", linkRoute: "/", color: RED },
 ];
 
@@ -29,6 +32,7 @@ const nonAuthedLinks = [
   { linkName: "Categories", linkRoute: "/all", color: BLACK },
   { linkName: "Collections", linkRoute: "/collections_login", color: BLACK },
   { linkName: "How to use", linkRoute: "/install", color: BLACK },
+  { linkName: "Checkout", linkRoute: "/checkout_login", color: BLACK },
   { linkName: "Register", linkRoute: "/signup", color: BLACK },
   { linkName: "Login", linkRoute: "/login", color: GREEN },
 ];
@@ -186,6 +190,13 @@ class Navbar extends Component {
                     nonAuthedLinks[4].color
                   )
                 )}
+                {mobileLink(
+                  link(
+                    nonAuthedLinks[5].linkName,
+                    nonAuthedLinks[5].linkRoute,
+                    nonAuthedLinks[5].color
+                  )
+                )}
               </span>
             )}
           </div>
@@ -217,20 +228,29 @@ class Navbar extends Component {
       <Fade clear>
         <div
           style={{
-            marginTop: 10,
             minWidth: "calc(100vw - 10px)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             background: "white",
+            marginTop: 5,
             marginBottom: 5,
           }}
         >
           <Fade down>
             <Icon name="bars" size="big" onClick={() => this.enable()} />
-            <Home />
-            <Collections />
-            <Cart />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              {" "}
+              {homeButton()}
+              <Login />
+              <Cart />
+            </div>
           </Fade>
         </div>
       </Fade>
@@ -250,11 +270,6 @@ class Navbar extends Component {
         <Button.Group>
           {homeButton()}
           <CurrencyDropdown />
-          {link(
-            authedLinks[0].linkName,
-            authedLinks[0].linkRoute,
-            authedLinks[0].color
-          )}
           {link(
             authedLinks[1].linkName,
             authedLinks[1].linkRoute,
@@ -289,24 +304,20 @@ class Navbar extends Component {
             nonAuthedLinks[0].color
           )}
           {link(
-            nonAuthedLinks[1].linkName,
-            nonAuthedLinks[1].linkRoute,
-            nonAuthedLinks[1].color
-          )}
-          {link(
-            nonAuthedLinks[2].linkName,
-            nonAuthedLinks[2].linkRoute,
-            nonAuthedLinks[2].color
-          )}
-          {link(
             nonAuthedLinks[3].linkName,
             nonAuthedLinks[3].linkRoute,
-            nonAuthedLinks[3].color
+            nonAuthedLinks[3].color,
+            "shopping cart"
           )}
           {link(
             nonAuthedLinks[4].linkName,
             nonAuthedLinks[4].linkRoute,
             nonAuthedLinks[4].color
+          )}
+          {link(
+            nonAuthedLinks[5].linkName,
+            nonAuthedLinks[5].linkRoute,
+            nonAuthedLinks[5].color
           )}
         </Button.Group>
       )}

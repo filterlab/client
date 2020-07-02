@@ -3,30 +3,34 @@ import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-const Cart = (props) =>
-  props.isAuthed ? (
-    <Link
-      to="/checkout"
-      style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
+const Cart = (props) => (
+  <Link
+    to={props.isAuthed ? "/checkout" : "/checkout_login"}
+    style={{ color: "inherit", textDecoration: "inherit" }}
+  >
+    <div
+      style={{
+        color: "white",
+        fontSize: 8,
+        position: "relative",
+        top: -3,
+        left: 12.5,
+        width: 15,
+        height: 15,
+        borderRadius: "50%",
+        background: "red",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-      <Icon
-        name={props.cart.items.length > 0 ? "cart plus" : "cart"}
-        size="big"
-        color="grey"
-      />
-    </Link>
-  ) : (
-    <Link
-      to="/checkout_login"
-      style={{ color: "inherit", textDecoration: "inherit", margin: 1 }}
-    >
-      <Icon
-        name={props.cart.items.length > 0 ? "cart plus" : "cart"}
-        size="big"
-        color="grey"
-      />
-    </Link>
-  );
+      {props.cart.items.length}
+    </div>
+    <div style={{ marginTop: -11 }}>
+      <Icon name={"cart"} size="big" color="black" />
+    </div>
+  </Link>
+);
 
 function mapStateToProps(state) {
   return {

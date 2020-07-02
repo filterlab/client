@@ -51,7 +51,7 @@ class FreeFilters extends React.Component {
     const { filters } = this.state;
 
     return (
-      <>
+      <div>
         <center>
           <div style={{ marginTop: 20 }} />
           <Header as="h2">
@@ -85,7 +85,7 @@ class FreeFilters extends React.Component {
             <FilterDetail filter={this.state.filterDetail} />
           </Modal>
         </div>
-      </>
+      </div>
     );
   }
 }
