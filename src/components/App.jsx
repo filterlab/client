@@ -11,6 +11,7 @@ import FreeFilters from "./pages/FreeFilters";
 import InstagramBanner from "./ui/InstagramBanner";
 import Logo from "./ui/Logo";
 import Pulsable from "./ui/Pulsable";
+import { Line } from "./ui/Line";
 class App extends Component {
   allCategories = () => (
     <Link
@@ -62,14 +63,7 @@ class App extends Component {
       <Spacer space={20} />
       {!this.props.isTablet && <FreeFilters />}
       <Spacer space={67} />
-      <div
-        style={{
-          minWidth: "100%",
-          height: 0.5,
-          background: "grey",
-          opacity: 0.6,
-        }}
-      />
+      <Line />
       <Spacer space={95} />
       {!this.props.isTablet && this.instructions()}
       {!this.props.isTablet && <Spacer space={25} />}

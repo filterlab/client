@@ -11,6 +11,7 @@ import CurrencyDropdown from "./dropdowns/CurrencyDropdown";
 import InstagramBanner from "./InstagramBanner";
 import FluidButton from "./buttons/FluidButton";
 import Login from "./navbar/Login";
+import MySidebar from "./navbar/Sidebar";
 
 const BLACK = "black";
 const RED = "red";
@@ -217,12 +218,7 @@ class Navbar extends Component {
           minWidth: "calc(100vw - 10px)",
         }}
       >
-        <Fade clear>
-          <span style={{ marginTop: 5 }}>
-            <Icon name="delete" size="big" onClick={() => this.disable()} />
-          </span>
-        </Fade>
-        {this.buildTabletNavList()}
+        <MySidebar open={clicked} onClick={this.disable} />
       </div>
     ) : (
       <Fade clear>
@@ -232,13 +228,14 @@ class Navbar extends Component {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            background: "white",
-            marginTop: 5,
+            marginTop: 10,
             marginBottom: 5,
           }}
         >
           <Fade down>
-            <Icon name="bars" size="big" onClick={() => this.enable()} />
+            <div style={{ marginLeft: 10 }}>
+              <Icon name="bars" size="big" onClick={() => this.enable()} />
+            </div>
             <div
               style={{
                 display: "flex",
@@ -334,9 +331,9 @@ class Navbar extends Component {
           alignItems: "center",
           justifyContent: "space-between",
           minWidth: "100%",
-          margin: 5,
+          margin: !this.props.isTablet && 5,
+          marginBottom: 0,
           marginTop: 0,
-          background: "white",
         }}
       >
         {!this.props.isTablet && (
