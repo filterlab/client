@@ -49,7 +49,10 @@ class FilterButton extends React.Component {
     });
   }
   login = () => (
-    <Link to={`/free`} style={{ color: "inherit", textDecoration: "inherit" }}>
+    <Link
+      to={this.props.free ? "/free" : "/login"}
+      style={{ color: "inherit", textDecoration: "inherit" }}
+    >
       <Button color="red">Login</Button>
     </Link>
   );

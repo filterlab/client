@@ -72,10 +72,25 @@ const Footer = (props) => {
                   }}
                   to="/terms"
                 >
-                  Terms and Policy
+                  Terms
                 </Link>
                 <div style={{ marginRight: 5 }} />
-                <Icon name="clipboard list" />
+                <Icon name="list" />
+              </div>
+            )}
+            {entry(
+              <div style={{ display: "flex", alignItems: "baseline" }}>
+                <Link
+                  style={{
+                    color: "inherit",
+                    textDecoration: "inherit",
+                  }}
+                  to="/privacy"
+                >
+                  Privacy Policy
+                </Link>
+                <div style={{ marginRight: 5 }} />
+                <Icon name="low vision" />
               </div>
             )}
             {entry(

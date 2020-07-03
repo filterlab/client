@@ -20,6 +20,7 @@ import Collections from "./components/pages/Collections";
 import Forgot from "./components/pages/Forgot";
 import Page404 from "./components/pages/Page404";
 import Terms from "./components/pages/Terms";
+import Privacy from "./components/pages/Privacy";
 import Install from "./components/pages/Install";
 import RegisterSuccess from "./components/pages/RegisterSuccess";
 import Navbar from "./components/ui/Navbar";
@@ -43,6 +44,7 @@ const Root = () => (
         <Route component={Filters} path="/category/:categoryId" />
         <Route component={Page404} path="/404" />
         <Route component={Terms} path="/terms" />
+        <Route component={Privacy} path="/privacy" />
         <Route component={Install} path="/install" />
         <Route component={RegisterSuccess} path="/success" />
         <PrivateRoute component={Collections} path="/collections" />
