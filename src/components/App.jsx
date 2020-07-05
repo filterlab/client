@@ -13,6 +13,9 @@ import Logo from "./ui/Logo";
 import Pulsable from "./ui/Pulsable";
 import { Line } from "./ui/Line";
 class App extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   allCategories = () => (
     <Link
       to={"/all"}
