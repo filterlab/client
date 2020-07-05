@@ -133,6 +133,7 @@ class Signup extends React.Component {
           }}
         >
           <Button
+            loading={this.state.loading}
             disabled={this.state.error}
             onClick={() => this.validateForm()}
             type="submit"
@@ -143,6 +144,7 @@ class Signup extends React.Component {
       </Form>
       <Spacer space={30} />
       <InstagramBanner />
+      <Spacer space={30} />
     </div>
   );
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import { ToastContainer } from "react-toastify";
 import Fade from "react-reveal/Fade";
@@ -8,10 +8,6 @@ import Spacer from "./Spacer";
 import Footer from "./Footer";
 
 const Page = ({ header, top, loading, loadingMessage, hideFooter, body }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <Fade clear delay={100}>
       <div

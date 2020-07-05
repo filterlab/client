@@ -120,6 +120,7 @@ class Login extends React.Component {
       </Form>
       <Spacer space={30} />
       <InstagramBanner />
+      <Spacer space={30} />
     </div>
   );
 
