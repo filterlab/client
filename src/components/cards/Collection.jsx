@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import BeforeAfterSlider from "react-before-after-slider";
-import { Card, Button } from "semantic-ui-react";
+import { Card, Button, Image } from "semantic-ui-react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Strapi from "strapi-sdk-javascript/build/main";
@@ -24,8 +24,9 @@ class Collection extends React.Component {
                     _id
                     name
                     description
-                    categoryId,
+                    categoryId
                     price
+                    isPack
                   }
                 }`,
         },
@@ -36,9 +37,10 @@ class Collection extends React.Component {
 
   render() {
     const { index } = this.props;
-    const { name, _id, categoryId } = this.state.filter;
+    const { name, _id, categoryId, isPack } = this.state.filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
     const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
+    const PACK = `${FILES_FOLDER}/${categoryId}/pack.png`;
     return (
       <Fade clear delay={100 * index}>
         <div style={{ maxHeight: 421, margin: 20 }}>
@@ -49,12 +51,16 @@ class Collection extends React.Component {
                 justifyContent: "center",
               }}
             >
-              <BeforeAfterSlider
-                before={AFTER}
-                after={BEFORE}
-                height={300}
-                width={290}
-              />
+              {isPack ? (
+                <Image height={300} width={290} src={PACK} />
+              ) : (
+                <BeforeAfterSlider
+                  before={AFTER}
+                  after={BEFORE}
+                  height={300}
+                  width={290}
+                />
+              )}
             </div>
 
             <Card.Content>
@@ -73,7 +79,9 @@ class Collection extends React.Component {
                 }}
               >
                 <Link
-                  to={`/files/filters/${this.props.filter.id}.dng`}
+                  to={`/files/filters/${this.props.filter.id}.${
+                    isPack ? "zip" : "dng"
+                  }`}
                   style={{ color: "inherit", textDecoration: "inherit" }}
                   target="_blank"
                   download

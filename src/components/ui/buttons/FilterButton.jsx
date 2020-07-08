@@ -118,7 +118,9 @@ class FilterButton extends React.Component {
 
   buildCondition_4 = () => (
     <Link
-      to={`/files/filters/${this.props.filter._id}.dng`}
+      to={`/files/filters/${this.props.filter._id}.${
+        this.props.isPack ? "zip" : "dng"
+      }`}
       style={{ color: "inherit", textDecoration: "inherit" }}
       target="_blank"
       download

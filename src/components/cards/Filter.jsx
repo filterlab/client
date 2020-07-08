@@ -3,7 +3,7 @@ import Pulse from "react-reveal/Pulse";
 import Fade from "react-reveal/Fade";
 import { connect } from "react-redux";
 import BeforeAfterSlider from "react-before-after-slider";
-import { Card, Icon, Button } from "semantic-ui-react";
+import { Card, Icon, Button, Image, Label } from "semantic-ui-react";
 import { ToastContainer } from "react-toastify";
 import { handleSuccess } from "../helpers/toasts";
 import { addToCart } from "../../actions/cartActions";
@@ -29,6 +29,7 @@ class Filter extends React.Component {
                 filter(id:"${this.props.filter._id}") {
                     price
                     free
+                    isPack
                   }
                 }`,
         },
@@ -37,6 +38,7 @@ class Filter extends React.Component {
         this.setState({
           price: res.data.filter.price,
           free: res.data.filter.free,
+          isPack: res.data.filter.isPack,
         });
       });
     // eslint-disable-next-line
@@ -82,6 +84,7 @@ class Filter extends React.Component {
     const { _id, name, price } = filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
     const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
+    const PACK = `${FILES_FOLDER}/${categoryId}/pack.png`;
     return (
       <Fade clear delay={100 * index}>
         <div style={{ margin: 20, maxHeight: 421 }}>
@@ -92,12 +95,16 @@ class Filter extends React.Component {
                 justifyContent: "center",
               }}
             >
-              <BeforeAfterSlider
-                before={AFTER}
-                after={BEFORE}
-                height={300}
-                width={290}
-              />
+              {this.state.isPack ? (
+                <Image height={300} width={290} src={PACK} />
+              ) : (
+                <BeforeAfterSlider
+                  before={AFTER}
+                  after={BEFORE}
+                  height={300}
+                  width={290}
+                />
+              )}
             </div>
 
             <Card.Content>
@@ -115,21 +122,31 @@ class Filter extends React.Component {
                   justifyContent: "space-between",
                 }}
               >
-                <span
-                  onMouseEnter={() => this.setState({ expand: true })}
-                  onMouseLeave={() => this.setState({ expand: false })}
-                >
-                  <Pulse left spy={this.state.expand}>
-                    <Button
-                      onClick={() => onOpenModal(filter)}
-                      icon
-                      color="black"
-                    >
-                      <Icon name="expand" />
-                    </Button>
-                  </Pulse>
-                </span>
+                {this.state.isPack ? (
+                  <Label as="a" color="green" ribbon>
+                    Get the pack and save{" "}
+                    <span aria-label="money" role="img">
+                      💰
+                    </span>
+                  </Label>
+                ) : (
+                  <span
+                    onMouseEnter={() => this.setState({ expand: true })}
+                    onMouseLeave={() => this.setState({ expand: false })}
+                  >
+                    <Pulse left spy={this.state.expand}>
+                      <Button
+                        onClick={() => onOpenModal(filter)}
+                        icon
+                        color="black"
+                      >
+                        <Icon name="expand" />
+                      </Button>
+                    </Pulse>
+                  </span>
+                )}
                 <FilterButton
+                  isPack={this.state.isPack}
                   filter={this.props.filter}
                   price={this.state.price}
                   free={this.state.free}

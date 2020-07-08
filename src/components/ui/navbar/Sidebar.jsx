@@ -27,7 +27,7 @@ const innerSidebarStyle = {
 };
 const authedLinks = [
   { linkName: "How to use", linkRoute: "/install", color: undefined },
-  { linkName: "Categories", linkRoute: "/all", color: undefined },
+  { linkName: "All Categories", linkRoute: "/all", color: undefined },
   { linkName: "Collections", linkRoute: "/collections", color: undefined },
   {
     linkName: "Checkout",
@@ -39,7 +39,7 @@ const authedLinks = [
 const authedLinks_user = [{ linkName: "Logout", linkRoute: "/", color: RED }];
 
 const nonAuthedLinks = [
-  { linkName: "Categories", linkRoute: "/all", color: undefined },
+  { linkName: "All Categories", linkRoute: "/all", color: undefined },
   {
     linkName: "Collections",
     linkRoute: "/collections_login",
