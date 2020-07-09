@@ -43,7 +43,7 @@ class Filters extends React.Component {
             category(id: "${categoryId}") {
               _id
               name
-              filters {
+              filters(sort: "createdAt:asc"){
                 _id
                 name
                 description
@@ -78,7 +78,7 @@ class Filters extends React.Component {
             category(id: "${categoryId}") {
               _id
               name
-              filters {
+              filters(sort: "createdAt:asc"){
                 _id
                 name
                 description
