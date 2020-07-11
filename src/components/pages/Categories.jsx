@@ -20,7 +20,7 @@ class Categories extends React.Component {
       .request("POST", "/graphql", {
         data: {
           query: `query {
-            categories (sort: "createdAt:desc", where: { hidden_ne: true }, limit: 6){
+            categories (sort: "createdAt:desc", where: { hidden_ne: true }, limit: 8){
               _id
               name
               description

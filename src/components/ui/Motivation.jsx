@@ -36,7 +36,7 @@ const Motivation = ({ isTablet }) => {
                 add value to your photos.
               </span>
               <br />
-              <Spacer space={10} />
+              <Spacer space={30} />
               <center>
                 <Link
                   to={"/signup"}

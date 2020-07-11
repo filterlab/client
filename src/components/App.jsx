@@ -11,7 +11,6 @@ import FreeFilters from "./pages/FreeFilters";
 import InstagramBanner from "./ui/InstagramBanner";
 import Logo from "./ui/Logo";
 import Pulsable from "./ui/Pulsable";
-import { Line } from "./ui/Line";
 class App extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -63,11 +62,9 @@ class App extends Component {
       </center>
       <Spacer space={20} />
       <Motivation />
-      <Spacer space={20} />
+      <Spacer space={65} />
       {!this.props.isTablet && <FreeFilters />}
-      <Spacer space={67} />
-      <Line />
-      <Spacer space={95} />
+      <Spacer space={80} />
       {!this.props.isTablet && this.instructions()}
       {!this.props.isTablet && <Spacer space={25} />}
       {!this.props.isTablet && <center>{this.allCategories()}</center>}
@@ -128,13 +125,13 @@ class App extends Component {
               >
                 <Button size="small">Login</Button>
               </Link>{" "}
-              and get your favourite filters
+              and get your favourite presets
             </Header>
           </center>
           <Spacer space={this.props.isTablet ? 20 : 50} />
           <center>
             <Header as="h3">
-              Apply your filters{" "}
+              Apply your presets{" "}
               <Link
                 to="/install"
                 style={{

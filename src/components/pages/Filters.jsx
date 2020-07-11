@@ -4,6 +4,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Strapi from "strapi-sdk-javascript/build/main";
+import { Icon } from "semantic-ui-react";
 import "react-responsive-modal/styles.css";
 import FilterDetail from "./FilterDetail";
 import { Modal } from "react-responsive-modal";
@@ -11,6 +12,7 @@ import Filter from "../cards/Filter";
 import Page from "../ui/Page";
 import CategoryDropdown from "../ui/dropdowns/CategoryDropdown";
 import CurrencyDropdown from "../ui/dropdowns/CurrencyDropdown";
+import Spacer from "../ui/Spacer";
 import ModalCloseIcon from "../ui/ModalCloseIcon";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
@@ -121,6 +123,22 @@ class Filters extends React.Component {
               </>
             )}
           </div>
+          <Spacer space={20} />
+          <div
+            style={{
+              fontWeight: 500,
+              fontSize: 18,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <span>
+              Expand the images by pressing <Icon small name="expand" />
+            </span>{" "}
+            <span> and see what each preset can do</span>
+          </div>
+          <Spacer space={20} />
           <Fade spy={this.state.categoryId}>
             <div
               style={{

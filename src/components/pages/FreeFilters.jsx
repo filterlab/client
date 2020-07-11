@@ -6,7 +6,7 @@ import { Modal } from "react-responsive-modal";
 import Filter from "../cards/Filter";
 import FilterDetail from "./FilterDetail";
 import ModalCloseIcon from "../ui/ModalCloseIcon";
-import { Header } from "semantic-ui-react";
+import { Header, Card } from "semantic-ui-react";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -54,10 +54,14 @@ class FreeFilters extends React.Component {
       <div>
         <center>
           <div style={{ marginTop: 20 }} />
-          <Header as="h2">
-            {new Date().toLocaleString("default", { month: "long" })}'s FREE
-            preset
-          </Header>
+          <Card>
+            <Card.Content>
+              <Header as="h2">
+                {new Date().toLocaleString("default", { month: "long" })}'s FREE
+                preset
+              </Header>
+            </Card.Content>
+          </Card>
         </center>
         <div
           style={{
