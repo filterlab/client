@@ -28,7 +28,7 @@ const Motivation = ({ isTablet }) => {
                 textAlign: "justify",
               }}
             >
-              <Spacer space={10} />
+              <Spacer space={30} />
               <span>
                 <b style={{ whiteSpace: "nowrap" }}>Filterlab's goal</b> is to
                 develop high quality yet budget-friendly mobile{" "}
@@ -36,7 +36,13 @@ const Motivation = ({ isTablet }) => {
                 add value to your photos.
               </span>
               <br />
-              <Spacer space={30} />
+              <Spacer space={15} />
+              <span>
+                Get started with our month's{" "}
+                <b style={{ whiteSpace: "nowrap" }}>free preset</b>!
+              </span>
+              <br />
+              <Spacer space={5} />
               <center>
                 <Link
                   to={"/signup"}
@@ -47,7 +53,7 @@ const Motivation = ({ isTablet }) => {
                   </Button>
                 </Link>
               </center>
-              <Spacer space={8} />
+              <Spacer space={15} />
             </div>
           </Fade>
         </div>

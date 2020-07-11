@@ -34,6 +34,22 @@ class Privacy extends React.Component {
       carefully to get a clear understanding of how we collect, use, protect or
       otherwise handle your personally identifiable information in accordance
       with our website www.filterlab.store (“website”), (“site”).
+      <br />
+      Any information collected on this website will not be sold or shared with
+      third parties. We collect information from you when you sign up on our
+      website and make a payment. This site collects the personal information
+      you voluntarily provide to us, which includes only the email address.
+      Besides the e-mail address, we also collect information about your orders
+      and prices paid, which does not include any credit/debit card information.
+      <br />
+      <Header as="h3">Right to be forgotten</Header> If after you opt-in, you
+      change your mind, you may withdraw your consent for us to contact you, for
+      the continued collection, use or disclosure of your information, or to
+      cancel your account at any time, send us an e-mail to
+      filterlabstore@gmail.com, from the account you want to erase with suject
+      "Right to be forgotten". Your account and order history will then be
+      erased.
+      <br />
       <Header as="h3">Information we collect</Header>Your privacy is important
       to us.
       <br />
@@ -62,11 +78,6 @@ class Privacy extends React.Component {
       your personal information for a secondary reason, like marketing, we will
       either ask you directly for your expressed consent or provide you with an
       opportunity to say no.
-      <Header as="h3">How do I withdraw my consent?</Header>
-      If after you opt-in, you change your mind, you may withdraw your consent
-      for us to contact you, for the continued collection, use or disclosure of
-      your information, or to cancel your account at any time, by contacting us
-      at filterlabstore@gmail.com.
       <Header as="h3">Payments</Header>
       Our payments processing system uses Stripe.
       <br />

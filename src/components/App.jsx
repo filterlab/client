@@ -11,10 +11,209 @@ import FreeFilters from "./pages/FreeFilters";
 import InstagramBanner from "./ui/InstagramBanner";
 import Logo from "./ui/Logo";
 import Pulsable from "./ui/Pulsable";
+import Fade from "react-reveal/Fade";
 class App extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
+  desktop = () => {
+    return (
+      <>
+        {
+          <center>
+            <Logo bigger />
+            <Header as="h1">Easy to use, one click photo filters</Header>
+            <Spacer space={35} />
+            <InstagramBanner />
+            <Spacer space={75} />
+          </center>
+        }
+        <div
+          style={{
+            width: "calc(100vw)" > 900 ? "calc(100vw)" : 900,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-around",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            {this.startEditing()}
+            {<Motivation />}
+            <Spacer space={15} />
+            {this.instructions()}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginTop: 5,
+            }}
+          >
+            {<FreeFilters />}
+          </div>
+        </div>
+        <Spacer space={40} />
+        <center>
+          <Header as="h1">Check our categories</Header>
+        </center>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "calc(100vw)",
+            }}
+          >
+            <Categories />
+          </div>
+        </div>
+      </>
+    );
+  };
+  mobile = () => {
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {
+            <center>
+              <Logo />
+            </center>
+          }
+          <Spacer space={15} />
+          {this.startEditing()}
+          {<Motivation />}
+          <Spacer space={15} />
+          {<FreeFilters />}
+        </div>
+        <div
+          style={{
+            width: "calc(100vw)",
+          }}
+        >
+          <Categories />
+        </div>
+        <center style={{ marginBottom: 50 }}>
+          <Segment>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Spacer space={20} />
+              <center>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Header as="h3">Install Lightroom</Header>
+                  </div>
+                  <div style={{ marginRight: 10 }} />
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <MobileStoreButton store="ios" />
+                    <div style={{ minWidth: 10 }} />
+                    <MobileStoreButton store="android" />
+                  </div>
+                </div>
+              </center>
+              <Spacer space={30} />
+              <center>
+                <Header as="h3">
+                  <Link
+                    to="/login"
+                    style={{
+                      color: "inherit",
+                      textDecoration: "inherit",
+                    }}
+                  >
+                    <Button size="small">Login</Button>
+                  </Link>
+                  and get your favourite presets
+                </Header>
+              </center>
+              <Spacer space={20} />
+              <center>
+                <Header as="h3">
+                  Apply your presets
+                  <Link
+                    to="/install"
+                    style={{
+                      marginLeft: 5,
+                      color: "inherit",
+                      textDecoration: "inherit",
+                    }}
+                  >
+                    <Button size="tiny" color="black">
+                      How to use
+                    </Button>
+                  </Link>
+                </Header>
+              </center>
+              <Spacer space={20} />
+              <center>
+                <Header as="h3">
+                  Done!{" "}
+                  <span
+                    role="img"
+                    aria-label="party-popper"
+                    style={{ fontFamily: "Segoe UI Emoji" }}
+                  >
+                    🎉
+                  </span>
+                </Header>
+              </center>
+              <Spacer space={14} />
+              {
+                <div style={{ marginTop: 10 }}>
+                  <InstagramBanner />
+                </div>
+              }
+            </div>
+          </Segment>
+        </center>
+      </div>
+    );
+  };
+
   allCategories = () => (
     <Link
       to={"/all"}
@@ -26,194 +225,123 @@ class App extends Component {
     </Link>
   );
 
-  rightWing = () => (
-    <div
-      style={{
-        width: this.props.isTablet
-          ? "calc(100vw)"
-          : "calc(60vw)" > 663
-          ? "calc(60vw)"
-          : 663,
-      }}
-    >
-      <Categories />
-    </div>
-  );
-
-  leftWing = () => (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Spacer space={30} />
-      <center>
-        <Header as="h2">
-          Start editing like a PRO{" "}
-          <span
-            role="img"
-            aria-label="painter"
-            style={{ fontFamily: "Segoe UI Emoji" }}
-          >
-            👨‍🎨
-          </span>
-        </Header>
-      </center>
-      <Spacer space={20} />
-      <Motivation />
-      <Spacer space={65} />
-      {!this.props.isTablet && <FreeFilters />}
-      <Spacer space={80} />
-      {!this.props.isTablet && this.instructions()}
-      {!this.props.isTablet && <Spacer space={25} />}
-      {!this.props.isTablet && <center>{this.allCategories()}</center>}
-    </div>
+  startEditing = () => (
+    <center>
+      <Header as="h2">
+        Start editing like a PRO{" "}
+        <span
+          role="img"
+          aria-label="painter"
+          style={{ fontFamily: "Segoe UI Emoji" }}
+        >
+          👨‍🎨
+        </span>
+      </Header>
+    </center>
   );
 
   instructions = () => (
-    <center>
-      <Segment>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            marginTop: !this.props.isTablet && 20,
-          }}
-        >
-          <Spacer space={20} />
-          <center>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Header as="h3">Install Lightroom</Header>
-              </div>
-              <div style={{ marginRight: 10 }} />
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <MobileStoreButton store="ios" />
-                <div style={{ minWidth: 10 }} />
-                <MobileStoreButton store="android" />
-              </div>
-            </div>
-          </center>
-          <Spacer space={this.props.isTablet ? 30 : 60} />
-          <center>
-            <Header as="h3">
-              <Link
-                to="/login"
-                style={{
-                  color: "inherit",
-                  textDecoration: "inherit",
-                }}
-              >
-                <Button size="small">Login</Button>
-              </Link>{" "}
-              and get your favourite presets
-            </Header>
-          </center>
-          <Spacer space={this.props.isTablet ? 20 : 50} />
-          <center>
-            <Header as="h3">
-              Apply your presets{" "}
-              <Link
-                to="/install"
-                style={{
-                  marginLeft: 5,
-                  color: "inherit",
-                  textDecoration: "inherit",
-                }}
-              >
-                <Button size="tiny" color="black">
-                  How to use
-                </Button>
-              </Link>
-            </Header>
-          </center>
-          <Spacer space={this.props.isTablet ? 20 : 50} />
-          <center>
-            <Header as="h3">
-              Done!{" "}
-              <span
-                role="img"
-                aria-label="party-popper"
-                style={{ fontFamily: "Segoe UI Emoji" }}
-              >
-                🎉
-              </span>
-            </Header>
-          </center>
-          <Spacer space={14} />
-          {this.props.isTablet && (
-            <div style={{ marginTop: 10 }}>
-              <InstagramBanner />
-            </div>
-          )}
-        </div>
-      </Segment>
-    </center>
-  );
-  render() {
-    const { isTablet } = this.props;
-    const build = () => (
-      <>
-        <Spacer space={!isTablet && 20} />
-        {!isTablet && (
-          <center>
-            <Logo bigger />
-            <Header as="h1">Easy to use, one click photo filters</Header>
-            <Spacer space={35} />
-            <InstagramBanner />
-            <Spacer space={35} />
-          </center>
-        )}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {!this.props.isTablet && this.rightWing()}
-          {!this.props.isTablet && this.leftWing()}
+    <Fade>
+      <center>
+        <Segment>
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
             }}
           >
+            <Spacer space={20} />
+            <center>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Header as="h3">Install Lightroom</Header>
+                </div>
+                <div style={{ marginRight: 10 }} />
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <MobileStoreButton store="ios" />
+                  <div style={{ minWidth: 10 }} />
+                  <MobileStoreButton store="android" />
+                </div>
+              </div>
+            </center>
+            <Spacer space={this.props.isTablet ? 30 : 40} />
+            <center>
+              <Header as="h3">
+                <Link
+                  to="/login"
+                  style={{
+                    color: "inherit",
+                    textDecoration: "inherit",
+                  }}
+                >
+                  <Button size="small">Login</Button>
+                </Link>{" "}
+                and get your favourite presets
+              </Header>
+            </center>
+            <Spacer space={this.props.isTablet ? 20 : 40} />
+            <center>
+              <Header as="h3">
+                Apply your presets{" "}
+                <Link
+                  to="/install"
+                  style={{
+                    marginLeft: 5,
+                    color: "inherit",
+                    textDecoration: "inherit",
+                  }}
+                >
+                  <Button size="tiny" color="black">
+                    How to use
+                  </Button>
+                </Link>
+              </Header>
+            </center>
+            <Spacer space={this.props.isTablet ? 20 : 40} />
+            <center>
+              <Header as="h3">
+                Done!{" "}
+                <span
+                  role="img"
+                  aria-label="party-popper"
+                  style={{ fontFamily: "Segoe UI Emoji" }}
+                >
+                  🎉
+                </span>
+              </Header>
+            </center>
+            <Spacer space={14} />
             {this.props.isTablet && (
-              <center>
-                <Logo />
-              </center>
+              <div style={{ marginTop: 10 }}>
+                <InstagramBanner />
+              </div>
             )}
-            {this.props.isTablet && this.instructions()}
-            {this.props.isTablet && <FreeFilters />}
           </div>
-          {this.props.isTablet && this.rightWing()}
-          {this.props.isTablet && this.leftWing()}
-        </div>
-        <Spacer space={10} />
-      </>
-    );
+        </Segment>
+      </center>
+    </Fade>
+  );
+  render() {
+    const { isTablet } = this.props;
+    const build = () => (isTablet ? this.mobile() : this.desktop());
 
     return (
       <Page
