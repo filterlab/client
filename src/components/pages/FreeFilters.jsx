@@ -57,7 +57,7 @@ class FreeFilters extends React.Component {
           <Card>
             <Card.Content>
               <Header as="h2">
-                {new Date().toLocaleString("default", { month: "long" })}'s FREE
+                {new Date().toLocaleString("en-GB", { month: "long" })}'s FREE
                 preset
               </Header>
             </Card.Content>
