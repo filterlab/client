@@ -91,8 +91,8 @@ class Collections extends React.Component {
         ))}
       </div>
     ) : (
-      this.noCollections()
-    );
+          this.noCollections()
+        );
 
   render() {
     return (

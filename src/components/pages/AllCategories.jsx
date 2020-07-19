@@ -80,10 +80,10 @@ class Categories extends React.Component {
       >
         <Spacer space={20} />
         {this.state.categories.length > 0 ? (
-          this.state.categories.map((b, i) => Category(b, i))
+          this.state.categories.map((b, i) => Category(b, i, this.props.isTablet))
         ) : (
-          <Loader />
-        )}
+            <Loader />
+          )}
       </div>
     </>
   );

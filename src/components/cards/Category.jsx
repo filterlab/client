@@ -2,11 +2,13 @@ import React from "react";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import BeforeAfterSlider from "react-before-after-slider";
-import { Card, Button } from "semantic-ui-react";
+import { Card, Button, Header } from "semantic-ui-react";
+import Spacer from "../ui/Spacer"
+
 const FILES_FOLDER = "../../files/images/category/";
-const Category = (category, index) => {
+const Category = (category, index, isTablet) => {
   const { _id, name } = category;
-  const card = () => (
+  const desktopCard = () => (
     <Fade up delay={50 * index}>
       <Link
         to={`/category/${_id}`}
@@ -55,17 +57,47 @@ const Category = (category, index) => {
       </Link>
     </Fade>
   );
+  const mobileCard = () => (
+    <Fade up delay={50 * index}>
+      <Link
+        to={`/category/${_id}`}
+        style={{
+          color: "inherit",
+          textDecoration: "inherit",
+          cursor: "pointer",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <center><Header as="h3">{name}</Header></center>
+          <Spacer space={15} />
+          <BeforeAfterSlider
+            before={`${FILES_FOLDER}${_id}/after.jpg`}
+            after={`${FILES_FOLDER}${_id}/before.jpg`}
+            height={150}
+            width={145}
+          />
+          <Spacer space={15} />
+          <Link
+            to={`/category/${_id}`}
+            style={{ color: "inherit", textDecoration: "inherit" }}
+          >
+            <Button>See all presets</Button>
+          </Link>
+        </div>
+      </Link>
+    </Fade>
+  );
   return (
     <div
       style={{
         margin: 20,
-        height: 421,
+        height: !isTablet && 421,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
       }}
     >
-      {category && card()}
+      {category && isTablet ? mobileCard() : desktopCard()}
     </div>
   );
 };

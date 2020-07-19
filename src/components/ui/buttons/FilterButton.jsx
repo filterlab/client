@@ -6,15 +6,16 @@ import { Button, Icon } from "semantic-ui-react";
 import { removeItem } from "../../../actions/cartActions";
 import { formatCurrency } from "../../helpers/currency";
 import Pulsable from "../Pulsable";
+import Strapi from "strapi-sdk-javascript/build/main";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
-
+const strapi = new Strapi(apiUrl);
 class FilterButton extends React.Component {
   state = {
     error: "",
     clicked: false,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.items.map(
       (item) =>
         item.id === this.props.filter._id && this.setState({ clicked: true })
@@ -26,27 +27,45 @@ class FilterButton extends React.Component {
   showDownload = () => this.props.isAuthed && this.props.isBought;
 
   async freeDownload() {
-    await axios({
-      method: "POST",
-      url: `${apiUrl}/orders`,
-      headers: {
-        Authorization: `Bearer ${this.props.isAuthed}`,
-      },
-      data: {
-        user: this.props.userId,
-        amount: 1,
-        free: "true",
-        filters: [
-          {
-            free: this.props.free,
-            price: this.props.price,
-            id: this.props.filter._id,
-            quantity: 1,
-            name: this.props.filter.name,
+    if (this.props.userId) {
+      let bought;
+      const { data } = await strapi.request("POST", "/graphql", {
+        data: {
+          query: `query {
+            user(id: "${this.props.userId}") {
+              _id
+              orders {
+                filters
+              }
+            }
+          }`,
+        },
+      });
+      const orders = (data.user.orders);
+      orders.map((order, i) => order.filters.map(filter => filter.id === this.props.filter._id ? bought = true : ""))
+      if (!bought)
+        await axios({
+          method: "POST",
+          url: `${apiUrl}/orders`,
+          headers: {
+            Authorization: `Bearer ${this.props.isAuthed}`,
           },
-        ],
-      },
-    });
+          data: {
+            user: this.props.userId,
+            amount: 1,
+            free: "true",
+            filters: [
+              {
+                free: this.props.free,
+                price: this.props.price,
+                id: this.props.filter._id,
+                quantity: 1,
+                name: this.props.filter.name,
+              },
+            ],
+          },
+        });
+    }
   }
   login = () => (
     <Link
@@ -67,8 +86,8 @@ class FilterButton extends React.Component {
         <Pulsable>Free</Pulsable>
       </Button>
     ) : (
-      this.buildCondition_2()
-    );
+          this.buildCondition_2()
+        );
 
   buildCondition_2 = () => (
     <Link
@@ -96,10 +115,10 @@ class FilterButton extends React.Component {
         onClick={() =>
           this.state.clicked
             ? this.props.removeItem(
-                this.props.filter._id,
-                this.props.price,
-                this.props.filter.name
-              )
+              this.props.filter._id,
+              this.props.price,
+              this.props.filter.name
+            )
             : this.props.buy()
         }
         color={this.state.clicked ? "red" : "green"}
@@ -109,9 +128,9 @@ class FilterButton extends React.Component {
             Remove from <Icon name="cart" />
           </span>
         ) : (
-          this.props.price &&
-          formatCurrency(this.props.price, this.props.currency)
-        )}
+            this.props.price &&
+            formatCurrency(this.props.price, this.props.currency)
+          )}
       </Button>
     </span>
   );
@@ -120,7 +139,7 @@ class FilterButton extends React.Component {
     <Link
       to={`/files/filters/${this.props.filter._id}.${
         this.props.isPack ? "zip" : "dng"
-      }`}
+        }`}
       style={{ color: "inherit", textDecoration: "inherit" }}
       target="_blank"
       download
@@ -135,10 +154,10 @@ class FilterButton extends React.Component {
     return this.state.error
       ? this.login()
       : this.freeFilter()
-      ? this.buildCondition_1()
-      : this.notAuthedOrNotBought()
-      ? this.buildCondition_3()
-      : this.buildCondition_4();
+        ? this.buildCondition_1()
+        : this.notAuthedOrNotBought()
+          ? this.buildCondition_3()
+          : this.buildCondition_4();
   }
 }
 

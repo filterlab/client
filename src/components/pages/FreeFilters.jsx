@@ -7,6 +7,7 @@ import Filter from "../cards/Filter";
 import FilterDetail from "./FilterDetail";
 import ModalCloseIcon from "../ui/ModalCloseIcon";
 import { Header, Card } from "semantic-ui-react";
+import Spacer from "../ui/Spacer";
 
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
@@ -63,6 +64,7 @@ class FreeFilters extends React.Component {
             </Card.Content>
           </Card>
         </center>
+        <Spacer space={15} />
         <div
           style={{
             display: "flex",
