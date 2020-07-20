@@ -13,20 +13,6 @@ import Logo from "../ui/Logo";
 const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:1337";
 const strapi = new Strapi(apiUrl);
 const FILES_FOLDER = "../../files/images/filter";
-const formatDescription = (description) => {
-  console.log("desc", description);
-  let desc;
-  if (description.includes(",")) {
-    let splittedDescription = description.split(",");
-    desc = (
-      <div>
-        {splittedDescription[0]}
-        <a href={splittedDescription[1]}>{` ${splittedDescription[1]}`}</a>
-      </div>
-    );
-  } else desc = description;
-  return desc;
-};
 
 class FilterDetail extends React.Component {
   state = {
@@ -64,7 +50,7 @@ class FilterDetail extends React.Component {
   render() {
     const filter = this.state.filter;
     const isTablet = this.props.isTablet;
-    const { _id, name, categoryId, description } = filter;
+    const { _id, name, categoryId } = filter;
     const BEFORE = `${FILES_FOLDER}/${categoryId}/before/original.jpg`;
     const AFTER = `${FILES_FOLDER}/${categoryId}/after/${_id}.jpg`;
     const WIDTH = isTablet ? 320 : 640;
@@ -88,7 +74,6 @@ class FilterDetail extends React.Component {
               height={HEIGHT}
             />
           </div>
-          <center>{description && formatDescription(description)}</center>
           <Spacer space={20} />
           <Logo />
         </>
