@@ -31,7 +31,7 @@ const Motivation = ({ isTablet }) => {
               <Spacer space={30} />
               <span>
                 Tired of paying{" "}
-                <b style={{ whiteSpace: "nowrap" }}>overpriced</b> presets, that
+                <b style={{ whiteSpace: "nowrap" }}>overpriced</b> presets that
                 don't suit your photos? <br />
                 <b style={{ whiteSpace: "nowrap" }}>Filterlab's goal</b> is to
                 develop high quality yet budget-friendly mobile{" "}
