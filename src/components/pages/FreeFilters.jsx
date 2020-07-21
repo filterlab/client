@@ -6,6 +6,7 @@ import { Modal } from "react-responsive-modal";
 import Filter from "../cards/Filter";
 import FilterDetail from "./FilterDetail";
 import ModalCloseIcon from "../ui/ModalCloseIcon";
+import Loader from "../ui/Loader";
 import { Header, Card } from "semantic-ui-react";
 import Spacer from "../ui/Spacer";
 
@@ -73,15 +74,19 @@ class FreeFilters extends React.Component {
             alignItems: "flex-start",
           }}
         >
-          {filters.map((b, i) => (
-            <Filter
-              onOpenModal={() => this.onOpenModal(b)}
-              categoryId={b.categoryId}
-              filter={b}
-              index={i}
-              apiUrl={apiUrl}
-            />
-          ))}
+          {filters && filters.length > 0 ? (
+            filters.map((b, i) => (
+              <Filter
+                onOpenModal={() => this.onOpenModal(b)}
+                categoryId={b.categoryId}
+                filter={b}
+                index={i}
+                apiUrl={apiUrl}
+              />
+            ))
+          ) : (
+            <Loader />
+          )}
           <Modal
             open={this.state.open}
             onClose={this.onCloseModal}

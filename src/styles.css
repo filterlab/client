@@ -10,3 +10,7 @@ html {
 button:focus {
   outline: 0;
 }
+
+iframe {
+  overflow: hidden;
+}

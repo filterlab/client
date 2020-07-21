@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -41,8 +42,16 @@ class FilterButton extends React.Component {
           }`,
         },
       });
-      const orders = (data.user.orders);
-      orders.map((order, i) => order.filters.map(filter => filter.id === this.props.filter._id ? bought = true : ""))
+
+      const orders = data.user.orders;
+      if (orders) {
+        this.props.history.push("/");
+      }
+      orders.map((order) =>
+        order.filters.map((filter) =>
+          filter.id === this.props.filter._id ? (bought = true) : ""
+        )
+      );
       if (!bought)
         await axios({
           method: "POST",
@@ -86,20 +95,21 @@ class FilterButton extends React.Component {
         <Pulsable>Free</Pulsable>
       </Button>
     ) : (
-          this.buildCondition_2()
-        );
+      this.buildCondition_2()
+    );
 
   buildCondition_2 = () => (
-    <Link
-      to={`/files/filters/${this.props.filter._id}.dng`}
+    <a
+      href={`/files/filters/${this.props.filter._id}.dng`}
       style={{ color: "inherit", textDecoration: "inherit" }}
-      target="_blank"
+      rel="noopener noreferrer"
       download
+      target="_self"
     >
       <Button onClick={() => this.freeDownload()} color="green">
         Download
       </Button>
-    </Link>
+    </a>
   );
 
   buildCondition_3 = () => (
@@ -115,10 +125,10 @@ class FilterButton extends React.Component {
         onClick={() =>
           this.state.clicked
             ? this.props.removeItem(
-              this.props.filter._id,
-              this.props.price,
-              this.props.filter.name
-            )
+                this.props.filter._id,
+                this.props.price,
+                this.props.filter.name
+              )
             : this.props.buy()
         }
         color={this.state.clicked ? "red" : "green"}
@@ -128,36 +138,36 @@ class FilterButton extends React.Component {
             Remove from <Icon name="cart" />
           </span>
         ) : (
-            this.props.price &&
-            formatCurrency(this.props.price, this.props.currency)
-          )}
+          this.props.price &&
+          formatCurrency(this.props.price, this.props.currency)
+        )}
       </Button>
     </span>
   );
 
   buildCondition_4 = () => (
-    <Link
-      to={`/files/filters/${this.props.filter._id}.${
+    <a
+      href={`/files/filters/${this.props.filter._id}.${
         this.props.isPack ? "zip" : "dng"
-        }`}
+      }`}
       style={{ color: "inherit", textDecoration: "inherit" }}
-      target="_blank"
+      target="_self"
       download
     >
       <Button loading={!this.props.price} color="green">
         Download
       </Button>
-    </Link>
+    </a>
   );
 
   render() {
     return this.state.error
       ? this.login()
       : this.freeFilter()
-        ? this.buildCondition_1()
-        : this.notAuthedOrNotBought()
-          ? this.buildCondition_3()
-          : this.buildCondition_4();
+      ? this.buildCondition_1()
+      : this.notAuthedOrNotBought()
+      ? this.buildCondition_3()
+      : this.buildCondition_4();
   }
 }
 
@@ -177,4 +187,6 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(FilterButton);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(FilterButton)
+);

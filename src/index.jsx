@@ -9,48 +9,17 @@ import auth from "./reducers/authReducer";
 import { reducer as responsive, mediaQueryTracker } from "redux-mediaquery";
 import "./styles.css";
 
-import PrivateRoute from "./components/helpers/PrivateRoute";
 import App from "./components/App";
-import Signup from "./components/pages/Signup";
-import Login from "./components/pages/Login";
-import StripedCheckout from "./components/pages/checkout/StripedCheckout";
-import Filters from "./components/pages/Filters";
-import AllCategories from "./components/pages/AllCategories";
-import Collections from "./components/pages/Collections";
-import Forgot from "./components/pages/Forgot";
-import Page404 from "./components/pages/Page404";
-import Terms from "./components/pages/Terms";
-import Privacy from "./components/pages/Privacy";
 import Install from "./components/pages/Install";
-import RegisterSuccess from "./components/pages/RegisterSuccess";
-import Navbar from "./components/ui/Navbar";
 import ScrollToTop from "./components/ui/ScrollToTop";
-import LoginFree from "./components/pages/login/LoginFree";
-import LoginCollections from "./components/pages/login/LoginCollections";
-import LoginCheckout from "./components/pages/login/LoginCheckout";
 
 const Root = () => (
   <Router>
     <ScrollToTop>
       <React.Fragment>
-        <Navbar />
         <Switch>
           <Route component={App} exact path="/" />
-          <Route component={AllCategories} path="/all" />
-          <Route component={Signup} path="/signup" />
-          <Route component={Login} exact path="/login" />
-          <Route component={LoginFree} exact path="/free" />
-          <Route component={LoginCheckout} exact path="/checkout_login" />
-          <Route component={LoginCollections} exact path="/collections_login" />
-          <Route component={Forgot} path="/forgot" />
-          <Route component={Filters} path="/category/:categoryId" />
-          <Route component={Page404} path="/404" />
-          <Route component={Terms} path="/terms" />
-          <Route component={Privacy} path="/privacy" />
           <Route component={Install} path="/install" />
-          <Route component={RegisterSuccess} path="/success" />
-          <PrivateRoute component={Collections} path="/collections" />
-          <PrivateRoute component={StripedCheckout} path="/checkout" />
         </Switch>
       </React.Fragment>
     </ScrollToTop>

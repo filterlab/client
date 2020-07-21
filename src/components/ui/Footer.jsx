@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
 import Divider from "../ui/Divider";
@@ -61,36 +60,6 @@ const Footer = (props) => {
                 </a>
                 <div style={{ marginRight: 5 }} />
                 <Icon name="instagram" />
-              </div>
-            )}
-            {entry(
-              <div style={{ display: "flex", alignItems: "baseline" }}>
-                <Link
-                  style={{
-                    color: "inherit",
-                    textDecoration: "inherit",
-                  }}
-                  to="/terms"
-                >
-                  Terms
-                </Link>
-                <div style={{ marginRight: 5 }} />
-                <Icon name="list" />
-              </div>
-            )}
-            {entry(
-              <div style={{ display: "flex", alignItems: "baseline" }}>
-                <Link
-                  style={{
-                    color: "inherit",
-                    textDecoration: "inherit",
-                  }}
-                  to="/privacy"
-                >
-                  Privacy Policy
-                </Link>
-                <div style={{ marginRight: 5 }} />
-                <Icon name="low vision" />
               </div>
             )}
             {entry(

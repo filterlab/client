@@ -4,7 +4,7 @@ import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import { Image } from "semantic-ui-react";
 const FILES_FOLDER = "../../files/images/logo.svg";
-const Logo = ({ bigger }) => {
+const Logo = () => {
   return (
     <Fade left>
       <Link
@@ -15,7 +15,7 @@ const Logo = ({ bigger }) => {
         }}
         to="/"
       >
-        <Image src={FILES_FOLDER} size={bigger ? "small" : "tiny"} />
+        <Image src={FILES_FOLDER} size={"small"} />
       </Link>
     </Fade>
   );

@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import Fade from "react-reveal/Fade";
-import { Link } from "react-router-dom";
 import BeforeAfterSlider from "react-before-after-slider";
 import { Card, Button, Image } from "semantic-ui-react";
 import { ToastContainer } from "react-toastify";
@@ -78,16 +77,21 @@ class Collection extends React.Component {
                   justifyContent: "center",
                 }}
               >
-                <Link
-                  to={`/files/filters/${this.props.filter.id}.${
+                <a
+                  href={`/files/filters/${this.props.filter.id}.${
                     isPack ? "zip" : "dng"
                   }`}
                   style={{ color: "inherit", textDecoration: "inherit" }}
-                  target="_blank"
+                  rel="noopener noreferrer"
                   download
                 >
-                  <Button color="green">Download</Button>
-                </Link>
+                  <Button
+                    color="green"
+                    onClick={() => this.props.history.push("/")}
+                  >
+                    Download
+                  </Button>
+                </a>
               </div>
             </Card.Content>
           </Card>
