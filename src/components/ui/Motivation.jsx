@@ -30,14 +30,18 @@ const Motivation = ({ isTablet }) => {
             >
               <Spacer space={30} />
               <span>
+                Tired of paying{" "}
+                <b style={{ whiteSpace: "nowrap" }}>overpriced</b> presets, that
+                don't suit your photos? <br />
                 <b style={{ whiteSpace: "nowrap" }}>Filterlab's goal</b> is to
                 develop high quality yet budget-friendly mobile{" "}
-                <b style={{ whiteSpace: "nowrap" }}>Lightroom</b> presets that
-                add value to your photos.
+                <b style={{ whiteSpace: "nowrap" }}>Lightroom</b> presets.
               </span>
               <br />
-              <Spacer space={15} />
+              <Spacer space={7.5} />
               <span>
+                Not conviced yet? No problem!
+                <br />
                 Get started with our month's{" "}
                 <b style={{ whiteSpace: "nowrap" }}>free preset</b>!
               </span>
