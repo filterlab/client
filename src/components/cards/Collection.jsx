@@ -78,8 +78,8 @@ class Collection extends React.Component {
                   justifyContent: "center",
                 }}
               >
-                <Link
-                  to={`/files/filters/${this.props.filter.id}.${
+                <a
+                  href={`/files/filters/${this.props.filter.id}.${
                     isPack ? "zip" : "dng"
                   }`}
                   style={{ color: "inherit", textDecoration: "inherit" }}
@@ -87,7 +87,7 @@ class Collection extends React.Component {
                   download
                 >
                   <Button color="green">Download</Button>
-                </Link>
+                </a>
               </div>
             </Card.Content>
           </Card>
