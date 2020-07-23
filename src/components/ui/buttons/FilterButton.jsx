@@ -145,7 +145,6 @@ class FilterButton extends React.Component {
         this.props.isPack ? "zip" : "dng"
       }`}
       style={{ color: "inherit", textDecoration: "inherit" }}
-      target="_blank"
       download
     >
       <Button loading={!this.props.price} color="green">
