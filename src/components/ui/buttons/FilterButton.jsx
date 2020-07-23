@@ -41,8 +41,12 @@ class FilterButton extends React.Component {
           }`,
         },
       });
-      const orders = (data.user.orders);
-      orders.map((order, i) => order.filters.map(filter => filter.id === this.props.filter._id ? bought = true : ""))
+      const orders = data.user.orders;
+      orders.map((order, i) =>
+        order.filters.map((filter) =>
+          filter.id === this.props.filter._id ? (bought = true) : ""
+        )
+      );
       if (!bought)
         await axios({
           method: "POST",
@@ -86,14 +90,14 @@ class FilterButton extends React.Component {
         <Pulsable>Free</Pulsable>
       </Button>
     ) : (
-          this.buildCondition_2()
-        );
+      this.buildCondition_2()
+    );
 
   buildCondition_2 = () => (
     <Link
       to={`/files/filters/${this.props.filter._id}.dng`}
       style={{ color: "inherit", textDecoration: "inherit" }}
-      target="_blank"
+      target="_self"
       download
     >
       <Button onClick={() => this.freeDownload()} color="green">
@@ -115,10 +119,10 @@ class FilterButton extends React.Component {
         onClick={() =>
           this.state.clicked
             ? this.props.removeItem(
-              this.props.filter._id,
-              this.props.price,
-              this.props.filter.name
-            )
+                this.props.filter._id,
+                this.props.price,
+                this.props.filter.name
+              )
             : this.props.buy()
         }
         color={this.state.clicked ? "red" : "green"}
@@ -128,9 +132,9 @@ class FilterButton extends React.Component {
             Remove from <Icon name="cart" />
           </span>
         ) : (
-            this.props.price &&
-            formatCurrency(this.props.price, this.props.currency)
-          )}
+          this.props.price &&
+          formatCurrency(this.props.price, this.props.currency)
+        )}
       </Button>
     </span>
   );
@@ -139,7 +143,7 @@ class FilterButton extends React.Component {
     <Link
       to={`/files/filters/${this.props.filter._id}.${
         this.props.isPack ? "zip" : "dng"
-        }`}
+      }`}
       style={{ color: "inherit", textDecoration: "inherit" }}
       target="_blank"
       download
@@ -154,10 +158,10 @@ class FilterButton extends React.Component {
     return this.state.error
       ? this.login()
       : this.freeFilter()
-        ? this.buildCondition_1()
-        : this.notAuthedOrNotBought()
-          ? this.buildCondition_3()
-          : this.buildCondition_4();
+      ? this.buildCondition_1()
+      : this.notAuthedOrNotBought()
+      ? this.buildCondition_3()
+      : this.buildCondition_4();
   }
 }
 
