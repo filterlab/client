@@ -83,7 +83,7 @@ class Collection extends React.Component {
                     isPack ? "zip" : "dng"
                   }`}
                   style={{ color: "inherit", textDecoration: "inherit" }}
-                  target="_self"
+                  target="_blank"
                   download
                 >
                   <Button color="green">Download</Button>

@@ -97,7 +97,7 @@ class FilterButton extends React.Component {
     <Link
       to={`/files/filters/${this.props.filter._id}.dng`}
       style={{ color: "inherit", textDecoration: "inherit" }}
-      target="_self"
+      target="_blank"
       download
     >
       <Button onClick={() => this.freeDownload()} color="green">
